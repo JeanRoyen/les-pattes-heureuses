@@ -10,6 +10,7 @@
 <body class="bg-bodybackground">
 <x-general.header/>
 <main>
+
 </main>
 <x-general.footer/>
 </body>
