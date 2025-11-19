@@ -1,8 +1,8 @@
 <header>
 
-    <nav class="flex items-center justify-between flex-wrap bg-white p-6">
+    <nav class="flex items-center justify-between flex-wrap bg-white p-6 shadow-general">
 
-        <div class="flex items-center flex-shrink-0 mr-6">
+        <div class="flex items-center flex-shrink-0">
             <a href="#"><img src="{{ asset('images/LPH_logo.png') }}" alt="Logo les pattes heureuses" width="88">
             </a>
         </div>
@@ -15,34 +15,13 @@
                 <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"/>
             </svg>
         </label>
-
-        <div id="nav-menu"
-             class="w-full hidden peer-checked:block md:flex md:items-center md:w-auto font-bold">
-
+        <div class="w-full hidden peer-checked:block md:flex md:items-center md:w-auto font-bold">
             <div class="text-sm md:flex-grow">
-                <a href="#"
-                   class="block mt-4 md:inline-block md:mt-0 text-text-brown hover:underline mr-4">
-                    Accueil
-                </a>
-
-                <a href="#"
-                   class="block mt-4 md:inline-block md:mt-0 text-text-brown hover:underline transition-colors mr-4">
-                    Nos animaux
-                </a>
-
-                <a href="#"
-                   class="block mt-4 md:inline-block md:mt-0 text-text-brown hover:underline transition-colors md:mr-16">
-                    Devenir bénévole
-                </a>
+                <x-navigation.topLink title="Accueil" route="#"/>
+                <x-navigation.topLink title="Nos animaux" route="#"/>
+                <x-navigation.topLink title="Devenir bénévole" route="#"/>
+                <x-navigation.topButton route="#" title="Contact"/>
             </div>
-
-            <div>
-                <a href="#"
-                   class="inline-block text-sm px-5 py-3 leading-none border rounded text-white hover:bg-cta-hover bg-cta-orange border-cta-orange transition-colors mt-4 md:mt-0">
-                    Contact
-                </a>
-            </div>
-
         </div>
     </nav>
 </header>
