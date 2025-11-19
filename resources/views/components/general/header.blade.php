@@ -38,7 +38,7 @@
 
             <div>
                 <a href="#"
-                   class="inline-block text-sm px-5 py-3 leading-none border rounded text-white hover:bg-orange-600 bg-cta-orange border-cta-orange transition-colors mt-4 md:mt-0">
+                   class="inline-block text-sm px-5 py-3 leading-none border rounded text-white hover:bg-cta-hover bg-cta-orange border-cta-orange transition-colors mt-4 md:mt-0">
                     Contact
                 </a>
             </div>
