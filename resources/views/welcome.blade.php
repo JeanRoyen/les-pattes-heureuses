@@ -11,13 +11,13 @@
 <x-general.header/>
 <main>
     <section>
-        <h2 class="md:text-h2 font-bold">Une adoption, c'est le début d'une belle histoire d'amour</h2>
-        <a href="#" class="bg-cta-orange hover:bg-cta-hover text-white px-4 py-2 rounded-r-button">
+        <h2 class="text-h2 md:text-h2-desktop font-bold">Une adoption, c'est le début d'une belle histoire d'amour</h2>
+        <a href="#" class="bg-cta-orange hover:bg-cta-hover text-white px-4 py-2 rounded-r-button font-bold">
             Voir tous nos pensionnaires
         </a>
     </section>
     <section>
-        <h2 class="font-bold md:text-h2">Qui sommes-nous ? Pourquoi faisons nous cela ? </h2>
+        <h2 class="font-bold text-h2 md:text-h2-desktop">Qui sommes-nous ? Pourquoi faisons nous cela ? </h2>
         <p>
             Les Pattes Heureuses est un refuge où chaque animal a droit à une seconde chance.Nous accueillons chiens,
             chats et autres compagnons laissés de côté, pour leur offrir les soins, l’attention et surtout l’amour
@@ -28,31 +28,18 @@
         <img src="{{ asset('images/shelter2.png') }}" alt="Illustration de fond">
     </section>
     <section class="bg-background-green">
-        <h2 class="text-white font-bold md:text-h2">Nos nouveaux résidents</h2>
-        <div>
+        <h2 class="text-white font-bold text-h2 md:text-h2-desktop">Nos nouveaux résidents</h2>
+        <div class="flex mx-20 justify-center gap-4 pb-10 flex-wrap">
+            <x-general.card/>
             <x-general.card/>
             <x-general.card/>
             <x-general.card/>
         </div>
     </section>
     <section>
-        <h2 class="font-bold md:text-h2">Une question ? N'hésitez pas à nous contacter !</h2>
-        <div class="flex justify-center">
-            <form action="/" class="bg-white inline-block shadow-general px-8">
-                <div class="md:flex">
-                    <x-form.input name="name" title="Nom*" type="text" placeholder="Sarah "/>
-                    <x-form.input name="phone" title="Numero de téléphone*" type="tel" placeholder="0471 42 08 46"/>
-                </div>
-                <div>
-                    <x-form.input name="email" title="Adresse mail*" type="email" placeholder="Sarah@mail.be"/>
-                </div>
-                <div>
-                    <x-form.textarea name="message" placeholder="Écrire mon message..."/>
-                </div>
-                <button type="submit" class="bg-cta-orange hover:bg-cta-hover text-white py-2 w-full">
-                    Envoyer mon message
-                </button>
-            </form>
+        <h2 class="font-bold text-h2 md:text-h2-desktop">Une question ? N'hésitez pas à nous contacter !</h2>
+        <div class="flex justify-center mb-16">
+            <x-form.contactForm/>
         </div>
     </section>
 </main>
