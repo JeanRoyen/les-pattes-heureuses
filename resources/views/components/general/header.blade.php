@@ -1,7 +1,7 @@
 <header>
 
     <nav class="flex items-center justify-between flex-wrap bg-white p-6 shadow-general">
-
+        <h2 class="sr-only">Navigation principale</h2>
         <div class="flex items-center flex-shrink-0">
             <a href="#"><img src="{{ asset('images/LPH_logo.png') }}" alt="Logo les pattes heureuses" width="88">
             </a>
