@@ -1,21 +1,21 @@
-<footer class="bg-white text-text-brown p-8 md:flex md:justify-evenly">
+<footer class="bg-white text-text-brown p-8 md:flex md:justify-between">
     <div class="mb-4 md:mb-0">
         <h2 class="font-bold">Navigation</h2>
-        <ul class="underline">
+        <ul>
             <nav>
-                <li><a href="#">Accueil</a></li>
-                <li><a href="#">Nos animaux</a></li>
-                <li><a href="#">Adoption</a></li>
-                <li><a href="#">Devenir bénévole</a></li>
-                <li><a href="#">Contact</a></li>
+                <li class="hover:underline"><a href="#">Accueil</a></li>
+                <li class="hover:underline"><a href="#">Nos animaux</a></li>
+                <li class="hover:underline"><a href="#">Adoption</a></li>
+                <li class="hover:underline"><a href="#">Devenir bénévole</a></li>
+                <li class="hover:underline"><a href="#">Contact</a></li>
             </nav>
         </ul>
     </div>
     <div class="mb-4 md:mb-0">
         <h2 class="font-bold">Contactez-nous</h2>
         <ul>
-            <li><a href="tel:+32471420854" class="underline">0471 42 08 54</a></li>
-            <li><a href="mailto:jeanroyen2@hotmail.com" class="underline">jeanroyen2@hotmail.com</a></li>
+            <li><a href="tel:+32471420854" class="hover:underline">0471 42 08 54</a></li>
+            <li><a href="mailto:jeanroyen2@hotmail.com" class="hover:underline">jeanroyen2@hotmail.com</a></li>
             <li><p>Avenue des Animaux,</p>
                 <p>140 Bruxelles, Belgique</p>
             </li>
@@ -30,9 +30,9 @@
     </div>
     <div class="mb-4 md:mb-0">
         <h2 class="font-bold">Langues</h2>
-        <ul class="underline">
-            <li><a href="#">Français</a></li>
-            <li><a href="#">Anglais</a></li>
+        <ul>
+            <li class="hover:underline"><a href="#">Français</a></li>
+            <li class="hover:underline"><a href="#">Anglais</a></li>
         </ul>
     </div>
     <div>
