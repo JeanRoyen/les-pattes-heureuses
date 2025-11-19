@@ -29,7 +29,7 @@
     </section>
     <section class="bg-background-green">
         <h2 class="text-white font-bold text-h2 md:text-h2-desktop">Nos nouveaux résidents</h2>
-        <div class="flex mx-20 justify-center gap-4 pb-10 flex-wrap">
+        <div class="pb-10 container mx-auto grid grid-cols-1 lg:grid-cols-4 md:grid-cols-2 gap-4 sm:px-0">
             <x-general.card/>
             <x-general.card/>
             <x-general.card/>
@@ -38,7 +38,7 @@
     </section>
     <section>
         <h2 class="font-bold text-h2 md:text-h2-desktop">Une question ? N'hésitez pas à nous contacter !</h2>
-        <div class="flex justify-center mb-16">
+        <div class="flex justify-center mb-16 mx-20">
             <x-form.contactForm/>
         </div>
     </section>
