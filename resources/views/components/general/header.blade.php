@@ -17,21 +17,21 @@
         </label>
 
         <div id="nav-menu"
-             class="w-full hidden peer-checked:block md:flex md:items-center md:w-auto">
+             class="w-full hidden peer-checked:block md:flex md:items-center md:w-auto font-bold">
 
             <div class="text-sm md:flex-grow">
                 <a href="#"
-                   class="block mt-4 md:inline-block md:mt-0 text-text-brown hover:text-cta-orange transition-colors mr-4">
+                   class="block mt-4 md:inline-block md:mt-0 text-text-brown hover:underline mr-4">
                     Accueil
                 </a>
 
                 <a href="#"
-                   class="block mt-4 md:inline-block md:mt-0 text-text-brown hover:text-cta-orange transition-colors mr-4">
+                   class="block mt-4 md:inline-block md:mt-0 text-text-brown hover:underline transition-colors mr-4">
                     Nos animaux
                 </a>
 
                 <a href="#"
-                   class="block mt-4 md:inline-block md:mt-0 text-text-brown hover:text-cta-orange transition-colors md:mr-10">
+                   class="block mt-4 md:inline-block md:mt-0 text-text-brown hover:underline transition-colors md:mr-16">
                     Devenir bénévole
                 </a>
             </div>
