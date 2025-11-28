@@ -10,3 +10,7 @@ Route::get('/', function () {
 Route::get('/animals', function () {
     return view('pages.animal-list');
 })->name('pages.animals-list');
+
+Route::get('/dashboard', function () {
+    return view('pages.admin.dashboard');
+})->name('admin.dashboard');
