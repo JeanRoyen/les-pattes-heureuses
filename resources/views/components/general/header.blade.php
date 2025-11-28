@@ -1,4 +1,4 @@
-<header>
+<header class="sticky z-9999 w-full top-0">
     <nav class="flex items-center justify-between flex-wrap bg-white shadow-general">
         <div class="container mx-auto px-4 md:px-0 pb-4 md:pb-0  flex items-center justify-between flex-wrap w-full">
             <h2 class="sr-only">Navigation principale</h2>
