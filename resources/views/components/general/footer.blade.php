@@ -1,8 +1,8 @@
 <footer class="bg-white text-text-brown p-8 md:flex md:justify-between">
     <div class="mb-4 md:mb-0">
-        <h2 class="font-bold">Navigation</h2>
         <ul>
             <nav>
+                <h2 class="font-bold">Navigation</h2>
                 <li class="hover:underline"><a href="#">Accueil</a></li>
                 <li class="hover:underline"><a href="#">Nos animaux</a></li>
                 <li class="hover:underline"><a href="#">Adoption</a></li>
@@ -36,6 +36,7 @@
         </ul>
     </div>
     <div>
-        <img src="{{ asset('images/LPH_logo.png') }}" alt="logo du refuge les pattes heureuses" class="w-30 md:w-20">
+        <img src="{{ asset('images/LPH_logo.png') }}" alt="logo du refuge les pattes heureuses"
+             class="w-30 md:w-20">
     </div>
 </footer>
