@@ -29,7 +29,7 @@
             </div>
         </div>
     </section>
-    <section class="py-8 md:py-12">
+    <section class="mt-8 md:mt-12">
         <div class="container mx-auto px-4 md:px-0">
             <x-general.headings2 color="black" title="Découvrez nos petits (et grands) pensionnaires"/>
             <x-general.searchbar/>
