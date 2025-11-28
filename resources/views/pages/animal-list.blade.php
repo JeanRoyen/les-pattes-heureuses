@@ -55,21 +55,35 @@
                     <option value="2">5-7 ans</option>
                 </x-general.select>
                 <x-general.card name="Bob" race="Berger Allemand" age="8 ans"
-                                description="Bob est un chien affectueux il peut tout à fait vivre avec d'autres animaux."/>
-                <x-general.card name="Norbert" race="Berger Allemand" age="4 ans"
-                                description="Norbert est un chien affectueux il peut tout à fait vivre avec d'autres animaux."/>
-                <x-general.card name="Patrick" race="Berger Allemand" age="8 ans"
-                                description="Patrick est un chien affectueux il peut tout à fait vivre avec d'autres animaux."/>
-                <x-general.card name="Fernando" race="Berger Allemand" age="2 ans"
-                                description="Fernando est un chien affectueux il peut tout à fait vivre avec d'autres animaux."/>
+                                description="Bob est un chien affectueux il peut tout à fait vivre avec d'autres animaux."
+                :picture="asset('images/dog1.png')"/>
+                <x-general.card name="Norbert" race="Corgi" age="8 ans"
+                                description="Bob est un chien affectueux il peut tout à fait vivre avec d'autres animaux."
+                                :picture="asset('images/dog2.jpg')"/>
                 <x-general.card name="Bob" race="Berger Allemand" age="8 ans"
-                                description="Bob est un chien affectueux il peut tout à fait vivre avec d'autres animaux."/>
-                <x-general.card name="Norbert" race="Berger Allemand" age="4 ans"
-                                description="Norbert est un chien affectueux il peut tout à fait vivre avec d'autres animaux."/>
-                <x-general.card name="Patrick" race="Berger Allemand" age="8 ans"
-                                description="Patrick est un chien affectueux il peut tout à fait vivre avec d'autres animaux."/>
-                <x-general.card name="Fernando" race="Berger Allemand" age="2 ans"
-                                description="Fernando est un chien affectueux il peut tout à fait vivre avec d'autres animaux."/>
+                                description="Bob est un chien affectueux il peut tout à fait vivre avec d'autres animaux."
+                                :picture="asset('images/dog1.png')"/>
+                <x-general.card name="Norbert" race="Corgi" age="8 ans"
+                                description="Bob est un chien affectueux il peut tout à fait vivre avec d'autres animaux."
+                                :picture="asset('images/dog2.jpg')"/>
+                <x-general.card name="Bob" race="Berger Allemand" age="8 ans"
+                                description="Bob est un chien affectueux il peut tout à fait vivre avec d'autres animaux."
+                                :picture="asset('images/dog1.png')"/>
+                <x-general.card name="Norbert" race="Corgi" age="8 ans"
+                                description="Bob est un chien affectueux il peut tout à fait vivre avec d'autres animaux."
+                                :picture="asset('images/dog2.jpg')"/>
+                <x-general.card name="Bob" race="Berger Allemand" age="8 ans"
+                                description="Bob est un chien affectueux il peut tout à fait vivre avec d'autres animaux."
+                                :picture="asset('images/dog1.png')"/>
+                <x-general.card name="Norbert" race="Corgi" age="8 ans"
+                                description="Bob est un chien affectueux il peut tout à fait vivre avec d'autres animaux."
+                                :picture="asset('images/dog2.jpg')"/>
+                <x-general.card name="Bob" race="Berger Allemand" age="8 ans"
+                                description="Bob est un chien affectueux il peut tout à fait vivre avec d'autres animaux."
+                                :picture="asset('images/dog1.png')"/>
+                <x-general.card name="Norbert" race="Corgi" age="8 ans"
+                                description="Bob est un chien affectueux il peut tout à fait vivre avec d'autres animaux."
+                                :picture="asset('images/dog2.jpg')"/>
             </div>
             {{-- TODO: Pagination --}}
         </div>

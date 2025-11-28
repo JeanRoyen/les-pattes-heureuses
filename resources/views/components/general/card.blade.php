@@ -1,6 +1,6 @@
 <article class="bg-white rounded-card overflow-hidden flex flex-col col-span-8 md:col-span-4 lg:col-span-2">
     <div>
-        <img src="{{ asset('images/dog1.png') }}" alt="{{ $name }}" class="block w-full h-48 object-cover"/>
+        <img src="{{ $picture }}" alt="{{ $name }}" class="block w-full h-48 object-cover"/>
     </div>
     <div class="p-4 flex flex-col flex-grow">
         <span class="text-background-green italic font-bold text-sm">{{ $age }}</span>
