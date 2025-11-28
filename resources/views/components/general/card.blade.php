@@ -1,12 +1,14 @@
-<article class="bg-white rounded-card overflow-hidden w-full flex flex-col">
+<article class="bg-white rounded-card overflow-hidden flex flex-col col-span-8 md:col-span-4 lg:col-span-2">
     <div>
-        <img src="{{ asset('images/dog1.png') }}" alt="" class="block w-full"/>
+        <img src="{{ asset('images/dog1.png') }}" alt="{{ $name }}" class="block w-full h-48 object-cover"/>
     </div>
     <div class="p-4 flex flex-col flex-grow">
-        <span class="text-background-green italic font-bold">{{ $age }}</span>
-        <h3 class="font-bold text-2xl md:text-4xl">{{ $name }}</h3>
-        <h4 class="italic">{{ $race }}</h4>
-        <p class="flex-grow">{{ $description }}</p>
-        <a href="#" class="bg-cta-orange hover:bg-cta-hover text-white py-2 px-4 block text-center rounded-button mt-4">En savoir plus -></a>
+        <span class="text-background-green italic font-bold text-sm">{{ $age }}</span>
+        <h3 class="font-bold text-xl">{{ $name }}</h3>
+        <p class="italic text-sm text-gray-600">{{ $race }}</p>
+        <p class="flex-grow text-sm my-2 line-clamp-3">{{ $description }}</p>
+        <a href="#" class="bg-cta-orange hover:bg-cta-hover text-white py-2 px-4 block text-center rounded-button mt-auto text-sm">
+            En savoir plus →
+        </a>
     </div>
 </article>
