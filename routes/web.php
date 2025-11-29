@@ -14,3 +14,7 @@ Route::get('/animals', function () {
 Route::get('/login', function () {
     return view('pages.admin.login');
 })->name('admin.login');
+
+Route::get('/dashboard', function () {
+    return view('pages.admin.dashboard');
+})->name('dashboard');
