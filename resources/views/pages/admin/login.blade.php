@@ -10,7 +10,7 @@
 <body class="bg-bodybackground">
 <x-general.header/>
 <main>
-    <x-admin.login />
+    <x-admin.login/>
 </main>
 </body>
 </html>
