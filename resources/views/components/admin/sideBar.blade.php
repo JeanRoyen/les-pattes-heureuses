@@ -4,8 +4,8 @@
         <h2 class="sr-only">Navigation sur le coté</h2>
         <h3 class="text-2xl font-bold text-text-brown mb-6">Bonjour Elise</h3>
         <ul>
-            <x-admin.listElement title="Tableau de bord" route="#"/>
-            <x-admin.listElement title="Animaux" route="#"/>
+            <x-admin.listElement title="Tableau de bord" route="{{ route('admin.dashboard') }}"/>
+            <x-admin.listElement title="Animaux" route="{{ route('admin.animals') }}"/>
             <x-admin.listElement title="Demande d'adoption" route="#"/>
             <x-admin.listElement title="Bénévoles" route="#"/>
             <x-admin.listElement title="Messages" route="#"/>
