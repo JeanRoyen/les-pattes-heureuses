@@ -9,17 +9,21 @@
 </head>
 <body class="bg-bodybackground">
 <x-general.header/>
-<div class="flex">
+<div class="flex py-6 px-8">
     <x-admin.sideBar/>
-    <main class="flex-1 ml-64 overflow-y-auto">
-        <section>
+    <main class="flex-1 ml-64 space-y-10">
+        <x-admin.section-spacing>
             <x-admin.headings2 title="Demandes et messages"/>
             <x-admin.square-infos-container>
-                <x-general.square-infos number="1" title="Demandes d'adoptions" svg="contact"/>
-                <x-general.square-infos number="3" title="Messages reçus" svg="mail"/>
+                <a href="#">
+                    <x-general.square-infos number="1" title="Demandes" svg="contact"/>
+                </a>
+                <a href="#">
+                    <x-general.square-infos number="3" title="Messages" svg="mail"/>
+                </a>
             </x-admin.square-infos-container>
-        </section>
-        <section>
+        </x-admin.section-spacing>
+        <x-admin.section-spacing>
             <x-admin.headings2 title="Résumé mensuel"/>
             <x-admin.square-infos-container>
                 <x-general.square-infos number="23" title="Chiens au refuge" svg="dog"/>
@@ -28,7 +32,55 @@
                 <x-general.square-infos number="5" title="Ont quitté" svg="circled-minus"/>
                 <x-general.square-infos number="9" title="Sont arrivé refuge" svg="circled-plus"/>
             </x-admin.square-infos-container>
-        </section>
+            <div class="mt-8">
+                <x-admin.cta title="Exporter en PDF"/>
+            </div>
+        </x-admin.section-spacing>
+        <x-admin.section-spacing>
+            <x-admin.headings2 title="Horaire des bénévoles"/>
+            <x-admin.table>
+                <tr>
+                    <x-admin.table-header title="Nom" />
+                    <x-admin.table-header title="Lundi" />
+                    <x-admin.table-header title="Mardi" />
+                    <x-admin.table-header title="Mercredi" />
+                    <x-admin.table-header title="Jeudi" />
+                    <x-admin.table-header title="Vendredi" />
+                    <x-admin.table-header title="Samedi" />
+                    <x-admin.table-header title="Actions" />
+                </tr>
+                <tr>
+                    <x-admin.table-data title="Chloé" />
+                    <x-admin.table-data title="9h-12h" />
+                    <x-admin.table-data title="9h-12h" />
+                    <x-admin.table-data title="9h-12h" />
+                    <x-admin.table-data title="9h-12h" />
+                    <x-admin.table-data title="9h-12h" />
+                    <x-admin.table-data title="9h-12h" />
+                    <x-admin.table-data title="Voir" />
+                </tr>
+                <tr>
+                    <x-admin.table-data title="Chloé" />
+                    <x-admin.table-data title="9h-12h" />
+                    <x-admin.table-data title="9h-12h" />
+                    <x-admin.table-data title="9h-12h" />
+                    <x-admin.table-data title="9h-12h" />
+                    <x-admin.table-data title="9h-12h" />
+                    <x-admin.table-data title="9h-12h" />
+                    <x-admin.table-data title="Voir" />
+                </tr>
+                <tr>
+                    <x-admin.table-data title="Chloé" />
+                    <x-admin.table-data title="9h-12h" />
+                    <x-admin.table-data title="9h-12h" />
+                    <x-admin.table-data title="9h-12h" />
+                    <x-admin.table-data title="9h-12h" />
+                    <x-admin.table-data title="9h-12h" />
+                    <x-admin.table-data title="9h-12h" />
+                    <x-admin.table-data title="Voir" />
+                </tr>
+            </x-admin.table>
+        </x-admin.section-spacing>
     </main>
 </div>
 </body>
