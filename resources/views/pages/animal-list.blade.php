@@ -30,7 +30,7 @@
         </div>
     </section>
     <section class="mt-8 md:mt-12">
-        <div class="container mx-auto px-4 md:px-0">
+        <div class="container mx-auto px-4 md:px-0 space-y-2">
             <x-general.headings2 color="black" title="Découvrez nos petits (et grands) pensionnaires"/>
             <x-general.searchbar/>
             <div class="grid grid-cols-8 gap-5">
