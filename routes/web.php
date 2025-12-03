@@ -20,5 +20,5 @@ Route::get('/admin/dashboard', function () {
 })->name('admin.dashboard');
 
 Route::get('/admin/animals', function () {
-    return view('pages.admin.dashboard');
+    return view('pages.admin.animals');
 })->name('admin.animals');
