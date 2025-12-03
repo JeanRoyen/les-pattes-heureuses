@@ -11,10 +11,14 @@ Route::get('/animals', function () {
     return view('pages.animal-list');
 })->name('pages.animals-list');
 
-Route::get('/login', function () {
+Route::get('/admin/login', function () {
     return view('pages.admin.login');
 })->name('admin.login');
 
-Route::get('/dashboard', function () {
+Route::get('/admin/dashboard', function () {
     return view('pages.admin.dashboard');
-})->name('dashboard');
+})->name('admin.dashboard');
+
+Route::get('/admin/animals', function () {
+    return view('pages.admin.dashboard');
+})->name('admin.animals');
