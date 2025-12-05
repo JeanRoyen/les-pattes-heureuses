@@ -6,7 +6,7 @@
         <ul>
             <x-admin.listElement title="Tableau de bord" route="{{ route('admin.dashboard') }}"/>
             <x-admin.listElement title="Animaux" route="{{ route('admin.animals') }}"/>
-            <x-admin.listElement title="Demande d'adoption" route="#"/>
+            <x-admin.listElement title="Demande d'adoption" route="{{ route('admin.adoptions') }}"/>
             <x-admin.listElement title="Bénévoles" route="#"/>
             <x-admin.listElement title="Messages" route="#"/>
         </ul>

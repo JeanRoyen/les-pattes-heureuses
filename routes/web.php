@@ -22,3 +22,7 @@ Route::get('/admin/dashboard', function () {
 Route::get('/admin/animals', function () {
     return view('pages.admin.animals');
 })->name('admin.animals');
+
+Route::get('/admin/adoptions', function () {
+    return view('pages.admin.adoptions');
+})->name('admin.adoptions');
