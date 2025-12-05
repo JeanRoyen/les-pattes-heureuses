@@ -17,7 +17,6 @@
                 <div class="text-sm md:flex-grow">
                     <x-navigation.topLink title="Accueil" route="{{ route('welcome') }}" />
                     <x-navigation.topLink title="Nos animaux" route="{{ route('pages.animals-list') }}"/>
-                    <x-navigation.topLink title="Devenir bénévole" route="#"/>
                     <x-navigation.topButton route="#" title="Contact"/>
                 </div>
             </div>
