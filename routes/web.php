@@ -26,3 +26,7 @@ Route::get('/admin/animals', function () {
 Route::get('/admin/adoptions', function () {
     return view('pages.admin.adoptions');
 })->name('admin.adoptions');
+
+Route::get('/admin/volunteers', function () {
+    return view('pages.admin.volunteers');
+})->name('admin.volunteers');
