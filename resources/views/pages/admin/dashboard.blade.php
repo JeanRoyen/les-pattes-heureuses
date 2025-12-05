@@ -57,7 +57,7 @@
                     <x-admin.table-data title="9h-12h" />
                     <x-admin.table-data title="9h-12h" />
                     <x-admin.table-data title="9h-12h" />
-                    <x-admin.table-data title="Voir" />
+                    <x-admin.table-data title="Modifier" />
                 </tr>
                 <tr>
                     <x-admin.table-data title="Chloé" />
@@ -67,7 +67,7 @@
                     <x-admin.table-data title="9h-12h" />
                     <x-admin.table-data title="9h-12h" />
                     <x-admin.table-data title="9h-12h" />
-                    <x-admin.table-data title="Voir" />
+                    <x-admin.table-data title="Modifier" />
                 </tr>
                 <tr>
                     <x-admin.table-data title="Chloé" />
@@ -77,7 +77,7 @@
                     <x-admin.table-data title="9h-12h" />
                     <x-admin.table-data title="9h-12h" />
                     <x-admin.table-data title="9h-12h" />
-                    <x-admin.table-data title="Voir" />
+                    <x-admin.table-data title="Modifier" />
                 </tr>
             </x-admin.table>
         </x-admin.section-spacing>
