@@ -8,7 +8,7 @@
             <x-admin.listElement title="Animaux" route="{{ route('admin.animals') }}"/>
             <x-admin.listElement title="Demande d'adoption" route="{{ route('admin.adoptions') }}"/>
             <x-admin.listElement title="Bénévoles" route="{{ route('admin.volunteers') }}"/>
-            <x-admin.listElement title="Messages" route="#"/>
+            <x-admin.listElement title="Messages" route="{{ route('admin.messages') }}"/>
         </ul>
     </div>
 </aside>
