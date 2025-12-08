@@ -112,18 +112,22 @@
                 <x-admin.table-header title="Status"/>
                 <x-admin.table-header title="Action"/>
             </tr>
-            @foreach($this->animals as $animal)
+            @forelse($this->animals as $animal)
                 <tr>
                     <x-admin.table-data title="{{ $animal->name }}"/>
                     <x-admin.table-data title="{{ $animal->race }}"/>
                     <x-admin.table-data title="{{ $animal->description }}"/>
                     <x-admin.table-data title="{{ $animal->gender ? 'Mâle' : 'Femelle' }}"/>
-                    <x-admin.table-data title="24/03/2025"/>
-                    <x-admin.table-data title="À jour"/>
-                    <x-admin.table-data title="Disponible"/>
+                    <x-admin.table-data title="{{ $animal->age->format('d/m/Y') }}"/>
+                    <x-admin.table-data title="{{ $animal->vaccine }}"/>
+                    <x-admin.table-data title="{{ $animal->status }}"/>
                     <x-admin.table-data title="Supprimer / Voir"/>
                 </tr>
-            @endforeach
+            @empty
+                <tr>
+                    <td colspan="8" class="text-center py-4 bg-white border">Pas d'animaux trouvés</td>
+                </tr>
+            @endforelse
         </x-admin.table>
         {{-- TODO: Paginate --}}
     </x-admin.section-spacing>
