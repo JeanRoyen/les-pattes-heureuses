@@ -3,7 +3,7 @@
 use App\Models\Animal;
 use Livewire\Livewire;
 
-it('renders successfully', function () {
+it('renders successfully animals admin', function () {
     Livewire::test('pages::animal.index')
         ->assertStatus(200);
 });
@@ -36,9 +36,23 @@ it('assert animal gender exist on page', function () {
         ->assertSee('Mâle')->assertSee('Femelle');
 });
 
-it('assert animal age exist on page', function () {
-    Animal::factory()->create(['age' => true]);
-    Animal::factory()->create(['age' => false]);
+it('assert animal status exist on page', function () {
+    Animal::factory()->create(['status' => 'Disponible']);
+    Animal::factory()->create(['status' => 'En attente']);
     Livewire::test('pages::animal.index')
-        ->assertSee('Mâle')->assertSee('Femelle');
+        ->assertSee('Disponible')->assertSee('En attente');
+});
+
+it('assert animal vaccine exist on page', function () {
+    Animal::factory()->create(['vaccine' => 'À jour']);
+    Animal::factory()->create(['vaccine' => 'À faire']);
+    Livewire::test('pages::animal.index')
+        ->assertSee('À jour')->assertSee('À faire');
+});
+
+it('assert animal age exist on page', function () {
+    Animal::factory()->create(['age' => '2025-03-24 00:00:00']);
+    Animal::factory()->create(['age' => '2023-03-24 00:00:00']);
+    Livewire::test('pages::animal.index')
+        ->assertSee('24/03/2025')->assertSee('24/03/2023');
 });
