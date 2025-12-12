@@ -34,9 +34,11 @@ Livewire::test('pages::animal.index')
 
 it("shows gender for status {$status}", function () use ($status) {
 Animal::factory()->create(['gender' => true, 'status' => $status]);
+Animal::factory()->create(['gender' => false, 'status' => $status]);
 
 Livewire::test('pages::animal.index')
-->assertSee('Mâle');
+->assertSee('Mâle')
+->assertSee('Femelle');
 });
 
 it("shows vaccine for status {$status}", function () use ($status) {
