@@ -12,7 +12,5 @@ class Animal extends Model
     use HasFactory, Notifiable;
 
     protected $fillable = ['name', 'specie', 'race', 'age', 'gender', 'vaccine', 'description', 'status'];
-    protected $casts = ['age' => 'datetime',
-    ];
-
+    protected $casts = ['age' => 'datetime'];
 }
