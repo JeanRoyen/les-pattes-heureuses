@@ -7,6 +7,7 @@
                 <x-admin.table-header title="Nom"/>
                 <x-admin.table-header title="Email"/>
                 <x-admin.table-header title="Téléphone"/>
+                <x-admin.table-header title="Rôle"/>
                 <x-admin.table-header title="Actions"/>
             </tr>
             @foreach($this->users as $user)
@@ -15,6 +16,7 @@
                 <x-admin.table-data title="{{ $user->name }}"/>
                 <x-admin.table-data title="{{ $user->email }}"/>
                 <x-admin.table-data title="{{ $user->phone }}"/>
+                <x-admin.table-data title="{{ $user->role ? 'Administrateur' : 'Bénévole' }}"/>
                 <x-admin.table-data title="Supprimer / Voir"/>
             </tr>
             @endforeach

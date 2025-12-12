@@ -28,3 +28,12 @@ it('shows volunteers phone number on page', function () {
     Livewire::test('pages::volunteer.index')
         ->assertSee('0471420854');
 });
+
+it('shows volunteers role on page', function () {
+    User::factory()->create(['role' => true]);
+    User::factory()->create(['role' => false]);
+
+    Livewire::test('pages::volunteer.index')
+        ->assertSee('Administrateur')
+        ->assertSee('Bénévole');
+});
