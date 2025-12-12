@@ -9,24 +9,16 @@
                 <x-admin.table-header title="Téléphone"/>
                 <x-admin.table-header title="Actions"/>
             </tr>
+            @foreach($this->users as $user)
+
             <tr>
-                <x-admin.table-data title="Chloé"/>
-                <x-admin.table-data title="chloe@benevole.be"/>
-                <x-admin.table-data title="04 71 42 08 54"/>
+                <x-admin.table-data title="{{ $user->name }}"/>
+                <x-admin.table-data title="{{ $user->email }}"/>
+                <x-admin.table-data title="{{ $user->phone }}"/>
                 <x-admin.table-data title="Supprimer / Voir"/>
             </tr>
-            <tr>
-                <x-admin.table-data title="Chloé"/>
-                <x-admin.table-data title="chloe@benevole.be"/>
-                <x-admin.table-data title="04 71 42 08 54"/>
-                <x-admin.table-data title="Supprimer / Voir"/>
-            </tr>
-            <tr>
-                <x-admin.table-data title="Chloé"/>
-                <x-admin.table-data title="chloe@benevole.be"/>
-                <x-admin.table-data title="04 71 42 08 54"/>
-                <x-admin.table-data title="Supprimer / Voir"/>
-            </tr>
+            @endforeach
+
         </x-admin.table>
         {{-- TODO: Paginate --}}
         <x-admin.cta title="Ajouter un bénévole"/>
@@ -46,27 +38,7 @@
                 <x-admin.table-header title="Actions" />
             </tr>
             <tr>
-                <x-admin.table-data title="Chloé" />
-                <x-admin.table-data title="9h-12h" />
-                <x-admin.table-data title="9h-12h" />
-                <x-admin.table-data title="9h-12h" />
-                <x-admin.table-data title="9h-12h" />
-                <x-admin.table-data title="9h-12h" />
-                <x-admin.table-data title="9h-12h" />
-                <x-admin.table-data title="Modifier" />
-            </tr>
-            <tr>
-                <x-admin.table-data title="Chloé" />
-                <x-admin.table-data title="9h-12h" />
-                <x-admin.table-data title="9h-12h" />
-                <x-admin.table-data title="9h-12h" />
-                <x-admin.table-data title="9h-12h" />
-                <x-admin.table-data title="9h-12h" />
-                <x-admin.table-data title="9h-12h" />
-                <x-admin.table-data title="Modifier" />
-            </tr>
-            <tr>
-                <x-admin.table-data title="Chloé" />
+                <x-admin.table-data title="Martin" />
                 <x-admin.table-data title="9h-12h" />
                 <x-admin.table-data title="9h-12h" />
                 <x-admin.table-data title="9h-12h" />
