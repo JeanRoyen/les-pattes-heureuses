@@ -4,184 +4,59 @@ use App\Models\Animal;
 use Livewire\Livewire;
 
 it('renders successfully animals admin', function () {
-    Livewire::test('pages::animal.index')
-        ->assertStatus(200);
+Livewire::test('pages::animal.index')->assertStatus(200);
 });
 
+$viewedStatuses = ['adopted', 'waiting', 'available', 'in_care'];
 
-// Tests for adopted animals
-it('assert animal name exist on page', function () {
-    Animal::factory()->create(['name' => 'Bob', 'status' => 'adopted']);
-    Animal::factory()->create(['name' => 'Ferdinand', 'status' => 'adopted']);
-    Livewire::test('pages::animal.index')
-        ->assertSee('Bob')->assertSee('Ferdinand');
+foreach ($viewedStatuses as $status) {
+
+it("shows name for status {$status}", function () use ($status) {
+Animal::factory()->create(['name' => 'Bob', 'status' => $status]);
+
+Livewire::test('pages::animal.index')
+->assertSee('Bob');
 });
 
-it('assert animal race exist on page', function () {
-    Animal::factory()->create(['race' => 'Berger Allemand', 'status' => 'adopted']);
-    Animal::factory()->create(['race' => 'Berger Australien', 'status' => 'adopted']);
-    Livewire::test('pages::animal.index')
-        ->assertSee('Berger Allemand')->assertSee('Berger Australien');
+it("shows race for status {$status}", function () use ($status) {
+Animal::factory()->create(['race' => 'Berger Allemand', 'status' => $status]);
+
+Livewire::test('pages::animal.index')
+->assertSee('Berger Allemand');
 });
 
-it('assert animal description exist on page', function () {
-    Animal::factory()->create(['description' => 'Bob est un berger Allemand', 'status' => 'adopted']);
-    Animal::factory()->create(['description' => 'Ferdinand est un berger Australien', 'status' => 'adopted']);
-    Livewire::test('pages::animal.index')
-        ->assertSee('Bob est un berger Allemand')->assertSee('Ferdinand est un berger Australien');
+it("shows description for status {$status}", function () use ($status) {
+Animal::factory()->create(['description' => 'Lorem ipsum', 'status' => $status]);
+
+Livewire::test('pages::animal.index')
+->assertSee('Lorem ipsum');
 });
 
-it('assert animal gender exist on page', function () {
-    Animal::factory()->create(['gender' => true, 'status' => 'adopted']);
-    Animal::factory()->create(['gender' => false, 'status' => 'adopted']);
-    Livewire::test('pages::animal.index')
-        ->assertSee('Mâle')->assertSee('Femelle');
+it("shows gender for status {$status}", function () use ($status) {
+Animal::factory()->create(['gender' => true, 'status' => $status]);
+
+Livewire::test('pages::animal.index')
+->assertSee('Mâle');
 });
 
-it('assert animal status exist on page', function () {
-    Animal::factory()->create(['status' => 'adopted']);
-    Livewire::test('pages::animal.index')
-        ->assertSee('adopted');
+it("shows vaccine for status {$status}", function () use ($status) {
+Animal::factory()->create(['vaccine' => true, 'status' => $status]);
+
+Livewire::test('pages::animal.index')
+->assertSee('À jour');
 });
 
-it('assert animal vaccine exist on page', function () {
-    Animal::factory()->create(['vaccine' => true, 'status' => 'adopted']);
-    Animal::factory()->create(['vaccine' => false, 'status' => 'adopted']);
-    Livewire::test('pages::animal.index')
-        ->assertSee('À jour')->assertSee('À faire');
+it("shows age for status {$status}", function () use ($status) {
+Animal::factory()->create(['age' => '2025-03-24 00:00:00', 'status' => $status]);
+
+Livewire::test('pages::animal.index')
+->assertSee('24/03/2025');
 });
 
-it('assert animal age exist on page', function () {
-    Animal::factory()->create(['age' => '2025-03-24 00:00:00', 'status' => 'adopted']);
-    Animal::factory()->create(['age' => '2023-03-24 00:00:00', 'status' => 'adopted']);
-    Livewire::test('pages::animal.index')
-        ->assertSee('24/03/2025')->assertSee('24/03/2023');
+it("shows specie for status {$status}", function () use ($status) {
+Animal::factory()->create(['specie' => 'dog', 'status' => $status]);
+
+Livewire::test('pages::animal.index')
+->assertSee('dog');
 });
-
-it('assert animal specie exist on page', function () {
-    Animal::factory()->create(['specie' => 'dog', 'status' => 'adopted']);
-    Animal::factory()->create(['specie' => 'cat', 'status' => 'adopted']);
-    Livewire::test('pages::animal.index')
-        ->assertSee('dog')->assertSee('cat');
-});
-
-
-// Tests for waiting animals
-it('assert waiting animal name exist on page', function () {
-    Animal::factory()->create(['name' => 'Bob', 'status' => 'waiting']);
-    Animal::factory()->create(['name' => 'Ferdinand', 'status' => 'waiting']);
-    Livewire::test('pages::animal.index')
-        ->assertSee('Bob')->assertSee('Ferdinand');
-});
-
-it('assert waiting animal race exist on page', function () {
-    Animal::factory()->create(['race' => 'Berger Allemand', 'status' => 'waiting']);
-    Animal::factory()->create(['race' => 'Berger Australien', 'status' => 'waiting']);
-    Livewire::test('pages::animal.index')
-        ->assertSee('Berger Allemand')->assertSee('Berger Australien');
-});
-
-it('assert waiting animal description exist on page', function () {
-    Animal::factory()->create(['description' => 'Bob est un berger Allemand', 'status' => 'waiting']);
-    Animal::factory()->create(['description' => 'Ferdinand est un berger Australien', 'status' => 'waiting']);
-    Livewire::test('pages::animal.index')
-        ->assertSee('Bob est un berger Allemand')->assertSee('Ferdinand est un berger Australien');
-});
-
-it('assert waiting animal gender exist on page', function () {
-    Animal::factory()->create(['gender' => true, 'status' => 'waiting']);
-    Animal::factory()->create(['gender' => false, 'status' => 'waiting']);
-    Livewire::test('pages::animal.index')
-        ->assertSee('Mâle')->assertSee('Femelle');
-});
-
-it('assert waiting animal status exist on page', function () {
-    Animal::factory()->create(['status' => 'waiting']);
-    Livewire::test('pages::animal.index')
-        ->assertSee('waiting');
-});
-
-it('assert waiting animal vaccine exist on page', function () {
-    Animal::factory()->create(['vaccine' => true, 'status' => 'waiting']);
-    Animal::factory()->create(['vaccine' => false, 'status' => 'waiting']);
-    Livewire::test('pages::animal.index')
-        ->assertSee('À jour')->assertSee('À faire');
-});
-
-it('assert waiting animal age exist on page', function () {
-    Animal::factory()->create(['age' => '2025-03-24 00:00:00', 'status' => 'waiting']);
-    Animal::factory()->create(['age' => '2023-03-24 00:00:00', 'status' => 'waiting']);
-    Livewire::test('pages::animal.index')
-        ->assertSee('24/03/2025')->assertSee('24/03/2023');
-});
-
-it('assert waiting animal specie exist on page', function () {
-    Animal::factory()->create(['specie' => 'dog', 'status' => 'waiting']);
-    Animal::factory()->create(['specie' => 'cat', 'status' => 'waiting']);
-    Livewire::test('pages::animal.index')
-        ->assertSee('dog')->assertSee('cat');
-});
-
-
-// Tests for available + in_care animals
-it('assert available/in_care animal name exist on page', function () {
-    Animal::factory()->create(['name' => 'Bob', 'status' => 'available']);
-    Animal::factory()->create(['name' => 'Ferdinand', 'status' => 'in_care']);
-
-    Livewire::test('pages::animal.index')
-        ->assertSee('Bob')
-        ->assertSee('Ferdinand');
-});
-
-it('assert available/in_care animal specie exist on page', function () {
-    Animal::factory()->create(['race' => 'Berger Allemand', 'status' => 'available']);
-    Animal::factory()->create(['race' => 'Berger Australien', 'status' => 'in_care']);
-
-    Livewire::test('pages::animal.index')
-        ->assertSee('Berger Allemand')
-        ->assertSee('Berger Australien');
-});
-
-it('assert available/in_care animal description exist on page', function () {
-    Animal::factory()->create(['description' => 'Bob est un berger Allemand', 'status' => 'available']);
-    Animal::factory()->create(['description' => 'Ferdinand est un berger Australien', 'status' => 'in_care']);
-
-    Livewire::test('pages::animal.index')
-        ->assertSee('Bob est un berger Allemand')
-        ->assertSee('Ferdinand est un berger Australien');
-});
-
-it('assert available/in_care animal gender exist on page', function () {
-    Animal::factory()->create(['gender' => true, 'status' => 'available']);
-    Animal::factory()->create(['gender' => false, 'status' => 'in_care']);
-
-    Livewire::test('pages::animal.index')
-        ->assertSee('Mâle')
-        ->assertSee('Femelle');
-});
-
-it('assert available/in_care animal status exist on page', function () {
-    Animal::factory()->create(['status' => 'available']);
-
-    Livewire::test('pages::animal.index')
-        ->assertSee('available');
-});
-
-it('assert available/in_care animal vaccine exist on page', function () {
-    Animal::factory()->create(['vaccine' => true, 'status' => 'available']);
-    Animal::factory()->create(['vaccine' => false, 'status' => 'in_care']);
-
-    Livewire::test('pages::animal.index')
-        ->assertSee('À jour')
-        ->assertSee('À faire');
-});
-
-it('assert available/in_care animal age exist on page', function () {
-    Animal::factory()->create(['age' => '2025-03-24 00:00:00', 'status' => 'available']);
-    Animal::factory()->create(['age' => '2023-03-24 00:00:00', 'status' => 'in_care']);
-
-    Livewire::test('pages::animal.index')
-        ->assertSee('24/03/2025')
-        ->assertSee('24/03/2023');
-});
-
+}
