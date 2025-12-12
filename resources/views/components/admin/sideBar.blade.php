@@ -1,5 +1,5 @@
 {{--TODO: Responsive sidebar--}}
-<aside class="w-64 bg-white shadow-md fixed left-0 top-20 bottom-0 overflow-y-auto z-40">
+<nav class="w-64 bg-white shadow-md fixed left-0 top-20 bottom-0 overflow-y-auto z-40">
     <div class="p-6">
         <h2 class="sr-only">Navigation sur le coté</h2>
         <h3 class="text-2xl font-bold text-text-brown mb-6">Bonjour Elise</h3>
@@ -11,4 +11,4 @@
             <x-admin.listElement title="Messages" route="{{ route('admin.messages') }}"/>
         </ul>
     </div>
-</aside>
+</nav>
