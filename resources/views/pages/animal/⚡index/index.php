@@ -14,9 +14,9 @@ new class extends Component {
     }
 
     #[Computed]
-    public function inCareAnimals(): Collection
+    public function availableAnimals(): Collection
     {
-        return $this->animals()->where('status', 'in_care')->values();
+        return $this->animals()->whereIn('status', ['in_care', 'available'])->values();
     }
 
     #[Computed]
