@@ -22,13 +22,13 @@ class AnimalFactory extends Factory
 
         return [
             'name' => $this->faker->firstName(),
-            'specie' => $this->faker->randomElement(['Chien', 'Chat', 'Furet']),
+            'specie' => $this->faker->randomElement(['dog', 'cat', 'ferret']),
             'race' => $this->faker->word(),
             'age' => $this->faker->dateTimeBetween('-15 years', 'now'),
             'gender' => $this->faker->boolean(),
-            'vaccine' => $this->faker->randomElement(['À jour', 'Non vacciné', 'Partiellement vacciné']),
+            'vaccine' => $this->faker->boolean(),
             'description' => $this->faker->sentence(8),
-            'status' => $this->faker->randomElement(['Disponible', 'Adopté', 'En soins']),
+            'status' => $this->faker->randomElement(['available', 'adopted', 'in care', 'waiting']),
             'avatar' => $this->faker->imageUrl(200, 200, 'animals', true),
         ];
     }

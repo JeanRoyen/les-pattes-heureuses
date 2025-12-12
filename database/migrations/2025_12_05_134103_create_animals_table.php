@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('race');
             $table->timestamp('age');
             $table->boolean('gender');
-            $table->string('vaccine');
+            $table->boolean('vaccine');
             $table->text('description');
             $table->string('status');
             $table->timestamps();
