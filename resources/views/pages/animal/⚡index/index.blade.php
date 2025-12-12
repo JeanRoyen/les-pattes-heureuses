@@ -67,6 +67,7 @@
         <x-admin.table>
             <tr>
                 <x-admin.table-header title="Nom"/>
+                <x-admin.table-header title="Espèce"/>
                 <x-admin.table-header title="Race"/>
                 <x-admin.table-header title="Description"/>
                 <x-admin.table-header title="Sexe"/>
@@ -78,6 +79,7 @@
             @forelse($this->waitingAnimals as $animal)
                 <tr>
                     <x-admin.table-data title="{{ $animal->name }}"/>
+                    <x-admin.table-data title="{{ $animal->specie }}"/>
                     <x-admin.table-data title="{{ $animal->race }}"/>
                     <x-admin.table-data title="{{ $animal->description }}"/>
                     <x-admin.table-data title="{{ $animal->gender ? 'Mâle' : 'Femelle' }}"/>
@@ -88,7 +90,7 @@
                 </tr>
             @empty
                 <tr>
-                    <td colspan="8" class="text-center py-4 bg-white border">Pas d'animaux trouvés</td>
+                    <td colspan="9" class="text-center py-4 bg-white border">Pas d'animaux trouvés</td>
                 </tr>
             @endforelse
         </x-admin.table>
@@ -121,6 +123,7 @@
         <x-admin.table>
             <tr>
                 <x-admin.table-header title="Nom"/>
+                <x-admin.table-header title="Espèce"/>
                 <x-admin.table-header title="Race"/>
                 <x-admin.table-header title="Description"/>
                 <x-admin.table-header title="Sexe"/>
@@ -132,6 +135,7 @@
             @forelse($this->adoptedAnimals as $animal)
                 <tr>
                     <x-admin.table-data title="{{ $animal->name }}"/>
+                    <x-admin.table-data title="{{ $animal->specie }}"/>
                     <x-admin.table-data title="{{ $animal->race }}"/>
                     <x-admin.table-data title="{{ $animal->description }}"/>
                     <x-admin.table-data title="{{ $animal->gender ? 'Mâle' : 'Femelle' }}"/>
@@ -142,7 +146,7 @@
                 </tr>
             @empty
                 <tr>
-                    <td colspan="8" class="text-center py-4 bg-white border">Pas d'animaux trouvés</td>
+                    <td colspan="9" class="text-center py-4 bg-white border">Pas d'animaux trouvés</td>
                 </tr>
             @endforelse
         </x-admin.table>

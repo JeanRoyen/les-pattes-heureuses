@@ -17,7 +17,7 @@ it('assert animal name exist on page', function () {
         ->assertSee('Bob')->assertSee('Ferdinand');
 });
 
-it('assert animal specie exist on page', function () {
+it('assert animal race exist on page', function () {
     Animal::factory()->create(['race' => 'Berger Allemand', 'status' => 'adopted']);
     Animal::factory()->create(['race' => 'Berger Australien', 'status' => 'adopted']);
     Livewire::test('pages::animal.index')
@@ -58,6 +58,14 @@ it('assert animal age exist on page', function () {
         ->assertSee('24/03/2025')->assertSee('24/03/2023');
 });
 
+it('assert animal specie exist on page', function () {
+    Animal::factory()->create(['specie' => 'dog', 'status' => 'adopted']);
+    Animal::factory()->create(['specie' => 'cat', 'status' => 'adopted']);
+    Livewire::test('pages::animal.index')
+        ->assertSee('dog')->assertSee('cat');
+});
+
+
 // Tests for waiting animals
 it('assert waiting animal name exist on page', function () {
     Animal::factory()->create(['name' => 'Bob', 'status' => 'waiting']);
@@ -66,7 +74,7 @@ it('assert waiting animal name exist on page', function () {
         ->assertSee('Bob')->assertSee('Ferdinand');
 });
 
-it('assert waiting animal specie exist on page', function () {
+it('assert waiting animal race exist on page', function () {
     Animal::factory()->create(['race' => 'Berger Allemand', 'status' => 'waiting']);
     Animal::factory()->create(['race' => 'Berger Australien', 'status' => 'waiting']);
     Livewire::test('pages::animal.index')
@@ -105,4 +113,11 @@ it('assert waiting animal age exist on page', function () {
     Animal::factory()->create(['age' => '2023-03-24 00:00:00', 'status' => 'waiting']);
     Livewire::test('pages::animal.index')
         ->assertSee('24/03/2025')->assertSee('24/03/2023');
+});
+
+it('assert waiting animal specie exist on page', function () {
+    Animal::factory()->create(['specie' => 'dog', 'status' => 'waiting']);
+    Animal::factory()->create(['specie' => 'cat', 'status' => 'waiting']);
+    Livewire::test('pages::animal.index')
+        ->assertSee('dog')->assertSee('cat');
 });
