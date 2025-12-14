@@ -2,14 +2,23 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('welcome');
+Route::get('/lang/{locale}', function (string $locale) {
+    if (!in_array($locale, ['fr', 'nl', 'en'])) {
+        abort(400);
+    }
+    \Illuminate\Support\Facades\Session::put('locale', $locale);
+    return redirect()->back();
+})->name('lang.switch');
 
+Route::middleware([\App\Http\Middleware\SetLocale::class])->group(function () {
+    Route::get('/', function () {
+        return view('welcome');
+    })->name('welcome');
 
-Route::get('/animals', function () {
-    return view('pages.animal-list');
-})->name('pages.animals-list');
+    Route::get('/animals', function () {
+        return view('pages.animal-list');
+    })->name('pages.animals-list');
+});
 
 Route::get('/admin/login', function () {
     return view('pages.admin.login');
