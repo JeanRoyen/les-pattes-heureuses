@@ -6,14 +6,12 @@
             :title="__('form.name')"
             type="text"
             :placeholder="__('form.name_placeholder')"/>
-
         <x-form.input
             name="phone"
             :title="__('form.phone')"
             type="tel"
             :placeholder="__('form.phone_placeholder')"/>
     </div>
-
     <div class="md:mb-4">
         <x-form.input
             name="email"
@@ -21,13 +19,13 @@
             type="email"
             :placeholder="__('form.email_placeholder')"/>
     </div>
-
     <div class="mb-8">
         <x-form.textarea
             name="message"
-            :placeholder="__('form.message_placeholder')"/>
+            :placeholder="__('form.message_placeholder')"
+            rows="10"
+        />
     </div>
-
     <div>
         <x-form.button :title="__('form.submit')"/>
     </div>
