@@ -3,10 +3,10 @@
     <x-admin.section-spacing>
         <x-admin.headings2 title="Demandes et messages"/>
         <x-admin.square-infos-container>
-            <a href="#">
+            <a wire:navigate href="{{ route('admin.messages') }}">
                 <x-general.square-infos number="1" title="Demandes" svg="contact"/>
             </a>
-            <a href="#">
+            <a wire:navigate href="{{ route('admin.messages') }}">
                 <x-general.square-infos number="3" title="Messages" svg="mail"/>
             </a>
         </x-admin.square-infos-container>
