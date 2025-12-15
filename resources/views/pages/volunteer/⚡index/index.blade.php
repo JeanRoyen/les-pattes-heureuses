@@ -1,6 +1,6 @@
 <main class="flex-1 ml-64 space-y-10">
     <x-admin.section-spacing>
-        <x-admin.headings2 title="Animaux au refuge"/>
+        <x-admin.headings2 title="Bénévoles du refuge"/>
         <x-general.searchbar/>
         <x-admin.table>
             <tr>
