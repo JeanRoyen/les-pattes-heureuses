@@ -1,5 +1,5 @@
-<div x-data="{ open: false }">
-    <button x-on:click="open = ! open" class="p-3 bg-cta-orange text-white rounded-button">
-        Ajouter un animal
+<div>
+    <button class="p-3 bg-cta-orange text-white rounded-button hover: cursor-pointer">
+        {{ $title }}
     </button>
 </div>
