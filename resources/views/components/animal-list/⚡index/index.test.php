@@ -3,6 +3,6 @@
 use Livewire\Livewire;
 
 it('renders successfully', function () {
-    Livewire::test('pages::dashboard')
+    Livewire::test('animal-list.index')
         ->assertStatus(200);
 });
