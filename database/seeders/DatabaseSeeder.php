@@ -23,5 +23,7 @@ class DatabaseSeeder extends Seeder
             'email' => 'jean@mail.com',
             'password' => 'test',
         ]);
+
+        Animal::factory(10)->create();
     }
 }

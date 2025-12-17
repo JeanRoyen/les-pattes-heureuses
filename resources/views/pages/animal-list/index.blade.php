@@ -55,60 +55,36 @@
             <x-general.searchbar/>
 
             <div class="grid grid-cols-8 gap-5">
-                {{-- Filtres volontairement NON traduits --}}
                 <x-general.select name="species" title="Espèces">
                     <option selected>Choisir une espèce</option>
-                    <option value="1">Chien</option>
-                    <option value="2">Chat</option>
+                    <option value="1">test</option>
+                    <option value="2">test</option>
                 </x-general.select>
 
                 <x-general.select name="races" title="Races">
                     <option selected>Choisir une race</option>
-                    <option value="1">Berger Allemand</option>
-                    <option value="2">Berger Malinois</option>
+                    <option value="1">test</option>
+                    <option value="2">test</option>
                 </x-general.select>
 
                 <x-general.select name="sex" title="Sexe">
                     <option selected>Choisir un sexe</option>
-                    <option value="1">Mâle</option>
-                    <option value="2">Femelle</option>
+                    <option value="1">test</option>
+                    <option value="2">test</option>
                 </x-general.select>
 
                 <x-general.select name="age" title="Âge">
                     <option selected>Choisir un âge</option>
-                    <option value="1">2-4 ans</option>
-                    <option value="2">5-7 ans</option>
+                    <option value="1">test</option>
+                    <option value="2">test</option>
                 </x-general.select>
-                <x-general.card name="Bob" race="Berger Allemand" age="8 ans"
-                                description="Bob est un chien affectueux il peut tout à fait vivre avec d'autres animaux."
-                                :picture="asset('images/dog1.png')"/>
-                <x-general.card name="Norbert" race="Corgi" age="8 ans"
-                                description="Bob est un chien affectueux il peut tout à fait vivre avec d'autres animaux."
-                                :picture="asset('images/dog2.jpg')"/>
-                <x-general.card name="Bob" race="Berger Allemand" age="8 ans"
-                                description="Bob est un chien affectueux il peut tout à fait vivre avec d'autres animaux."
-                                :picture="asset('images/dog1.png')"/>
-                <x-general.card name="Norbert" race="Corgi" age="8 ans"
-                                description="Bob est un chien affectueux il peut tout à fait vivre avec d'autres animaux."
-                                :picture="asset('images/dog2.jpg')"/>
-                <x-general.card name="Bob" race="Berger Allemand" age="8 ans"
-                                description="Bob est un chien affectueux il peut tout à fait vivre avec d'autres animaux."
-                                :picture="asset('images/dog1.png')"/>
-                <x-general.card name="Norbert" race="Corgi" age="8 ans"
-                                description="Bob est un chien affectueux il peut tout à fait vivre avec d'autres animaux."
-                                :picture="asset('images/dog2.jpg')"/>
-                <x-general.card name="Bob" race="Berger Allemand" age="8 ans"
-                                description="Bob est un chien affectueux il peut tout à fait vivre avec d'autres animaux."
-                                :picture="asset('images/dog1.png')"/>
-                <x-general.card name="Norbert" race="Corgi" age="8 ans"
-                                description="Bob est un chien affectueux il peut tout à fait vivre avec d'autres animaux."
-                                :picture="asset('images/dog2.jpg')"/>
-                <x-general.card name="Bob" race="Berger Allemand" age="8 ans"
-                                description="Bob est un chien affectueux il peut tout à fait vivre avec d'autres animaux."
-                                :picture="asset('images/dog1.png')"/>
-                <x-general.card name="Norbert" race="Corgi" age="8 ans"
-                                description="Bob est un chien affectueux il peut tout à fait vivre avec d'autres animaux."
-                                :picture="asset('images/dog2.jpg')"/>
+                @foreach($animals as $animal)
+                <x-general.card name="{{ $animal->name }}"
+                                race="{{ $animal->race }}"
+                                age="{{ $animal->age->format('d/m/Y') }}"
+                                description="{{ $animal->description }}"
+                                picture="asset('{{ $animal->avatar }}')"/>
+                @endforeach
             </div>
             {{-- TODO: Pagination --}}
         </div>

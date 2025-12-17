@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AnimalController;
 use App\Http\Middleware\SetLocale;
 use Illuminate\Support\Facades\Route;
 
@@ -20,9 +21,7 @@ Route::middleware([SetLocale::class])->group(function () {
         return view('welcome');
     })->name('welcome');
 
-    Route::get('/animals', function () {
-        return view('pages.animal-list.index');
-    })->name('pages.animals-list');
+    Route::get('/animals', [AnimalController::class, 'index'])->name('pages.animals-list');
 });
 
 
