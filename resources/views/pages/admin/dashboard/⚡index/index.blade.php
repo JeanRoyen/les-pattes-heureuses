@@ -21,7 +21,12 @@
             <x-general.square-infos number="9" title="Sont arrivé refuge" svg="circled-plus"/>
         </x-admin.square-infos-container>
         <div class="mt-8">
-            <x-admin.cta title="Exporter en PDF"/>
+            <div>
+                <a href="{{ route('pdf') }}" class="p-3 bg-cta-orange text-white rounded-button hover: cursor-pointer">
+                    Exporter en PDF
+                </a>
+            </div>
+
         </div>
     </x-admin.section-spacing>
     <x-admin.section-spacing>

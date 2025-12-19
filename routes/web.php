@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AnimalController;
+use App\Http\Controllers\WelcomeController;
 use App\Http\Middleware\SetLocale;
 use Illuminate\Support\Facades\Route;
 
@@ -17,9 +18,7 @@ Route::get('/lang/{locale}', function (string $locale) {
 
 // Client
 Route::middleware([SetLocale::class])->group(function () {
-    Route::get('/', function () {
-        return view('welcome');
-    })->name('welcome');
+    Route::get('/', [WelcomeController::class, 'index'])->name('welcome');
 
     Route::get('/animals', [AnimalController::class, 'index'])->name('pages.animals-list');
 });
@@ -32,7 +31,10 @@ Route::middleware('auth')->group(function () {
     Route::livewire('/admin/animals', 'pages::admin/animal.index')->name('admin.animals');
     Route::livewire('/admin/adoptions', 'pages::admin/adoption.index')->name('admin.adoptions');
     Route::livewire('/admin/volunteers', 'pages::admin/volunteer.index')->name('admin.volunteers');
+    Route::get('/dashboard/pdf', [AnimalController::class, 'download'])->name('pdf');
+
 });
+
 
 Route::get('/admin/login', function () {
     return view('pages.admin.login');
