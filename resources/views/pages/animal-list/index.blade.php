@@ -28,17 +28,17 @@
                     <div class="flex gap-2">
                         <x-general.square-infos
                             svg="dog"
-                            number="23"
+                            number="{{ $dog }}"
                             :title="__('animals.stats_dogs')" />
 
                         <x-general.square-infos
                             svg="cat"
-                            number="32"
+                            number="{{ $cat }}"
                             :title="__('animals.stats_cats')" />
 
                         <x-general.square-infos
                             svg="human"
-                            number="149"
+                            number="{{ $adopted }}"
                             :title="__('animals.stats_adopted')" />
                     </div>
                 </div>

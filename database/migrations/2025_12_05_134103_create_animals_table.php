@@ -21,7 +21,7 @@ return new class extends Migration
             $table->boolean('gender');
             $table->boolean('vaccine');
             $table->text('description');
-            $table->string('status');
+            $table->string('status')->default('waiting');
             $table->timestamps();
         });
     }
