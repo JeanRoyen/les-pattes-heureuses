@@ -5,6 +5,7 @@
         <x-admin.table>
             <tr>
                 <x-admin.table-header title="Nom"/>
+                <x-admin.table-header title="Objet"/>
                 <x-admin.table-header title="Email"/>
                 <x-admin.table-header title="Téléphone"/>
                 <x-admin.table-header title="Actions"/>
@@ -12,6 +13,7 @@
             @forelse($this->availableMessages as $message)
                 <tr>
                     <x-admin.table-data title="{{ $message->name }}"/>
+                    <x-admin.table-data title="{{ $message->title }}"/>
                     <x-admin.table-data title="{{ $message->email }}"/>
                     <x-admin.table-data title="{{ $message->phone }}"/>
                     <x-admin.table-data title="Voir la discussion"/>
@@ -30,6 +32,7 @@
         <x-admin.table>
             <tr>
                 <x-admin.table-header title="Nom"/>
+                <x-admin.table-header title="Objet"/>
                 <x-admin.table-header title="Email"/>
                 <x-admin.table-header title="Téléphone"/>
                 <x-admin.table-header title="Actions"/>
@@ -37,13 +40,14 @@
             @forelse($this->treatedMessages as $message)
                 <tr>
                     <x-admin.table-data title="{{ $message->name }}"/>
+                    <x-admin.table-data title="{{ $message->title }}"/>
                     <x-admin.table-data title="{{ $message->email }}"/>
                     <x-admin.table-data title="{{ $message->phone }}"/>
                     <x-admin.table-data title="Voir la discussion"/>
                 </tr>
             @empty
                 <tr>
-                    <td colspan="4" class="text-center py-4 bg-white border">Pas de messages trouvés</td>
+                    <td colspan="5" class="text-center py-4 bg-white border">Pas de messages trouvés</td>
                 </tr>
             @endforelse
         </x-admin.table>
