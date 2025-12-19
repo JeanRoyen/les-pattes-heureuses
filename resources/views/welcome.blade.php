@@ -52,19 +52,14 @@
                 color="text-black"/>
 
             <div class="grid grid-cols-8 gap-5">
-                <x-general.card
-                    name="Bob"
-                    race="Berger Allemand"
-                    age="8 ans"
-                    description="Bob est un chien affectueux il peut tout à fait vivre avec d'autres animaux."
-                    :picture="asset('images/dog1.png')"/>
-
-                <x-general.card
-                    name="Norbert"
-                    race="Corgi"
-                    age="8 ans"
-                    description="Bob est un chien affectueux il peut tout à fait vivre avec d'autres animaux."
-                    :picture="asset('images/dog2.jpg')"/>
+                @foreach($animals as $animal)
+                    <x-general.card
+                        name="{{ $animal->name }}"
+                        race="{{ $animal->race }}"
+                        age="{{ $animal->age->format('d/m/Y') }}"
+                        description="{{ $animal->description }}"
+                        picture="asset('{{ $animal->avatar }}')"/>
+                @endforeach
             </div>
         </div>
     </section>
