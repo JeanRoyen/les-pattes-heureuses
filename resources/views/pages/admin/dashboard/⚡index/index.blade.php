@@ -12,13 +12,11 @@
         </x-admin.square-infos-container>
     </x-admin.section-spacing>
     <x-admin.section-spacing>
-        <x-admin.headings2 title="Résumé mensuel"/>
+        <x-admin.headings2 title="Résumé du mois de {{ $month }}"/>
         <x-admin.square-infos-container>
-            <x-general.square-infos number="23" title="Chiens au refuge" svg="dog"/>
-            <x-general.square-infos number="33" title="Chats au refuge" svg="cat"/>
-            <x-general.square-infos number="56" title="Sont au refuge" svg="shelter"/>
-            <x-general.square-infos number="5" title="Ont quitté" svg="circled-minus"/>
-            <x-general.square-infos number="9" title="Sont arrivé refuge" svg="circled-plus"/>
+            <x-general.square-infos number="{{ $stats['total'] }}" title="Sont au refuge" svg="shelter"/>
+            <x-general.square-infos number="{{ $stats['left'] }}" title="Ont quitté" svg="circled-minus"/>
+            <x-general.square-infos number="{{ $stats['received'] }}" title="Sont arrivé refuge" svg="circled-plus"/>
         </x-admin.square-infos-container>
         <div class="mt-8">
             <div>
