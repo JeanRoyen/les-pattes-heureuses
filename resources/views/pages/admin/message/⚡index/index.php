@@ -16,12 +16,12 @@ new class extends Component {
     #[Computed]
     public function availableMessages(): Collection
     {
-        return $this->messages()->where('status', 0)->values();
+        return $this->messages()->where('received', 0)->values();
     }
 
     #[Computed]
     public function treatedMessages(): Collection
     {
-        return $this->messages()->where('status', 1)->values();
+        return $this->messages()->where('received', 1)->values();
     }
 };

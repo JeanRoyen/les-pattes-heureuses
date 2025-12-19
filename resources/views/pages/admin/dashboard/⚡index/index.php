@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Animal;
+use App\Models\Message;
 use Livewire\Component;
 
 new class extends Component
@@ -8,9 +9,18 @@ new class extends Component
     public array $stats = [];
     public string $month;
 
+    public int $receivedMessages;
+    public int $treatedMessages;
+
     public function mount(): void
     {
         $this->loadMonthlyStats();
+        $this->loadMessagesStats();
+    }
+
+    private function loadMessagesStats(): void
+    {
+        $this->receivedMessages = Message::where('received', 0)->count();
     }
 
     private function loadMonthlyStats(): void
