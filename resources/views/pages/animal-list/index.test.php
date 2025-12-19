@@ -62,6 +62,16 @@ it('displays animal description', function () {
         ->assertSee('Un chien très gentil');
 });
 
+it('displays animal gender', function () {
+    $animal = Animal::factory()->create([
+        'status' => 'available',
+        'gender' => 1
+    ]);
+
+    get(route('pages.animals-list'))
+        ->assertSee('Mâle');
+});
+
 it('displays all animal information in card', function () {
     $animal = Animal::factory()->create([
         'status' => 'available',
