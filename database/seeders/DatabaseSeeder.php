@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Animal;
+use App\Models\Message;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -25,5 +26,6 @@ class DatabaseSeeder extends Seeder
         ]);
 
         Animal::factory(10)->create();
+        Message::factory(10)->create();
     }
 }

@@ -10,5 +10,5 @@ class Message extends Model
 {
     use HasFactory, Notifiable;
 
-    protected $fillable = ['name', 'email', 'phone', 'message', 'status'];
+    protected $fillable = ['name', 'email', 'phone', 'message', 'received', 'title'];
 }

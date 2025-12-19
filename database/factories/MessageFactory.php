@@ -21,7 +21,8 @@ class MessageFactory extends Factory
             'email' => $this->faker->email(),
             'phone' => $this->faker->phoneNumber(),
             'message' => $this->faker->sentence(12),
-            'status' => $this->faker->boolean(),
+            'received' => $this->faker->boolean(),
+            'title' => $this->faker->sentence(6),
         ];
     }
 }
