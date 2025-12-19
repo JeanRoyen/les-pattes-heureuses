@@ -13,7 +13,7 @@ class WelcomeController extends Controller
         return view('welcome', [
             'animals' => Animal::whereIn('status', ['in_care', 'available', 'waiting'])
                 ->latest()
-                ->take(4)
+                ->limit(4)
                 ->get(),
         ]);
     }
