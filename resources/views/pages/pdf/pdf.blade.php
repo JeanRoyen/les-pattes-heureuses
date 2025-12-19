@@ -8,43 +8,33 @@
     <title>Données du mois de {{ $month }}</title>
 </head>
 <body>
-<table class="w-full">
-    <tr>
-        <td class="w-half">
-            <h1>Données du mois de {{ $month }}</h1>
-        </td>
-    </tr>
-</table>
-
-<div class="margin-top">
-    <table class="w-full">
-        <tr>
-            <td class="w-half">
-                <div>Les pattes heureuses</div>
-            </td>
-        </tr>
-    </table>
-</div>
-
-<div class="margin-top">
-    <table class="products">
-        <tr>
-            <th class="description">Description</th>
-            <th class="number">Nombre</th>
-        </tr>
-
-        @foreach($datas as $data)
-            <tr class="items">
-                <td>
-                    {{ $data['label'] }}
-                </td>
-                <td>
-                    {{ $data['value'] }}
-                </td>
+<section>
+    <div>
+        <h1>Données du mois de {{ $month }}</h1>
+    </div>
+    <div class="margin-top">
+        <h2>Les pattes heureuses</h2>
+    </div>
+    <div class="margin-top">
+        <table class="products">
+            <tr>
+                <th class="description">Description</th>
+                <th class="number">Nombre</th>
             </tr>
-        @endforeach
-    </table>
-</div>
+
+            @foreach($datas as $data)
+                <tr class="items">
+                    <td>
+                        {{ $data['label'] }}
+                    </td>
+                    <td>
+                        {{ $data['value'] }}
+                    </td>
+                </tr>
+            @endforeach
+        </table>
+    </div>
+</section>
 </body>
 </html>
 
@@ -93,12 +83,6 @@
 
     table tr.items td {
         padding: 0.5rem;
-    }
-
-    .total {
-        text-align: right;
-        margin-top: 1rem;
-        font-size: 0.875rem;
     }
 
 </style>
