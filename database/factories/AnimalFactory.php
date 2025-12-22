@@ -23,7 +23,7 @@ class AnimalFactory extends Factory
         return [
             'name' => $this->faker->firstName(),
             'specie' => $this->faker->randomElement(['dog', 'cat', 'ferret']),
-            'race' => $this->faker->word(),
+            'race' => $this->faker->randomElement(['Berger Allemand', 'Berger Malinois', 'Cavalier king Charles']),
             'age' => $this->faker->dateTimeBetween('-15 years', 'now'),
             'gender' => $this->faker->boolean(),
             'vaccine' => $this->faker->boolean(),
