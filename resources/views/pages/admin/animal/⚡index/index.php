@@ -2,11 +2,13 @@
 
 use App\Models\Animal;
 use Illuminate\Database\Eloquent\Collection;
-use JetBrains\PhpStorm\NoReturn;
 use Livewire\Attributes\Computed;
 use Livewire\Component;
+use Livewire\WithFileUploads;
 
 new class extends Component {
+    use WithFileUploads;
+
     public bool $showCreateAnimalModal = false;
     public bool $showEditAnimalModal = false;
 
@@ -18,6 +20,11 @@ new class extends Component {
     public ?string $age = null;
     public bool $vaccine = false;
     public ?bool $gender = null;
+
+    public ?int $animalId = null;
+
+    public array $avatar = [];
+
 
 
     #[Computed]
@@ -63,7 +70,6 @@ new class extends Component {
 
     public function createAnimalInList(): void
     {
-
         $this->validate([
             'name' => 'required',
             'specie' => 'required',
@@ -97,6 +103,52 @@ new class extends Component {
             'gender',
             'vaccine',
             'description',
+        ]);
+    }
+
+    public function openEditModal($animalId): void
+    {
+        $animal = Animal::findOrFail($animalId);
+        $this->animalId = $animal->id;
+        $this->name = $animal->name;
+        $this->specie = $animal->specie;
+        $this->race = $animal->race;
+        $this->status = $animal->status;
+        $this->age = $animal->age;
+        $this->gender = $animal->gender;
+        $this->vaccine = $animal->vaccine;
+        $this->description = $animal->description;
+
+        $this->toggleModal('openEditModal', 'open');
+    }
+
+    public function editAnimal(): void
+    {
+        $validated = $this->validate([
+            'name' => 'required',
+            'specie' => 'required',
+            'race' => 'required',
+            'status' => 'required',
+            'age' => 'required|date|before_or_equal:today',
+            'gender' => 'required',
+            'vaccine' => 'boolean',
+            'description' => 'string',
+        ]);
+
+        $animal = Animal::findOrFail($this->animalId);
+
+        $animal->update($validated);
+        $this->showEditAnimalModal = false;
+        $this->reset([
+            'name',
+            'specie',
+            'race',
+            'status',
+            'age',
+            'gender',
+            'vaccine',
+            'description',
+            'animalId'
         ]);
     }
 };

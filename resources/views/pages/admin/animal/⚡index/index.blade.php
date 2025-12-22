@@ -46,7 +46,10 @@
                     <x-admin.table-data title="{{ $animal->age->format('d/m/Y') }}"/>
                     <x-admin.table-data title="{{ $animal->vaccine ? 'À jour' : 'À faire' }}"/>
                     <x-admin.table-data title="{{ $animal->status }}"/>
-                    <x-admin.table-data title="Supprimer / Voir"/>
+                    <td class="border py-2 bg-white" >
+                        <x-modal.edit_button :animal="$animal->id"/>
+                        {{-- TODO: Completer le formulaire de modification avec les anciennes données  --}}
+                    </td>
                 </tr>
             @empty
                 <tr>
@@ -104,7 +107,10 @@
                     <x-admin.table-data title="{{ $animal->age->format('d/m/Y') }}"/>
                     <x-admin.table-data title="{{ $animal->vaccine ? 'À jour' : 'À faire' }}"/>
                     <x-admin.table-data title="{{ $animal->status }}"/>
-                    <x-admin.table-data title="Supprimer / Voir"/>
+                    <td class="border py-2 bg-white" >
+                        <x-modal.edit_button :animal="$animal->id"/>
+                        {{-- TODO: Completer le formulaire de modification avec les anciennes données  --}}
+                    </td>
                 </tr>
             @empty
                 <tr>
@@ -160,7 +166,10 @@
                     <x-admin.table-data title="{{ $animal->age->format('d/m/Y') }}"/>
                     <x-admin.table-data title="{{ $animal->vaccine ? 'À jour' : 'À faire' }}"/>
                     <x-admin.table-data title="{{ $animal->status }}"/>
-                    <x-admin.table-data title="Supprimer / Voir"/>
+                    <td class="border py-2 bg-white" >
+                        <x-modal.edit_button :animal="$animal->id"/>
+                        {{-- TODO: Completer le formulaire de modification avec les anciennes données  --}}
+                    </td>
                 </tr>
             @empty
                 <tr>
@@ -180,6 +189,19 @@
                 </x-slot:title>
             <x-slot:body>
                 <x-modal.create_animal/>
+            </x-slot:body>
+        </x-modal.modal>
+    </div>
+    <div class="{{ $showEditAnimalModal ? 'block' : 'hidden' }}">
+        <x-modal.modal>
+            <x-slot:title>
+                Modifier un animal
+                <button type="button" wire:click="toggleModal('openEditModal', 'close')">
+                    <img src="{{ asset('svg/close.svg') }}" alt="close" height="30" width="30">
+                </button>
+            </x-slot:title>
+            <x-slot:body>
+                <x-modal.edit_animal/>
             </x-slot:body>
         </x-modal.modal>
     </div>
