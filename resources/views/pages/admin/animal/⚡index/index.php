@@ -1,5 +1,6 @@
 <?php
 
+use App\Jobs\ProcessAvatar;
 use App\Models\Animal;
 use Illuminate\Database\Eloquent\Collection;
 use Livewire\Attributes\Computed;
@@ -23,7 +24,8 @@ new class extends Component {
 
     public ?int $animalId = null;
 
-    public array $avatar = [];
+    public array $avatar_path = [];
+    public $avatar;
 
 
 
@@ -71,6 +73,7 @@ new class extends Component {
     public function createAnimalInList(): void
     {
         $this->validate([
+            'avatar' => 'required|image',
             'name' => 'required',
             'specie' => 'required',
             'race' => 'required',
@@ -81,7 +84,18 @@ new class extends Component {
             'description' => 'string',
         ]);
 
+        $avatar = null;
+        if ($this->avatar) {
+            $image_type = 'jpeg';
+            $original_path = 'avatar/original';
+            $file_name = 'avatar_img_'.uniqid().'.'.$image_type;
+            $avatar_path = $this->avatar->storeAs($original_path, $file_name, 'public');
+            ProcessAvatar::dispatch($file_name, $avatar_path);
+            $avatar = $avatar_path;
+        }
+
         $animal = Animal::create([
+            'avatar' => $avatar,
             'name' => $this->name,
             'specie' => $this->specie,
             'race' => $this->race,
@@ -91,10 +105,20 @@ new class extends Component {
             'vaccine' => $this->vaccine,
             'description' => $this->description,
         ]);
+
+        foreach ($this->avatar as $file) {
+            $path = $file->store('avatar', 'public');
+            $animal->avatars()->create([
+                'path' => $path,
+                'description' => null
+            ]);
+        }
+
         $this->description = $animal->description;
         $this->showCreateAnimalModal = false;
 
         $this->reset([
+            'avatar',
             'name',
             'specie',
             'race',
@@ -125,6 +149,7 @@ new class extends Component {
     public function editAnimal(): void
     {
         $validated = $this->validate([
+            'avatar' => 'required',
             'name' => 'required',
             'specie' => 'required',
             'race' => 'required',
@@ -150,5 +175,13 @@ new class extends Component {
             'description',
             'animalId'
         ]);
+
+        if ($this->avatar) {
+            $file_name = 'avatar_img_'.uniqid().'jpeg';
+            $avatar_path = $this->avatar->storeAs('avatar/original', $file_name, 'public');
+            ProcessAvatar::dispatch($file_name, $avatar_path);
+            $validated['avatar'] = $avatar_path;
+
+        }
     }
 };

@@ -40,7 +40,7 @@
             </p>
 
             <div class="h-1/2 mt-6">
-                <img src="{{ asset('images/group_with_human.jpg') }}" alt="" class="shadow-general rounded-card">
+                <img src="{{ asset('images/group_with_human.jpg') }}" alt="Girl with dogs" class="shadow-general rounded-card w-full">
             </div>
         </div>
     </section>
@@ -59,7 +59,7 @@
                         gender="{{ $animal->gender }}"
                         age="{{ $animal->age->format('d/m/Y') }}"
                         description="{{ $animal->description }}"
-                        picture="asset('{{ $animal->avatar }}')"/>
+                        :picture="$animal->avatar"/>
                 @endforeach
             </div>
         </div>
