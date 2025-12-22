@@ -170,4 +170,17 @@
         </x-admin.table>
         {{-- TODO: Paginate --}}
     </x-admin.section-spacing>
+    <div class="{{ $showCreateAnimalModal ? 'block' : 'hidden' }}">
+        <x-modal.modal>
+                <x-slot:title>
+                    Ajouter un animal
+                    <button type="button" wire:click="toggleModal('createAnimal', 'close')">
+                        <img src="{{ asset('svg/close.svg') }}" alt="close" height="30" width="30">
+                    </button>
+                </x-slot:title>
+            <x-slot:body>
+                <x-modal.create_animal/>
+            </x-slot:body>
+        </x-modal.modal>
+    </div>
 </main>
