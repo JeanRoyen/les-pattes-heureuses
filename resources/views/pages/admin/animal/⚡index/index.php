@@ -27,30 +27,44 @@ new class extends Component {
     public array $avatar_path = [];
     public $avatar;
 
+    public string $availableSearch = '';
+    public string $waitingSearch = '';
+    public string $adoptedSearch = '';
 
-    #[Computed]
-    public function animals(): Collection
-    {
-        return Animal::all();
-    }
 
     #[Computed]
     public function availableAnimals(): Collection
     {
-        return $this->animals()->whereIn('status', ['in_care', 'available'])->values();
+        return Animal::query()
+            ->whereIn('status', ['in_care', 'available'])
+            ->when($this->availableSearch !== '', fn ($q) =>
+            $q->where('name', 'like', "%{$this->availableSearch}%")
+            )
+            ->get();
     }
 
     #[Computed]
     public function waitingAnimals(): Collection
     {
-        return $this->animals()->where('status', 'waiting')->values();
+        return Animal::query()
+            ->where('status', 'waiting')
+            ->when($this->waitingSearch !== '', fn ($q) =>
+            $q->where('name', 'like', "%{$this->waitingSearch}%")
+            )
+            ->get();
     }
 
     #[Computed]
     public function adoptedAnimals(): Collection
     {
-        return $this->animals()->where('status', 'adopted')->values();
+        return Animal::query()
+            ->where('status', 'adopted')
+            ->when($this->adoptedSearch !== '', fn ($q) =>
+            $q->where('name', 'like', "%{$this->adoptedSearch}%")
+            )
+            ->get();
     }
+
 
     public function createAnimal(): void
     {

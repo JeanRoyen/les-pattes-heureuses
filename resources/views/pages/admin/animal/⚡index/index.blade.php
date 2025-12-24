@@ -1,7 +1,7 @@
 <main class="flex-1 ml-64 space-y-10">
     <x-admin.section-spacing>
         <x-admin.headings2 title="Animaux au refuge"/>
-        <x-general.searchbar/>
+        <x-general.searchbar model="availableSearch" />
         <div class="grid grid-cols-8 gap-5">
             <x-general.select name="species" title="Espèces">
                 <option selected>Choisir une espèce</option>
@@ -62,7 +62,7 @@
     </x-admin.section-spacing>
     <x-admin.section-spacing>
         <x-admin.headings2 title="Animaux en attente de validation"/>
-        <x-general.searchbar/>
+        <x-general.searchbar model="waitingSearch" />
         <div class="grid grid-cols-8 gap-5">
             <x-general.select name="species" title="Espèces">
                 <option selected>Choisir une espèce</option>
@@ -121,7 +121,7 @@
     </x-admin.section-spacing>
     <x-admin.section-spacing>
         <x-admin.headings2 title="Animaux adoptés"/>
-        <x-general.searchbar/>
+        <x-general.searchbar model="adoptedSearch"/>
         <div class="grid grid-cols-8 gap-5">
             <x-general.select name="species" title="Espèces">
                 <option selected>Choisir une espèce</option>
