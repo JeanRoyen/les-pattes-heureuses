@@ -28,7 +28,6 @@ new class extends Component {
     public $avatar;
 
 
-
     #[Computed]
     public function animals(): Collection
     {
@@ -73,7 +72,7 @@ new class extends Component {
     public function createAnimalInList(): void
     {
         $this->validate([
-            'avatar' => 'required|image',
+            'avatar' => 'image',
             'name' => 'required',
             'specie' => 'required',
             'race' => 'required',
@@ -149,7 +148,7 @@ new class extends Component {
     public function editAnimal(): void
     {
         $validated = $this->validate([
-            'avatar' => 'required',
+            'avatar' => 'image',
             'name' => 'required',
             'specie' => 'required',
             'race' => 'required',
@@ -181,7 +180,6 @@ new class extends Component {
             $avatar_path = $this->avatar->storeAs('avatar/original', $file_name, 'public');
             ProcessAvatar::dispatch($file_name, $avatar_path);
             $validated['avatar'] = $avatar_path;
-
         }
     }
 };

@@ -1,5 +1,6 @@
 <form class="space-y-6" wire:submit.prevent="editAnimal">
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <x-form.input type="file" wire:key="avatar-input" wire:model="avatar" title="avatar" name="avatar" placeholder="Votre avatar"/>
         <x-form.input
             name="name"
             title="Nom"

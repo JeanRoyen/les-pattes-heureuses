@@ -79,12 +79,13 @@
                     <option value="2">test</option>
                 </x-general.select>
                 @foreach($animals as $animal)
-                <x-general.card name="{{ $animal->name }}"
-                                race="{{ $animal->race }}"
-                                gender="{{ $animal->gender }}"
-                                age="{{ $animal->age->format('d/m/Y') }}"
-                                description="{{ $animal->description }}"
-                                picture="asset('{{ $animal->avatar }}')"/>
+                    <x-general.card
+                        name="{{ $animal->name }}"
+                        race="{{ $animal->race }}"
+                        gender="{{ $animal->gender }}"
+                        age="{{ $animal->age->format('d/m/Y') }}"
+                        description="{{ $animal->description }}"
+                        :picture="$animal->avatar"/>
                 @endforeach
             </div>
             {{-- TODO: Pagination --}}
