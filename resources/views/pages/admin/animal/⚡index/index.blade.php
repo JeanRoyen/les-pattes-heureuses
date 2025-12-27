@@ -41,7 +41,7 @@
             @endforelse
         </x-admin.table>
         {{-- TODO: Paginate --}}
-        <x-admin.cta title="Ajouter un animal"/>
+        <x-admin.cta function="createAnimal" title="Ajouter un animal"/>
     </x-admin.section-spacing>
     <x-admin.section-spacing>
         <x-admin.headings2 title="Animaux en attente de validation"/>
