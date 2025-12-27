@@ -2,28 +2,11 @@
     <x-admin.section-spacing>
         <x-admin.headings2 title="Animaux au refuge"/>
         <x-general.searchbar model="availableSearch" />
-        <div class="grid grid-cols-8 gap-5">
-            <x-general.select name="species" title="Espèces">
-                <option selected>Choisir une espèce</option>
-                <option value="1">Chien</option>
-                <option value="2">Chat</option>
-            </x-general.select>
-            <x-general.select name="races" title="Races">
-                <option selected>Choisir une race</option>
-                <option value="1">Berger Allemand</option>
-                <option value="2">Berger Malinois</option>
-            </x-general.select>
-            <x-general.select name="sex" title="Sexe">
-                <option selected>Choisir un sexe</option>
-                <option value="1">Homme</option>
-                <option value="2">Femme</option>
-            </x-general.select>
-            <x-general.select name="age" title="Âge">
-                <option selected>Choisir un âge</option>
-                <option value="1">2-4 ans</option>
-                <option value="2">5-7 ans</option>
-            </x-general.select>
-        </div>
+        <x-general.filters
+            prefix="available"
+            :species="$this->species"
+            :races="$this->races"
+        />
         <x-admin.table>
             <tr>
                 <x-admin.table-header title="Nom"/>
@@ -63,28 +46,11 @@
     <x-admin.section-spacing>
         <x-admin.headings2 title="Animaux en attente de validation"/>
         <x-general.searchbar model="waitingSearch" />
-        <div class="grid grid-cols-8 gap-5">
-            <x-general.select name="species" title="Espèces">
-                <option selected>Choisir une espèce</option>
-                <option value="1">Chien</option>
-                <option value="2">Chat</option>
-            </x-general.select>
-            <x-general.select name="races" title="Races">
-                <option selected>Choisir une race</option>
-                <option value="1">Berger Allemand</option>
-                <option value="2">Berger Malinois</option>
-            </x-general.select>
-            <x-general.select name="sex" title="Sexe">
-                <option selected>Choisir un sexe</option>
-                <option value="1">Homme</option>
-                <option value="2">Femme</option>
-            </x-general.select>
-            <x-general.select name="age" title="Âge">
-                <option selected>Choisir un âge</option>
-                <option value="1">2-4 ans</option>
-                <option value="2">5-7 ans</option>
-            </x-general.select>
-        </div>
+        <x-general.filters
+            prefix="waiting"
+            :species="$this->species"
+            :races="$this->races"
+        />
         <x-admin.table>
             <tr>
                 <x-admin.table-header title="Nom"/>
@@ -122,28 +88,11 @@
     <x-admin.section-spacing>
         <x-admin.headings2 title="Animaux adoptés"/>
         <x-general.searchbar model="adoptedSearch"/>
-        <div class="grid grid-cols-8 gap-5">
-            <x-general.select name="species" title="Espèces">
-                <option selected>Choisir une espèce</option>
-                <option value="1">Chien</option>
-                <option value="2">Chat</option>
-            </x-general.select>
-            <x-general.select name="races" title="Races">
-                <option selected>Choisir une race</option>
-                <option value="1">Berger Allemand</option>
-                <option value="2">Berger Malinois</option>
-            </x-general.select>
-            <x-general.select name="sex" title="Sexe">
-                <option selected>Choisir un sexe</option>
-                <option value="1">Homme</option>
-                <option value="2">Femme</option>
-            </x-general.select>
-            <x-general.select name="age" title="Âge">
-                <option selected>Choisir un âge</option>
-                <option value="1">2-4 ans</option>
-                <option value="2">5-7 ans</option>
-            </x-general.select>
-        </div>
+        <x-general.filters
+            prefix="adopted"
+            :species="$this->species"
+            :races="$this->races"
+        />
         <x-admin.table>
             <tr>
                 <x-admin.table-header title="Nom"/>
