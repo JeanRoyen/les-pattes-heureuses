@@ -107,11 +107,15 @@ new class extends Component {
                     [now()->subYears($max), now()->subYears($min)]
                 );
             })
-
             ->get();
     }
 
+    public function deleteAnimal(int $animalId): void
+    {
+        $animal = Animal::findOrFail($animalId);
 
+        $animal->delete();
+    }
 
     #[Computed]
     public function waitingAnimals(): Collection

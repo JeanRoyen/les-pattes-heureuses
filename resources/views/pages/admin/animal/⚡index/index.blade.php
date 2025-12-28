@@ -1,7 +1,7 @@
 <main class="flex-1 ml-64 space-y-10">
     <x-admin.section-spacing>
         <x-admin.headings2 title="Animaux au refuge"/>
-        <x-general.searchbar model="availableSearch" />
+        <x-general.searchbar model="availableSearch"/>
         <x-general.filters
             prefix="available"
             :species="$this->species"
@@ -29,10 +29,21 @@
                     <x-admin.table-data title="{{ $animal->age->format('d/m/Y') }}"/>
                     <x-admin.table-data title="{{ $animal->vaccine ? 'À jour' : 'À faire' }}"/>
                     <x-admin.table-data title="{{ $animal->status }}"/>
-                    <td class="border py-2 bg-white" >
-                        <x-modal.edit_button :animal="$animal->id"/>
-                        {{-- TODO: Completer le formulaire de modification avec les anciennes données  --}}
+                    <td class="border py-2 bg-white space-x-2">
+                        <button
+                            wire:click="openEditModal({{ $animal->id }})"
+                            class="bg-background-green text-white py-1 px-3 rounded-button">
+                            Modifier
+                        </button>
+
+                        <button
+                            wire:click="deleteAnimal({{ $animal->id }})"
+                            wire:confirm="Êtes-vous sûr de vouloir supprimer {{ ucfirst($animal->name) }} ?"
+                            class="bg-red-600 hover:bg-red-700 text-white py-1 px-3 rounded-button">
+                            Supprimer
+                        </button>
                     </td>
+                    {{-- TODO: Completer le formulaire de modification avec les anciennes données  --}}
                 </tr>
             @empty
                 <tr>
@@ -45,7 +56,7 @@
     </x-admin.section-spacing>
     <x-admin.section-spacing>
         <x-admin.headings2 title="Animaux en attente de validation"/>
-        <x-general.searchbar model="waitingSearch" />
+        <x-general.searchbar model="waitingSearch"/>
         <x-general.filters
             prefix="waiting"
             :species="$this->species"
@@ -73,9 +84,18 @@
                     <x-admin.table-data title="{{ $animal->age->format('d/m/Y') }}"/>
                     <x-admin.table-data title="{{ $animal->vaccine ? 'À jour' : 'À faire' }}"/>
                     <x-admin.table-data title="{{ $animal->status }}"/>
-                    <td class="border py-2 bg-white" >
-                        <x-modal.edit_button :animal="$animal->id"/>
-                        {{-- TODO: Completer le formulaire de modification avec les anciennes données  --}}
+                    <td class="border py-2 bg-white space-x-2">
+                        <button
+                            wire:click="openEditModal({{ $animal->id }})"
+                            class="bg-background-green text-white py-1 px-3 rounded-button">
+                            Modifier
+                        </button>
+                        <button
+                            wire:click="deleteAnimal({{ $animal->id }})"
+                            wire:confirm="Êtes-vous sûr de vouloir supprimer {{ ucfirst($animal->name) }} ?"
+                            class="bg-red-600 hover:bg-red-700 text-white py-1 px-3 rounded-button">
+                            Supprimer
+                        </button>
                     </td>
                 </tr>
             @empty
@@ -115,9 +135,19 @@
                     <x-admin.table-data title="{{ $animal->age->format('d/m/Y') }}"/>
                     <x-admin.table-data title="{{ $animal->vaccine ? 'À jour' : 'À faire' }}"/>
                     <x-admin.table-data title="{{ $animal->status }}"/>
-                    <td class="border py-2 bg-white" >
-                        <x-modal.edit_button :animal="$animal->id"/>
-                        {{-- TODO: Completer le formulaire de modification avec les anciennes données  --}}
+                    <td class="border py-2 bg-white space-x-2">
+                        <button
+                            wire:click="openEditModal({{ $animal->id }})"
+                            class="bg-background-green text-white py-1 px-3 rounded-button">
+                            Modifier
+                        </button>
+
+                        <button
+                            wire:click="deleteAnimal({{ $animal->id }})"
+                            wire:confirm="Êtes-vous sûr de vouloir supprimer {{ ucfirst($animal->name) }} ?"
+                            class="bg-red-600 hover:bg-red-700 text-white py-1 px-3 rounded-button">
+                            Supprimer
+                        </button>
                     </td>
                 </tr>
             @empty
@@ -130,12 +160,12 @@
     </x-admin.section-spacing>
     <div class="{{ $showCreateAnimalModal ? 'block' : 'hidden' }}">
         <x-modal.modal>
-                <x-slot:title>
-                    Ajouter un animal
-                    <button type="button" wire:click="toggleModal('createAnimal', 'close')">
-                        <img src="{{ asset('svg/close.svg') }}" alt="close" height="30" width="30">
-                    </button>
-                </x-slot:title>
+            <x-slot:title>
+                Ajouter un animal
+                <button type="button" wire:click="toggleModal('createAnimal', 'close')">
+                    <img src="{{ asset('svg/close.svg') }}" alt="close" height="30" width="30">
+                </button>
+            </x-slot:title>
             <x-slot:body>
                 <x-modal.create_animal/>
             </x-slot:body>
