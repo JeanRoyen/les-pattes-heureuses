@@ -108,7 +108,7 @@ new class extends Component {
         ]);
     }
 
-    public function deleteUser(int $userId)
+    public function deleteUser(int $userId): void
     {
         if (auth()->user()->role !== 1) {
             return;
