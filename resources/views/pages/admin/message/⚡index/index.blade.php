@@ -1,7 +1,7 @@
 <main class="flex-1 ml-64 space-y-10">
     <x-admin.section-spacing>
         <x-admin.headings2 title="Messages en attente"/>
-        <x-general.searchbar/>
+        <x-general.searchbar model="availableSearch" placeholder="Rechercher un message..."/>
         <x-admin.table>
             <tr>
                 <x-admin.table-header title="Nom"/>
@@ -28,7 +28,7 @@
     </x-admin.section-spacing>
     <x-admin.section-spacing>
         <x-admin.headings2 title="Messages traités"/>
-        <x-general.searchbar/>
+        <x-general.searchbar model="treatedSearch" placeholder="Rechercher un message..."/>
         <x-admin.table>
             <tr>
                 <x-admin.table-header title="Nom"/>
