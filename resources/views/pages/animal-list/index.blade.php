@@ -51,9 +51,6 @@
             <x-general.headings2
                 color="black"
                 :title="__('animals.list_title')" />
-
-            <x-general.searchbar/>
-
             <div class="grid grid-cols-8 gap-5">
                 <x-general.select name="species" title="Espèces">
                     <option selected>Choisir une espèce</option>
