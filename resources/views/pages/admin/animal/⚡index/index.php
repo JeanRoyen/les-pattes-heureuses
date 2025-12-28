@@ -185,7 +185,7 @@ new class extends Component {
 
     public function createAnimal(): void
     {
-        $this->toggleModal('createAnimal', 'open');
+        $this->showCreateAnimalModal = true;
     }
 
     public function toggleModal($modalType, $action): void
