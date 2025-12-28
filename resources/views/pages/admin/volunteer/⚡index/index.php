@@ -98,8 +98,18 @@ new class extends Component {
 
         $user = User::findOrFail($this->userId);
 
+        $user->update([
+            'name' => $this->name,
+            'phone' => $this->phone,
+            'email' => $this->email,
+            'password' => bcrypt($this->password),
+            'role' => $this->role,
+        ]);
+
         $this->showEditUserModal = false;
+
         $this->reset([
+            'userId',
             'name',
             'phone',
             'email',
@@ -107,6 +117,7 @@ new class extends Component {
             'role',
         ]);
     }
+
 
     public function deleteUser(int $userId): void
     {
