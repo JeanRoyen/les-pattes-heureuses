@@ -32,7 +32,7 @@
                     <td class="border py-2 bg-white space-x-2">
                         <button
                             wire:click="openEditModal({{ $animal->id }})"
-                            class="bg-background-green text-white py-1 px-3 rounded-button">
+                            class="bg-background-green text-white py-1 px-3 mb-1 rounded-button">
                             Modifier
                         </button>
 
@@ -87,7 +87,7 @@
                     <td class="border py-2 bg-white space-x-2">
                         <button
                             wire:click="openEditModal({{ $animal->id }})"
-                            class="bg-background-green text-white py-1 px-3 rounded-button">
+                            class="bg-background-green text-white py-1 px-3 mb-1 rounded-button">
                             Modifier
                         </button>
                         <button
@@ -138,7 +138,7 @@
                     <td class="border py-2 bg-white space-x-2">
                         <button
                             wire:click="openEditModal({{ $animal->id }})"
-                            class="bg-background-green text-white py-1 px-3 rounded-button">
+                            class="bg-background-green text-white py-1 px-3 mb-1 rounded-button">
                             Modifier
                         </button>
 
