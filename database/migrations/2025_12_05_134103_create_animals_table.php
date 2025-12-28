@@ -22,6 +22,7 @@ return new class extends Migration
             $table->boolean('vaccine');
             $table->text('description');
             $table->string('status')->default('waiting');
+            $table->softDeletes();
             $table->timestamps();
         });
     }
