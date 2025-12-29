@@ -141,7 +141,6 @@
                             class="bg-background-green text-white py-1 px-3 mb-1 rounded-button">
                             Modifier
                         </button>
-
                         <button
                             wire:click="deleteAnimal({{ $animal->id }})"
                             wire:confirm="Êtes-vous sûr de vouloir supprimer {{ ucfirst($animal->name) }} ?"

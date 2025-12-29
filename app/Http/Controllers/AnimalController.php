@@ -9,15 +9,6 @@ use Barryvdh\DomPDF\Facade\Pdf;
 
 class AnimalController extends Controller
 {
-    public function index(): View
-    {
-        return view('pages.animal-list.index', [
-            'animals' => $this->availableAnimals(),
-            'dog' => $this->dogCounter(),
-            'cat' => $this->catCounter(),
-            'adopted' => $this->adoptedCounter(),
-        ]);
-    }
     public function download()
     {
         $from = Carbon::now()->startOfMonth()->toDateString();
@@ -27,26 +18,6 @@ class AnimalController extends Controller
 
         $pdf = Pdf::loadView('pages.pdf.pdf', $viewTable);
         return $pdf->download();
-    }
-
-    public function availableAnimals()
-    {
-       return Animal::whereIn('status', ['in_care', 'available'])->get();
-    }
-
-    public function dogCounter()
-    {
-       return Animal::where('specie', 'dog')->count();
-    }
-
-    public function catCounter()
-    {
-        return Animal::where('specie', 'cat')->count();
-    }
-
-    public function adoptedCounter()
-    {
-        return Animal::where('status', 'adopted')->count();
     }
 
     public function getMonthlyStats()

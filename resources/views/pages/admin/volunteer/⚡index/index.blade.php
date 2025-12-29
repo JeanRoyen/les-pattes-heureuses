@@ -1,9 +1,7 @@
 <main class="flex-1 ml-64 space-y-10">
     <x-admin.section-spacing>
         <x-admin.headings2 title="Bénévoles du refuge"/>
-
         <x-admin.cta function="createUser" title="Ajouter un bénévole"/>
-
         <x-admin.table>
             <tr>
                 <x-admin.table-header title="Nom"/>
