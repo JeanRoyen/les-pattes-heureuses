@@ -10,6 +10,9 @@ return [
     'email' => 'Email address*',
     'email_placeholder' => 'Sarah@mail.com',
 
+    'title' => 'Title*',
+    'title_placeholder' => 'Questions about Moka',
+
     'message_placeholder' => 'Write my message...',
 
     'submit' => 'Send my message',
