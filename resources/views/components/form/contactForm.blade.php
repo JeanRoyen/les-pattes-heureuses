@@ -1,5 +1,7 @@
-<form action="/"
+<form action="{{ route('contact.submit') }}"
+      method="POST"
       class="bg-white min-w-[250px] inline-block shadow-general rounded-card py-6 px-10 md:py-12 md:px-22 w-full">
+    @csrf
     <div class="md:flex gap-5 md:mb-4">
         <x-form.input
             name="name"
@@ -18,6 +20,13 @@
             :title="__('form.email')"
             type="email"
             :placeholder="__('form.email_placeholder')"/>
+    </div>
+    <div class="md:mb-4">
+        <x-form.input
+            name="title"
+            :title="__('form.title')"
+            type="text"
+            :placeholder="__('form.title_placeholder')"/>
     </div>
     <div class="mb-8">
         <x-form.textarea
