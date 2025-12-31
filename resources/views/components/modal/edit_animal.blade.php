@@ -1,6 +1,7 @@
 <form class="space-y-6" wire:submit.prevent="editAnimal">
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <x-form.input type="file" wire:key="avatar-input" wire:model="avatar" title="avatar" name="avatar" placeholder="Votre avatar"/>
+        <x-form.input type="file" wire:key="avatar-input" wire:model="avatar" title="avatar" name="avatar"
+                      placeholder="Votre avatar"/>
         <x-form.input
             name="name"
             title="Nom"
@@ -34,9 +35,11 @@
                 id="status"
                 name="status"
                 wire:model="status"
-                class="border-input-grey border-1 rounded-button pl-2 w-full py-1 focus:border-background-green focus:outline-none">
+                @if(auth()->user()->role !== 1)
+                    disabled
+                @endif
+                class="border-input-grey border-1 rounded-button pl-2 w-full py-1 focus:border-background-green focus:outline-none disabled:bg-gray-200">
                 <option value="">Choisir un statut</option>
-                <option value="waiting">En attente</option>
                 <option value="available">Disponible</option>
                 <option value="in_care">En soins</option>
                 <option value="adopted">Adopté</option>

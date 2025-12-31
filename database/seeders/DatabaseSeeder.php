@@ -7,6 +7,7 @@ use App\Models\Message;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
@@ -21,14 +22,14 @@ class DatabaseSeeder extends Seeder
             'name' => 'Elise',
             'email' => 'elise@admin.com',
             'role' => 1,
-            'password' => 'test',
+            'password' => Hash::make('password'),
         ]);
 
         User::factory()->create([
             'name' => 'Thomas',
             'email' => 'thomas@benevole.com',
             'role' => 0,
-            'password' => 'test',
+            'password' => Hash::make('password'),
         ]);
 
         Animal::factory(10)->create();

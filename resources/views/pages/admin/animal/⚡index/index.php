@@ -15,9 +15,9 @@ new class extends Component {
 
     public string $name = '';
     public string $specie = '';
+    public string $status = '';
     public string $race = '';
     public string $description = '';
-    public string $status = 'waiting';
     public ?string $age = null;
     public bool $vaccine = false;
     public ?bool $gender = null;
@@ -207,11 +207,10 @@ new class extends Component {
     public function createAnimalInList(): void
     {
         $this->validate([
-            'avatar' => 'image',
+            'avatar' => 'image|nullable',
             'name' => 'required',
             'specie' => 'required',
             'race' => 'required',
-            'status' => 'required',
             'age' => 'required|date|before_or_equal:today',
             'gender' => 'required',
             'vaccine' => 'boolean',
@@ -228,25 +227,22 @@ new class extends Component {
             $avatar = $avatar_path;
         }
 
+        $status = auth()->user()->role
+            ? ($this->status)
+            : 'waiting';
+
+
         $animal = Animal::create([
             'avatar' => $avatar,
             'name' => $this->name,
+            'status' => $status,
             'specie' => $this->specie,
             'race' => $this->race,
-            'status' => $this->status,
             'age' => $this->age,
             'gender' => (bool) $this->gender,
             'vaccine' => $this->vaccine,
             'description' => $this->description,
         ]);
-
-        foreach ($this->avatar as $file) {
-            $path = $file->store('avatar', 'public');
-            $animal->avatars()->create([
-                'path' => $path,
-                'description' => null
-            ]);
-        }
 
         $this->description = $animal->description;
         $this->showCreateAnimalModal = false;
@@ -256,7 +252,6 @@ new class extends Component {
             'name',
             'specie',
             'race',
-            'status',
             'age',
             'gender',
             'vaccine',
@@ -283,11 +278,11 @@ new class extends Component {
     public function editAnimal(): void
     {
         $validated = $this->validate([
-            'avatar' => 'image',
+            'avatar' => 'image|nullable',
             'name' => 'required',
+            'status' => 'required',
             'specie' => 'required',
             'race' => 'required',
-            'status' => 'required',
             'age' => 'required|date|before_or_equal:today',
             'gender' => 'required',
             'vaccine' => 'boolean',
@@ -300,8 +295,8 @@ new class extends Component {
         $this->reset([
             'name',
             'specie',
-            'race',
             'status',
+            'race',
             'age',
             'gender',
             'vaccine',
@@ -315,6 +310,10 @@ new class extends Component {
             ProcessAvatar::dispatch($file_name, $avatar_path);
             $validated['avatar'] = $avatar_path;
         }
+        if (auth()->user()->role && isset($validated['status'])) {
+            $animal->status = $validated['status'];
+        }
+
         $animal->update($validated);
     }
 };

@@ -34,12 +34,13 @@
                 id="status"
                 name="status"
                 wire:model="status"
-                class="border-input-grey border-1 rounded-button pl-2 w-full py-1 focus:border-background-green focus:outline-none">
+                @if(auth()->user()->role !== 1)
+                    disabled
+                @endif
+                class="border-input-grey border-1 rounded-button pl-2 w-full py-1 focus:border-background-green focus:outline-none disabled:bg-gray-200">
                 <option value="">Choisir un statut</option>
-                <option value="waiting">En attente</option>
                 <option value="available">Disponible</option>
                 <option value="in_care">En soins</option>
-                <option value="adopted">Adopté</option>
             </select>
         </div>
         <x-form.input
