@@ -11,12 +11,6 @@ new class extends Component {
     public string $treatedSearch = '';
 
     #[Computed]
-    public function messages(): Collection
-    {
-        return Message::all();
-    }
-
-    #[Computed]
     public function availableMessages(): Collection
     {
         return Message::query()
