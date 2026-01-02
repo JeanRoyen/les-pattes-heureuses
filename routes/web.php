@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Controllers\AnimalController;
-use App\Http\Controllers\ContactController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\WelcomeController;
 use App\Http\Middleware\SetLocale;
@@ -20,8 +19,9 @@ Route::get('/lang/{locale}', function (string $locale) {
 
 // Client
 Route::middleware([SetLocale::class])->group(function () {
-    Route::get('/', [WelcomeController::class, 'index'])->name('welcome');
-    Route::livewire('/animals', 'pages::animals-list')->name('pages.animals-list');
+    Route::get('/', function () {
+        return 'OK';
+    });    Route::livewire('/animals', 'pages::animals-list')->name('pages.animals-list');
 
 });
 
