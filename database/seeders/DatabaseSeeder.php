@@ -34,7 +34,7 @@ class DatabaseSeeder extends Seeder
             'password' => Hash::make('password'),
         ]);
 
-        Animal::factory(30)->create();
-        Message::factory(10)->create();
+        $this->call(ProductionAnimalSeeder::class);
+        $this->call(ProductionMessageSeeder::class);
     }
 }
