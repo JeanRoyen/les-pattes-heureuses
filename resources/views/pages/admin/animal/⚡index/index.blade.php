@@ -24,7 +24,7 @@
                     <x-admin.table-data title="{{ $animal->name }}"/>
                     <x-admin.table-data title="{{ $animal->specie }}"/>
                     <x-admin.table-data title="{{ $animal->race }}"/>
-                    <x-admin.table-data title="{{ $animal->description }}"/>
+                    <x-admin.table-data :title="{{ $animal->description }}"/>
                     <x-admin.table-data title="{{ $animal->gender ? 'Mâle' : 'Femelle' }}"/>
                     <x-admin.table-data title="{{ $animal->age->format('d/m/Y') }}"/>
                     <x-admin.table-data title="{{ $animal->vaccine ? 'À jour' : 'À faire' }}"/>
@@ -79,7 +79,7 @@
                     <x-admin.table-data title="{{ $animal->name }}"/>
                     <x-admin.table-data title="{{ $animal->specie }}"/>
                     <x-admin.table-data title="{{ $animal->race }}"/>
-                    <x-admin.table-data title="{{ $animal->description }}"/>
+                    <x-admin.table-data :title="{{ $animal->description }}"/>
                     <x-admin.table-data title="{{ $animal->gender ? 'Mâle' : 'Femelle' }}"/>
                     <x-admin.table-data title="{{ $animal->age->format('d/m/Y') }}"/>
                     <x-admin.table-data title="{{ $animal->vaccine ? 'À jour' : 'À faire' }}"/>
@@ -130,7 +130,7 @@
                     <x-admin.table-data title="{{ $animal->name }}"/>
                     <x-admin.table-data title="{{ $animal->specie }}"/>
                     <x-admin.table-data title="{{ $animal->race }}"/>
-                    <x-admin.table-data title="{{ $animal->description }}"/>
+                    <x-admin.table-data :title="{{ $animal->description }}"/>
                     <x-admin.table-data title="{{ $animal->gender ? 'Mâle' : 'Femelle' }}"/>
                     <x-admin.table-data title="{{ $animal->age->format('d/m/Y') }}"/>
                     <x-admin.table-data title="{{ $animal->vaccine ? 'À jour' : 'À faire' }}"/>
