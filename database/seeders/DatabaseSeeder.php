@@ -32,7 +32,7 @@ class DatabaseSeeder extends Seeder
             'password' => Hash::make('password'),
         ]);
 
-        Animal::factory(10)->create();
+        Animal::factory(30)->create();
         Message::factory(10)->create();
     }
 }

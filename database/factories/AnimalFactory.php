@@ -29,7 +29,7 @@ class AnimalFactory extends Factory
             'vaccine' => $this->faker->boolean(),
             'description' => $this->faker->sentence(8),
             'status' => $this->faker->randomElement(['available', 'adopted', 'in_care', 'waiting']),
-            'avatar' => $this->faker->imageUrl(200, 200, 'animals', true),
+            'avatar' => '',
         ];
     }
 }
