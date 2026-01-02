@@ -33,10 +33,10 @@
         <x-admin.table>
             <tr>
                 <x-admin.table-header title="Nom"/>
-                <x-admin.table-header title="Objet"/>
                 <x-admin.table-header title="Email"/>
                 <x-admin.table-header title="Téléphone"/>
-                <x-admin.table-header title="Actions"/>
+                <x-admin.table-header title="Objet"/>
+                <x-admin.table-header title="Message"/>
             </tr>
             @forelse($this->treatedMessages as $message)
                 <tr>
