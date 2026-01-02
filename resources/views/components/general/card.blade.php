@@ -12,7 +12,7 @@
         <h3 class="font-bold text-xl">{{ $name }}</h3>
         <p class="font-bold">{{ $gender ? 'Mâle' : 'Femelle' }}</p>
         <p class="italic text-sm text-gray-600">{{ $race }}</p>
-        <p class="flex-grow text-sm my-2 line-clamp-3">{{ $description }}</p>
+        <p class="flex-grow text-sm my-2 line-clamp-3">{!! $description !!}</p>
         <a href="#" class="bg-cta-orange hover:bg-cta-hover text-white py-2 px-4 block text-center rounded-button mt-auto text-sm">
             En savoir plus →
         </a>
