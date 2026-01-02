@@ -20,7 +20,7 @@
                     </h2>
                 </div>
                 <div class="container mx-auto px-4 md:px-0">
-                    <a href="#"
+                    <a href="{{ route('pages.animals-list') }}"
                        class="bg-cta-orange hover:bg-cta-hover text-white px-4 py-2 rounded-button font-bold inline-block">
                         {{ __('welcome.hero_cta') }}
                     </a>
