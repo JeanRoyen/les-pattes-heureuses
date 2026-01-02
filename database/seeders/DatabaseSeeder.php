@@ -18,14 +18,14 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        User::factory()->create([
+        User::firstOrCreate([
             'name' => 'Elise',
             'email' => 'elise@admin.com',
             'role' => 1,
             'password' => Hash::make('password'),
         ]);
 
-        User::factory()->create([
+        User::firstOrCreate([
             'name' => 'Thomas',
             'email' => 'thomas@benevole.com',
             'role' => 0,
