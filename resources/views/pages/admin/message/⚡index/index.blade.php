@@ -21,7 +21,7 @@
                 </tr>
             @empty
                 <tr>
-                    <td colspan="4" class="text-center py-4 bg-white border">Pas de messages trouvés</td>
+                    <td colspan="5" class="text-center py-4 bg-white border">Pas de messages trouvés</td>
                 </tr>
             @endforelse
         </x-admin.table>
