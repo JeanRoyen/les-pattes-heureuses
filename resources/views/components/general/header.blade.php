@@ -31,7 +31,7 @@
                         route="{{ route('pages.animals-list') }}"/>
 
                     <x-navigation.topButton
-                        route="#"
+                        route="/#contact"
                         :title="__('header.nav_contact')"/>
                 </div>
 

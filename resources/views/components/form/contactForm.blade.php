@@ -1,6 +1,8 @@
 <form action="{{ route('contact.submit') }}"
       method="POST"
-      class="bg-white min-w-[250px] inline-block shadow-general rounded-card py-6 px-10 md:py-12 md:px-22 w-full">
+      class="bg-white min-w-[250px] inline-block shadow-general rounded-card py-6 px-10 md:py-12 md:px-22 w-full"
+      id="contact"
+>
     @csrf
     <div class="md:flex gap-5 md:mb-4">
         <x-form.input
