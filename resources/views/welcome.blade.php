@@ -68,7 +68,7 @@
                 :title="__('welcome.contact_title')"
                 color="text-black"/>
             <div class="flex justify-center">
-                <x-form.contactForm/>
+                <x-form.contact-form/>
             </div>
         </div>
     </section>
