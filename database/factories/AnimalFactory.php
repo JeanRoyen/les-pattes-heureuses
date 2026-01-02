@@ -21,14 +21,14 @@ class AnimalFactory extends Factory
     {
 
         return [
-            'name' => fake()->firstName(),
-            'specie' => fake()->randomElement(['dog', 'cat', 'ferret']),
-            'race' => fake()->randomElement(['Berger Allemand', 'Berger Malinois', 'Cavalier king Charles']),
-            'age' => fake()->dateTimeBetween('-15 years', 'now'),
-            'gender' => fake()->boolean(),
-            'vaccine' => fake()->boolean(),
-            'description' => fake()->sentence(8),
-            'status' => fake()->randomElement(['available', 'adopted', 'in_care', 'waiting']),
+            'name' => $this->faker->firstName(),
+            'specie' => $this->faker->randomElement(['dog', 'cat', 'ferret']),
+            'race' => $this->faker->randomElement(['Berger Allemand', 'Berger Malinois', 'Cavalier king Charles']),
+            'age' => $this->faker->dateTimeBetween('-15 years', 'now'),
+            'gender' => $this->faker->boolean(),
+            'vaccine' => $this->faker->boolean(),
+            'description' => $this->faker->sentence(8),
+            'status' => $this->faker->randomElement(['available', 'adopted', 'in_care', 'waiting']),
             'avatar' => '',
         ];
     }
