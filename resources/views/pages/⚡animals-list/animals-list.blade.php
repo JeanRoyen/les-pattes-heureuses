@@ -45,8 +45,9 @@
                 :species="$this->species"
                 :races="$this->races"
             />
+
             <div class="grid grid-cols-8 gap-5">
-                @foreach($this->availableAnimals as $animal)
+                @forelse($this->availableAnimals as $animal)
                     <x-general.card
                         name="{{ $animal->name }}"
                         race="{{ $animal->race }}"
@@ -54,7 +55,9 @@
                         age="{{ $animal->age->format('d/m/Y') }}"
                         description="{{ $animal->description }}"
                         :picture="$animal->avatar"/>
-                @endforeach
+                @empty
+                    <p>Pas d'animaux trouvés</p>
+                @endforelse
             </div>
             {{-- TODO: Pagination --}}
         </div>
