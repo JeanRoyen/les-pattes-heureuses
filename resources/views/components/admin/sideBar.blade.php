@@ -9,6 +9,7 @@
             <x-admin.listElement title="Demande d'adoption" route="{{ route('admin.adoptions') }}"/>
             <x-admin.listElement title="Bénévoles" route="{{ route('admin.volunteers') }}"/>
             <x-admin.listElement title="Messages" route="{{ route('admin.messages') }}"/>
+            <x-general.logout-button/>
         </ul>
     </div>
 </nav>

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AnimalController;
+use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\WelcomeController;
 use App\Http\Middleware\SetLocale;
@@ -34,8 +35,9 @@ Route::middleware('auth')->group(function () {
     Route::livewire('/admin/adoptions', 'pages::admin/adoption.index')->name('admin.adoptions');
     Route::livewire('/admin/volunteers', 'pages::admin/volunteer.index')->name('admin.volunteers');
     Route::get('/dashboard/pdf', [AnimalController::class, 'download'])->name('pdf');
-
 });
+
+Route::post('/logout', [LogoutController::class, 'index'])->name('logout');
 
 
 Route::get('/admin/login', function () {
