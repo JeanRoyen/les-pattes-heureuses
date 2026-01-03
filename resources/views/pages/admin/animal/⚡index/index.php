@@ -6,9 +6,12 @@ use Illuminate\Database\Eloquent\Collection;
 use Livewire\Attributes\Computed;
 use Livewire\Component;
 use Livewire\WithFileUploads;
+use Livewire\WithPagination;
+
 
 new class extends Component {
     use WithFileUploads;
+    use WithPagination;
 
     public bool $showCreateAnimalModal = false;
     public bool $showEditAnimalModal = false;
@@ -75,10 +78,30 @@ new class extends Component {
             ->pluck('race');
     }
 
+    public function deleteAnimal(int $animalId): void
+    {
+        $animal = Animal::findOrFail($animalId);
+
+        $animal->delete();
+    }
+
+
+    public function updatingAvailableSearch(): void
+    {
+        $this->resetPage();
+    }
+    public function updatingWaitingSearch(): void
+    {
+        $this->resetPage();
+    }
+    public function updatingAdoptedSearch(): void
+    {
+        $this->resetPage();
+    }
 
 
     #[Computed]
-    public function availableAnimals(): Collection
+    public function availableAnimals()
     {
         return Animal::query()
             ->whereIn('status', ['in_care', 'available'])
@@ -107,18 +130,11 @@ new class extends Component {
                     [now()->subYears($max), now()->subYears($min)]
                 );
             })
-            ->get();
-    }
-
-    public function deleteAnimal(int $animalId): void
-    {
-        $animal = Animal::findOrFail($animalId);
-
-        $animal->delete();
+            ->paginate(8);
     }
 
     #[Computed]
-    public function waitingAnimals(): Collection
+    public function waitingAnimals()
     {
         return Animal::query()
             ->where('status', 'waiting')
@@ -148,12 +164,12 @@ new class extends Component {
                 );
             })
 
-            ->get();
+            ->paginate(8);
     }
 
 
     #[Computed]
-    public function adoptedAnimals(): Collection
+    public function adoptedAnimals()
     {
         return Animal::query()
             ->where('status', 'adopted')
@@ -183,7 +199,7 @@ new class extends Component {
                 );
             })
 
-            ->get();
+            ->paginate(8);
     }
 
 
