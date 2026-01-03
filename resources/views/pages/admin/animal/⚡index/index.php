@@ -90,14 +90,6 @@ new class extends Component {
     {
         $this->resetPage();
     }
-    public function updatingWaitingSearch(): void
-    {
-        $this->resetPage();
-    }
-    public function updatingAdoptedSearch(): void
-    {
-        $this->resetPage();
-    }
 
 
     #[Computed]
@@ -163,8 +155,7 @@ new class extends Component {
                     [now()->subYears($max), now()->subYears($min)]
                 );
             })
-
-            ->paginate(8);
+            ->get();
     }
 
 
@@ -199,7 +190,7 @@ new class extends Component {
                 );
             })
 
-            ->paginate(8);
+            ->get();
     }
 
 

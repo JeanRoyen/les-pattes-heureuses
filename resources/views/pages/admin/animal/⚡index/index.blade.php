@@ -108,11 +108,6 @@
                     <td colspan="9" class="text-center py-4 bg-white border">Pas d'animaux trouvés</td>
                 </tr>
             @endforelse
-            <tr>
-                <td class="text-center" colspan="9">
-                    {{ $this->waitingAnimals->links('vendor.pagination.personal-paginate') }}
-                </td>
-            </tr>
         </x-admin.table>
     </x-admin.section-spacing>
     <x-admin.section-spacing>
@@ -164,11 +159,6 @@
                     <td colspan="9" class="text-center py-4 bg-white border">Pas d'animaux trouvés</td>
                 </tr>
             @endforelse
-            <tr>
-                <td colspan="9" class="text-center">
-                    {{ $this->adoptedAnimals->links('vendor.pagination.personal-paginate') }}
-                </td>
-            </tr>
         </x-admin.table>
         {{-- TODO: Paginate --}}
     </x-admin.section-spacing>
