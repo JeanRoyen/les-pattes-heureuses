@@ -56,7 +56,7 @@
                         description="{{ $animal->description }}"
                         :picture="$animal->avatar"/>
                 @empty
-                    <p>Pas d'animaux trouvés</p>
+                    <p class="col-span-full">Pas d'animaux trouvés</p>
                 @endforelse
             </div>
             {{-- TODO: Pagination --}}
