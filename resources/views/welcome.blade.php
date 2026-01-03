@@ -12,7 +12,7 @@
 <main>
     <section>
         <div class="lg:relative overflow-hidden">
-            <img src="{{ asset('images/forest_dog.png') }}" alt="" class="w-full lg:min-w-[1098px] shadow-general">
+            <img src="{{ asset('images/forest_dog.jpg') }}" alt="" class="w-full lg:min-w-[1098px] shadow-general">
             <div class="lg:absolute lg:inset-0 lg:flex lg:flex-col lg:justify-between lg:py-12">
                 <div class="container mx-auto px-4 md:px-0">
                     <h2 class="font-bold text-h2 md:text-h2-desktop lg:text-5xl mb-6 lg:mb-8 mt-4 md:mt-0 lg:leading-16 lg:text-white lg:max-w-1/2">
