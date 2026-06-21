@@ -3,7 +3,7 @@
         <div class="container mx-auto px-4 md:px-0 pb-4 md:pb-0 flex items-center justify-between flex-wrap w-full">
             <h2 class="sr-only">{{ __('header.main_navigation') }}</h2>
 
-            <div class="flex items-center flex-shrink-0">
+            <div class="flex items-center shrink-0">
                 <a href="{{ route('welcome') }}">
                     <img src="{{ asset('images/LPH_logo.png') }}"
                          alt="{{ __('header.logo_alt') }}"

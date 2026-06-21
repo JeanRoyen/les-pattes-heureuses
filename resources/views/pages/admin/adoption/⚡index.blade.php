@@ -1,9 +1,19 @@
+<?php
+
+use Livewire\Component;
+
+new class extends Component
+{
+    //
+};
+?>
+
 <main class="flex-1 ml-64 space-y-10">
     <x-admin.section-spacing>
         <x-admin.headings2 title="Demandes en attente"/>
-{{--
-        <x-general.searchbar/>
---}}
+        {{--
+                <x-general.searchbar/>
+        --}}
         <x-admin.table>
             <tr>
                 <x-admin.table-header title="Nom"/>
@@ -46,9 +56,9 @@
     </x-admin.section-spacing>
     <x-admin.section-spacing>
         <x-admin.headings2 title="Demande traitées"/>
-{{--
-        <x-general.searchbar/>
---}}
+        {{--
+                <x-general.searchbar/>
+        --}}
         <x-admin.table>
             <tr>
                 <x-admin.table-header title="Nom"/>

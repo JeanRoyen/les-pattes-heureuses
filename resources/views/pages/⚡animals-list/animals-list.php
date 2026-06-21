@@ -2,7 +2,6 @@
 
 use App\Models\Animal;
 use Illuminate\Contracts\View\View as ViewView;
-use Illuminate\View\View;
 use Livewire\Attributes\Computed;
 use Livewire\Component;
 use Illuminate\Database\Eloquent\Collection;
@@ -61,7 +60,7 @@ new class extends Component
             )
 
             ->when($this->availableRace !== '', fn ($q) =>
-            $q->where('race', $this->availableRace)
+            $q->whereLike('race', $this->availableRace)
             )
 
             ->when($this->availableGender !== '', fn ($q) =>
