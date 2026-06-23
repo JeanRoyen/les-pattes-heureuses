@@ -55,6 +55,7 @@
                             gender="{{ $animal->gender }}"
                             age="{{ $animal->age->format('d/m/Y') }}"
                             description="{{ $animal->description }}"
+                            route="{{ route('animals.show', $animal->id) }}"
                             :picture="$animal->avatar"/>
                     @empty
                         <p class="col-span-full">Pas d'animaux trouvés</p>

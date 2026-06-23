@@ -6,20 +6,26 @@ use App\Models\Animal;
 use Carbon\Carbon;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Database\Eloquent\Collection;
-use Livewire\Attributes\Computed;
-use function explode;
 use function now;
+use function view;
 
 class AnimalController extends Controller
 {
 
     public function index()
     {
-        return view('pages.client.animals', [
+        return view('pages.client.animals.index', [
             'dogCount' => $this->animalCounter('dog'),
             'catCount' => $this->animalCounter('cat'),
             'adoptedCount' => $this->statusCounter('adopted'),
             'availableAnimals' => $this->availableAnimals(),
+        ]);
+    }
+
+    public function show(Animal $animal)
+    {
+        return view('pages.client.animals.show', [
+            'animal' => $animal
         ]);
     }
 
