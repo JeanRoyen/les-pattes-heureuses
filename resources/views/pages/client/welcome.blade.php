@@ -47,6 +47,7 @@
                             gender="{{ $animal->gender }}"
                             age="{{ $animal->age->format('d/m/Y') }}"
                             description="{{ $animal->description }}"
+                            route="{{ route('animals.show', $animal->id) }}"
                             :picture="$animal->avatar"/>
                     @endforeach
                 </div>
