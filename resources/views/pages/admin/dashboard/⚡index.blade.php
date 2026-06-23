@@ -2,6 +2,7 @@
 
 use App\Models\Animal;
 use App\Models\Message;
+use Livewire\Attributes\Layout;
 use Livewire\Component;
 
 new class extends Component {

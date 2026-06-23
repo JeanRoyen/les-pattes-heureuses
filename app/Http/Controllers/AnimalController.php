@@ -4,11 +4,30 @@ namespace App\Http\Controllers;
 
 use App\Models\Animal;
 use Carbon\Carbon;
-use Illuminate\View\View;
 use Barryvdh\DomPDF\Facade\Pdf;
 
 class AnimalController extends Controller
 {
+
+    public function index()
+    {
+        return view('pages.client.animals', [
+            'dogCount' => $this->animalCounter('dog'),
+            'catCount' => $this->animalCounter('cat'),
+            'adoptedCount' => $this->statusCounter('adopted'),
+        ]);
+    }
+
+    public function animalCounter(string $specie): int
+    {
+        return Animal::where('specie', $specie)->count();
+    }
+
+    public function statusCounter(string $status): int
+    {
+        return Animal::where('status', $status)->count();
+    }
+
     public function download()
     {
         $from = Carbon::now()->startOfMonth()->toDateString();

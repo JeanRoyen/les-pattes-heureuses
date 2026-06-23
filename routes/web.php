@@ -21,7 +21,7 @@ Route::get('/lang/{locale}', function (string $locale) {
 // Client
 Route::middleware([SetLocale::class])->group(function () {
     Route::get('/', [WelcomeController::class, 'index'])->name('welcome');
-    Route::livewire('/animals', 'pages::animals-list')->name('pages.animals-list');
+    Route::get('/animals', [AnimalController::class, 'index'])->name('animals');
 
 });
 

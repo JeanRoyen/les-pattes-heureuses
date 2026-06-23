@@ -21,14 +21,14 @@
             </label>
 
             <div class="w-full hidden peer-checked:block md:flex md:items-center md:w-auto font-bold">
-                <div class="text-sm md:flex-grow">
+                <div class="text-sm md:grow">
                     <x-navigation.topLink
                         :title="__('header.nav_home')"
                         route="{{ route('welcome') }}" />
 
                     <x-navigation.topLink
                         :title="__('header.nav_animals')"
-                        route="{{ route('pages.animals-list') }}"/>
+                        route="{{ route('animals') }}"/>
 
                     <x-navigation.topButton
                         route="/#contact"

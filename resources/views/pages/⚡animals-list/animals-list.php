@@ -2,6 +2,7 @@
 
 use App\Models\Animal;
 use Illuminate\Contracts\View\View as ViewView;
+use Illuminate\View\View;
 use Livewire\Attributes\Computed;
 use Livewire\Component;
 use Illuminate\Database\Eloquent\Collection;
