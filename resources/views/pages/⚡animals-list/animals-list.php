@@ -79,21 +79,8 @@ new class extends Component
             ->get();
     }
 
-    #[Computed]
-    public function dogCounter(): int
+    public function animalCounter(string $specie): int
     {
-        return Animal::where('specie', 'dog')->count();
-    }
-
-    #[Computed]
-    public function catCounter(): int
-    {
-        return Animal::where('specie', 'cat')->count();
-    }
-
-    #[Computed]
-    public function adoptedCounter(): int
-    {
-        return Animal::where('status', 'adopted')->count();
+        return Animal::where('specie', $specie)->count();
     }
 };

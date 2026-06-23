@@ -47,8 +47,8 @@
                        races="chat"
                    />--}}
 
-                {{--<div class="grid grid-cols-8 gap-5">
-                    @forelse($this->availableAnimals as $animal)
+                <div class="grid grid-cols-8 gap-5">
+                    @forelse($availableAnimals as $animal)
                         <x-general.card
                             name="{{ $animal->name }}"
                             race="{{ $animal->race }}"
@@ -59,7 +59,7 @@
                     @empty
                         <p class="col-span-full">Pas d'animaux trouvés</p>
                     @endforelse
-                </div>--}}
+                </div>
                 {{-- TODO: Pagination --}}
             </div>
         </section>

@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\Animal;
 use Carbon\Carbon;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Database\Eloquent\Collection;
+use Livewire\Attributes\Computed;
+use function explode;
+use function now;
 
 class AnimalController extends Controller
 {
@@ -15,7 +19,13 @@ class AnimalController extends Controller
             'dogCount' => $this->animalCounter('dog'),
             'catCount' => $this->animalCounter('cat'),
             'adoptedCount' => $this->statusCounter('adopted'),
+            'availableAnimals' => $this->availableAnimals(),
         ]);
+    }
+
+    public function availableAnimals(): Collection
+    {
+        return Animal::whereIn('status', ['in_care', 'available'])->get();
     }
 
     public function animalCounter(string $specie): int
