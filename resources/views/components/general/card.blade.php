@@ -1,13 +1,13 @@
 <article class="bg-white rounded-card overflow-hidden flex flex-col col-span-8 md:col-span-4 lg:col-span-2">
     @if ($picture && Storage::disk('public')->exists($picture))
-        <img src="{{ asset('storage/' . $picture) }}" alt="{{ $name }}" class="block w-full h-48 object-cover"/>
+        <img src="{{ asset('storage/' . $picture) }}" alt="{{ $name }}" class="block w-full h-96 object-cover"/>
     @else
-        <div class="w-full h-48 bg-gray-200 flex items-center justify-center">
+        <div class="w-full h-96 bg-gray-200 flex items-center justify-center">
             Pas d'image
         </div>
     @endif
 
-    <div class="p-4 flex flex-col flex-grow">
+    <div class="p-4 flex flex-col grow">
         <span class="text-background-green italic font-bold text-sm">{{ $age }}</span>
         <h3 class="font-bold text-xl">{{ $name }}</h3>
         <p class="font-bold">{{ $gender ? 'Mâle' : 'Femelle' }}</p>

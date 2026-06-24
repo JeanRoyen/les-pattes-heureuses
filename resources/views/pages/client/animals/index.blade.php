@@ -2,7 +2,7 @@
     <main>
         <section>
             <div class="lg:relative overflow-hidden">
-                <img src="{{ asset('images/adopt-dog.jpg') }}" alt="" class="w-full lg:min-w-[1098p@x]">
+                <img src="{{ asset('images/adopt-dog.jpg') }}" alt="Chien porté par un homme" class="w-full lg:min-w-[1098p@x]">
                 <div class="lg:absolute lg:inset-0 lg:flex lg:flex-col lg:py-4">
                     <div class="container mx-auto px-4 md:px-0 md:mb-4">
                         <x-general.headings2

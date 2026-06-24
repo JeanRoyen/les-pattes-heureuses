@@ -12,7 +12,7 @@
 </head>
 <body class="bg-bodybackground">
 <x-general.header/>
-<div class="flex py-6 px-8">
+<div class="flex">
     {{ $slot }}
 </div>
 <x-general.footer/>
