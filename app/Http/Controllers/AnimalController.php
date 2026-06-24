@@ -25,13 +25,23 @@ class AnimalController extends Controller
     public function show(Animal $animal)
     {
         return view('pages.client.animals.show', [
-            'animal' => $animal
+            'animal' => $animal,
+            'animals' => $this->latestAvailableAnimals(),
         ]);
     }
 
     public function availableAnimals(): Collection
     {
-        return Animal::whereIn('status', ['in_care', 'available'])->get();
+        return Animal::whereIn('status', ['in_care', 'available'])
+            ->get();
+    }
+
+    public function latestAvailableAnimals()
+    {
+        return Animal::whereIn('status', ['in_care', 'available'])
+            ->orderBy('created_at', 'desc')
+            ->limit(4)
+            ->get();
     }
 
     public function animalCounter(string $specie): int
