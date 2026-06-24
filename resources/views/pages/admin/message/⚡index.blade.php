@@ -2,9 +2,11 @@
 
 use App\Models\Message;
 use Livewire\Attributes\Computed;
+use Livewire\Attributes\Title;
 use Livewire\Component;
 
-new class extends Component {
+new #[Title('Messages | Les Pattes Heureuses')]
+class extends Component {
     public string $availableSearch = '';
     public string $treatedSearch = '';
 

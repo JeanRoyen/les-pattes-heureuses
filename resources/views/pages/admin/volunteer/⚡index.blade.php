@@ -2,9 +2,11 @@
 
 use App\Models\User;
 use Livewire\Attributes\Computed;
+use Livewire\Attributes\Title;
 use Livewire\Component;
 
-new class extends Component {
+new #[Title('Bénévoles | Les Pattes Heureuses')]
+class extends Component {
     public string $name = '';
     public string $phone = '';
     public string $email = '';

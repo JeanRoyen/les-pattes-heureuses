@@ -3,11 +3,12 @@
 use App\Jobs\ProcessAvatar;
 use App\Models\Animal;
 use Livewire\Attributes\Computed;
+use Livewire\Attributes\Title;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 use Livewire\WithPagination;
 
-new class extends Component {
+new #[Title('Animaux | Les Pattes Heureuses')] class extends Component {
     use WithFileUploads;
     use WithPagination;
 
@@ -346,11 +347,6 @@ new class extends Component {
                     <td colspan="9" class="text-center py-4 bg-white border">Pas d'animaux trouvés</td>
                 </tr>
             @endforelse
-            <tr>
-                <td colspan="9" class="text-center">
-                    {{ $this->availableAnimals->links('vendor.pagination.personal-paginate') }}
-                </td>
-            </tr>
         </x-admin.table>
         {{-- TODO: Paginate --}}
         <x-admin.cta function="createAnimal" title="Ajouter un animal"/>

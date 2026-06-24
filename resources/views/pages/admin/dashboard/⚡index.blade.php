@@ -3,9 +3,11 @@
 use App\Models\Animal;
 use App\Models\Message;
 use Livewire\Attributes\Layout;
+use Livewire\Attributes\Title;
 use Livewire\Component;
 
-new class extends Component {
+new #[Title('Tableau de bord | Les Pattes Heureuses')]
+class extends Component {
     public array $stats = [];
     public string $month;
 
