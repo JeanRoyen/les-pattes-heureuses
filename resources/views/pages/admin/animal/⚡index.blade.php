@@ -372,7 +372,7 @@ new #[Title('Animaux | Les Pattes Heureuses')] class extends Component {
                 <x-admin.table-header title="Action"/>
             </tr>
             @forelse($this->waitingAnimals as $animal)
-                <tr>
+                <tr wire:key="{{ $animal->id }}">
                     <x-admin.table-data title="{{ $animal->name }}"/>
                     <x-admin.table-data title="{{ $animal->specie }}"/>
                     <x-admin.table-data title="{{ $animal->race }}"/>
