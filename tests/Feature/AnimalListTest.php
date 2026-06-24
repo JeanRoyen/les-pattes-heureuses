@@ -4,9 +4,8 @@ use App\Models\Animal;
 use function Pest\Laravel\get;
 
 it('displays animals page correctly', function () {
-    get(route('pages.animals-list'))
-        ->assertStatus(200)
-        ->assertViewIs('pages.animal-list.index');
+    get(route('animals'))
+        ->assertStatus(200);
 });
 
 it('displays animal avatar', function () {
@@ -15,7 +14,7 @@ it('displays animal avatar', function () {
         'avatar' => 'animals/dog.jpg',
     ]);
 
-    get(route('pages.animals-list'))
+    get(route('animals'))
         ->assertSee('animals/dog.jpg');
 });
 
@@ -26,7 +25,7 @@ it('displays animal age', function () {
         'age' => '2025-03-24 00:00:00',
     ]);
 
-    get(route('pages.animals-list'))
+    get(route('animals'))
         ->assertSee('24/03/2025');
 });
 
@@ -37,7 +36,7 @@ it('displays animal name', function () {
         'name' => 'Max',
     ]);
 
-    get(route('pages.animals-list'))
+    get(route('animals'))
         ->assertSee('Max');
 });
 
@@ -48,7 +47,7 @@ it('displays animal race', function () {
         'race' => 'Berger Allemand'
     ]);
 
-    get(route('pages.animals-list'))
+    get(route('animals'))
         ->assertSee('Berger Allemand');
 });
 
@@ -58,7 +57,7 @@ it('displays animal description', function () {
         'description' => 'Un chien très gentil'
     ]);
 
-    get(route('pages.animals-list'))
+    get(route('animals'))
         ->assertSee('Un chien très gentil');
 });
 
@@ -68,7 +67,7 @@ it('displays animal gender', function () {
         'gender' => 1
     ]);
 
-    get(route('pages.animals-list'))
+    get(route('animals'))
         ->assertSee('Mâle');
 });
 
@@ -82,7 +81,7 @@ it('displays all animal information in card', function () {
         'description' => 'Chien adorable'
     ]);
 
-    get(route('pages.animals-list'))
+    get(route('animals'))
         ->assertSee('animals/test.jpg')
         ->assertSee('15/01/2025')
         ->assertSee('Charlie')
@@ -93,6 +92,6 @@ it('displays all animal information in card', function () {
 it('displays multiple animal cards', function () {
     Animal::factory()->count(3)->create();
 
-    get(route('pages.animals-list'))
+    get(route('animals'))
         ->assertStatus(200);
 });

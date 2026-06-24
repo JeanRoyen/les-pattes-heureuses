@@ -30,8 +30,8 @@ it('shows volunteers phone number on page', function () {
 });
 
 it('shows volunteers role on page', function () {
-    User::factory()->create(['role' => true]);
-    User::factory()->create(['role' => false]);
+    User::factory()->create(['isAdmin' => true]);
+    User::factory()->create(['isAdmin' => false]);
 
     Livewire::test('pages::admin/volunteer.index')
         ->assertSee('Administrateur')

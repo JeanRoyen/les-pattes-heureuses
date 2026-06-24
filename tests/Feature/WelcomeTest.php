@@ -1,19 +1,19 @@
 <?php
 
-test('the application returns a successful response', function () {
+use App\Models\Animal;
+use function Pest\Laravel\get;
+
+it('the application returns a successful response', function () {
     $response = $this->get('/');
 
     $response->assertStatus(200);
 });
 
 
-use App\Models\Animal;
-use function Pest\Laravel\get;
-
 it('displays animals page correctly', function () {
-    get(route('welcome'))
+    $this->get(route('welcome'))
         ->assertStatus(200)
-        ->assertViewIs('welcome');
+        ->assertViewIs('pages.client.welcome');
 });
 
 it('displays animal avatar', function () {
