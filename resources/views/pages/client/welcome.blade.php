@@ -1,4 +1,4 @@
-<x-layouts.client>
+<x-layouts.client title="Accueil | Les Pattes Heureuses">
     <main>
         <section>
             <div class="lg:relative overflow-hidden">
