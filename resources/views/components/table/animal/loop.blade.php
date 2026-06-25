@@ -1,3 +1,4 @@
+@php use Carbon\Carbon; @endphp
 @props([
     'animals'=> collect()
 ])
@@ -10,7 +11,7 @@
         <x-table.table-data title="{{ $animal->gender ? 'Mâle' : 'Femelle' }}"/>
         <x-table.table-data title="{{ $animal->age->format('d/m/Y') }}"/>
         <x-table.table-data title="{{ $animal->vaccine ? 'À jour' : 'À faire' }}"/>
-        <x-table.table-data title="{{ $animal->status }}"/>
+        <x-table.table-data title="{{ $animal->created_at->format('d/m/Y') }}"/>
         <td class="border py-2 bg-white space-x-2">
             <button
                 wire:click="openEditModal({{ $animal->id }})"
