@@ -27,6 +27,6 @@
     </tr>
 @empty
     <tr>
-        <td colspan="9" class="text-center py-4 bg-white border">Pas d'animaux trouvés</td>
+        <td colspan="8" class="text-center py-4 bg-white border">Pas d'animaux trouvés</td>
     </tr>
 @endforelse
