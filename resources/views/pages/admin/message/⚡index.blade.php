@@ -45,22 +45,22 @@ class extends Component {
     <x-admin.section-spacing>
         <x-admin.headings2 title="Messages en attente"/>
         <x-general.searchbar model="availableSearch" placeholder="Rechercher un message..."/>
-        <x-admin.table>
+        <x-table>
             <tr>
-                <x-admin.table-header title="Nom"/>
-                <x-admin.table-header title="Email"/>
-                <x-admin.table-header title="Téléphone"/>
-                <x-admin.table-header title="Objet"/>
-                <x-admin.table-header title="Message"/>
+                <x-table.table-header title="Nom"/>
+                <x-table.table-header title="Email"/>
+                <x-table.table-header title="Téléphone"/>
+                <x-table.table-header title="Objet"/>
+                <x-table.table-header title="Message"/>
             </tr>
             @forelse($this->availableMessages as $message)
                 <tr>
-                    <x-admin.table-data title="{{ $message->name }}"/>
-                    <x-admin.table-data-mailto
+                    <x-table.table-data title="{{ $message->name }}"/>
+                    <x-table.table-data-mailto
                         title='<a href="mailto:{{ $message->email }}">{{ $message->email }}</a>'/>
-                    <x-admin.table-data title="{{ $message->phone }}"/>
-                    <x-admin.table-data title="{{ $message->title }}"/>
-                    <x-admin.table-data title="{{ $message->message }}"/>
+                    <x-table.table-data title="{{ $message->phone }}"/>
+                    <x-table.table-data title="{{ $message->title }}"/>
+                    <x-table.table-data title="{{ $message->message }}"/>
 
                 </tr>
             @empty
@@ -68,34 +68,34 @@ class extends Component {
                     <td colspan="5" class="text-center py-4 bg-white border">Pas de messages trouvés</td>
                 </tr>
             @endforelse
-        </x-admin.table>
+        </x-table>
         {{-- TODO: Paginate --}}
     </x-admin.section-spacing>
     <x-admin.section-spacing>
         <x-admin.headings2 title="Messages traités"/>
         <x-general.searchbar model="treatedSearch" placeholder="Rechercher un message..."/>
-        <x-admin.table>
+        <x-table>
             <tr>
-                <x-admin.table-header title="Nom"/>
-                <x-admin.table-header title="Email"/>
-                <x-admin.table-header title="Téléphone"/>
-                <x-admin.table-header title="Objet"/>
-                <x-admin.table-header title="Message"/>
+                <x-table.table-header title="Nom"/>
+                <x-table.table-header title="Email"/>
+                <x-table.table-header title="Téléphone"/>
+                <x-table.table-header title="Objet"/>
+                <x-table.table-header title="Message"/>
             </tr>
             @forelse($this->treatedMessages as $message)
                 <tr>
-                    <x-admin.table-data title="{{ $message->name }}"/>
-                    <x-admin.table-data-mailto
+                    <x-table.table-data title="{{ $message->name }}"/>
+                    <x-table.table-data-mailto
                         title='<a href="mailto:{{ $message->email }}">{{ $message->email }}</a>'/>
-                    <x-admin.table-data title="{{ $message->phone }}"/>
-                    <x-admin.table-data title="{{ $message->title }}"/>
-                    <x-admin.table-data title="{{ $message->message }}"/>
+                    <x-table.table-data title="{{ $message->phone }}"/>
+                    <x-table.table-data title="{{ $message->title }}"/>
+                    <x-table.table-data title="{{ $message->message }}"/>
                 </tr>
             @empty
                 <tr>
                     <td colspan="5" class="text-center py-4 bg-white border">Pas de messages trouvés</td>
                 </tr>
             @endforelse
-        </x-admin.table>
+        </x-table>
     </x-admin.section-spacing>
 </main>

@@ -17,16 +17,16 @@
             <x-general.searchbar/>
             <x-admin.table>
                 <tr>
-                    <x-admin.table-header title="Nom"/>
-                    <x-admin.table-header title="Email"/>
-                    <x-admin.table-header title="Téléphone"/>
-                    <x-admin.table-header title="Actions"/>
+                    <x-table.table-header title="Nom"/>
+                    <x-table.table-header title="Email"/>
+                    <x-table.table-header title="Téléphone"/>
+                    <x-table.table-header title="Actions"/>
                 </tr>
                 <tr>
-                    <x-admin.table-data title="Sarah"/>
-                    <x-admin.table-data title="Sarah@adopte.be"/>
-                    <x-admin.table-data title="04 02 12 12 42"/>
-                    <x-admin.table-data title="Voir la discussion"/>
+                    <x-table.table-data title="Sarah"/>
+                    <x-table.table-data title="Sarah@adopte.be"/>
+                    <x-table.table-data title="04 02 12 12 42"/>
+                    <x-table.table-data title="Voir la discussion"/>
                 </tr>
             </x-admin.table>
             {{-- TODO: Paginate --}}
@@ -36,22 +36,22 @@
             <x-general.searchbar/>
             <x-admin.table>
                 <tr>
-                    <x-admin.table-header title="Nom"/>
-                    <x-admin.table-header title="Email"/>
-                    <x-admin.table-header title="Téléphone"/>
-                    <x-admin.table-header title="Actions"/>
+                    <x-table.table-header title="Nom"/>
+                    <x-table.table-header title="Email"/>
+                    <x-table.table-header title="Téléphone"/>
+                    <x-table.table-header title="Actions"/>
                 </tr>
                 <tr>
-                    <x-admin.table-data title="Sarah"/>
-                    <x-admin.table-data title="Sarah@adopte.be"/>
-                    <x-admin.table-data title="04 02 12 12 42"/>
-                    <x-admin.table-data title="Voir la discussion"/>
+                    <x-table.table-data title="Sarah"/>
+                    <x-table.table-data title="Sarah@adopte.be"/>
+                    <x-table.table-data title="04 02 12 12 42"/>
+                    <x-table.table-data title="Voir la discussion"/>
                 </tr>
                 <tr>
-                    <x-admin.table-data title="Sarah"/>
-                    <x-admin.table-data title="Sarah@adopte.be"/>
-                    <x-admin.table-data title="04 02 12 12 42"/>
-                    <x-admin.table-data title="Voir la discussion"/>
+                    <x-table.table-data title="Sarah"/>
+                    <x-table.table-data title="Sarah@adopte.be"/>
+                    <x-table.table-data title="04 02 12 12 42"/>
+                    <x-table.table-data title="Voir la discussion"/>
                 </tr>
             </x-admin.table>
         </x-admin.section-spacing>

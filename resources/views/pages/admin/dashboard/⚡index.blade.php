@@ -78,47 +78,47 @@ class extends Component {
     </x-admin.section-spacing>
     <x-admin.section-spacing>
         <x-admin.headings2 title="Horaire des bénévoles"/>
-        <x-admin.table>
+        <x-table>
             <tr>
-                <x-admin.table-header title="Nom"/>
-                <x-admin.table-header title="Lundi"/>
-                <x-admin.table-header title="Mardi"/>
-                <x-admin.table-header title="Mercredi"/>
-                <x-admin.table-header title="Jeudi"/>
-                <x-admin.table-header title="Vendredi"/>
-                <x-admin.table-header title="Samedi"/>
-                <x-admin.table-header title="Actions"/>
+                <x-table.table-header title="Nom"/>
+                <x-table.table-header title="Lundi"/>
+                <x-table.table-header title="Mardi"/>
+                <x-table.table-header title="Mercredi"/>
+                <x-table.table-header title="Jeudi"/>
+                <x-table.table-header title="Vendredi"/>
+                <x-table.table-header title="Samedi"/>
+                <x-table.table-header title="Actions"/>
             </tr>
             <tr>
-                <x-admin.table-data title="Chloé"/>
-                <x-admin.table-data title="9h-12h"/>
-                <x-admin.table-data title="9h-12h"/>
-                <x-admin.table-data title="9h-12h"/>
-                <x-admin.table-data title="9h-12h"/>
-                <x-admin.table-data title="9h-12h"/>
-                <x-admin.table-data title="9h-12h"/>
-                <x-admin.table-data title="Modifier"/>
+                <x-table.table-data title="Chloé"/>
+                <x-table.table-data title="9h-12h"/>
+                <x-table.table-data title="9h-12h"/>
+                <x-table.table-data title="9h-12h"/>
+                <x-table.table-data title="9h-12h"/>
+                <x-table.table-data title="9h-12h"/>
+                <x-table.table-data title="9h-12h"/>
+                <x-table.table-data title="Modifier"/>
             </tr>
             <tr>
-                <x-admin.table-data title="Chloé"/>
-                <x-admin.table-data title="9h-12h"/>
-                <x-admin.table-data title="9h-12h"/>
-                <x-admin.table-data title="9h-12h"/>
-                <x-admin.table-data title="9h-12h"/>
-                <x-admin.table-data title="9h-12h"/>
-                <x-admin.table-data title="9h-12h"/>
-                <x-admin.table-data title="Modifier"/>
+                <x-table.table-data title="Chloé"/>
+                <x-table.table-data title="9h-12h"/>
+                <x-table.table-data title="9h-12h"/>
+                <x-table.table-data title="9h-12h"/>
+                <x-table.table-data title="9h-12h"/>
+                <x-table.table-data title="9h-12h"/>
+                <x-table.table-data title="9h-12h"/>
+                <x-table.table-data title="Modifier"/>
             </tr>
             <tr>
-                <x-admin.table-data title="Chloé"/>
-                <x-admin.table-data title="9h-12h"/>
-                <x-admin.table-data title="9h-12h"/>
-                <x-admin.table-data title="9h-12h"/>
-                <x-admin.table-data title="9h-12h"/>
-                <x-admin.table-data title="9h-12h"/>
-                <x-admin.table-data title="9h-12h"/>
-                <x-admin.table-data title="Modifier"/>
+                <x-table.table-data title="Chloé"/>
+                <x-table.table-data title="9h-12h"/>
+                <x-table.table-data title="9h-12h"/>
+                <x-table.table-data title="9h-12h"/>
+                <x-table.table-data title="9h-12h"/>
+                <x-table.table-data title="9h-12h"/>
+                <x-table.table-data title="9h-12h"/>
+                <x-table.table-data title="Modifier"/>
             </tr>
-        </x-admin.table>
+        </x-table>
     </x-admin.section-spacing>
 </main>

@@ -134,21 +134,21 @@ class extends Component {
     <x-admin.section-spacing>
         <x-admin.headings2 title="Bénévoles du refuge"/>
         <x-admin.cta function="createUser" title="Ajouter un bénévole"/>
-        <x-admin.table>
+        <x-table>
             <tr>
-                <x-admin.table-header title="Nom"/>
-                <x-admin.table-header title="Email"/>
-                <x-admin.table-header title="Téléphone"/>
-                <x-admin.table-header title="Rôle"/>
-                <x-admin.table-header title="Actions"/>
+                <x-table.table-header title="Nom"/>
+                <x-table.table-header title="Email"/>
+                <x-table.table-header title="Téléphone"/>
+                <x-table.table-header title="Rôle"/>
+                <x-table.table-header title="Actions"/>
             </tr>
             <x-general.searchbar model="volunteerSearch"/>
             @foreach($this->users as $user)
                 <tr>
-                    <x-admin.table-data title="{{ ucfirst($user->name) }}"/>
-                    <x-admin.table-data title="{{ $user->email }}"/>
-                    <x-admin.table-data title="{{ $user->phone }}"/>
-                    <x-admin.table-data title="{{ $user->isAdmin ? 'Administrateur' : 'Bénévole' }}"/>
+                    <x-table.table-data title="{{ ucfirst($user->name) }}"/>
+                    <x-table.table-data title="{{ $user->email }}"/>
+                    <x-table.table-data title="{{ $user->phone }}"/>
+                    <x-table.table-data title="{{ $user->isAdmin ? 'Administrateur' : 'Bénévole' }}"/>
                     <td class="border py-2 bg-white space-x-2">
                         <button
                             wire:click="openEditModal({{ $user->id }})"
@@ -165,30 +165,30 @@ class extends Component {
                     </td>
                 </tr>
             @endforeach
-        </x-admin.table>
+        </x-table>
         <x-admin.headings2 title="Horaire des bénévoles"/>
-        <x-admin.table>
+        <x-table>
             <tr>
-                <x-admin.table-header title="Nom"/>
-                <x-admin.table-header title="Lundi"/>
-                <x-admin.table-header title="Mardi"/>
-                <x-admin.table-header title="Mercredi"/>
-                <x-admin.table-header title="Jeudi"/>
-                <x-admin.table-header title="Vendredi"/>
-                <x-admin.table-header title="Samedi"/>
-                <x-admin.table-header title="Actions"/>
+                <x-table.table-header title="Nom"/>
+                <x-table.table-header title="Lundi"/>
+                <x-table.table-header title="Mardi"/>
+                <x-table.table-header title="Mercredi"/>
+                <x-table.table-header title="Jeudi"/>
+                <x-table.table-header title="Vendredi"/>
+                <x-table.table-header title="Samedi"/>
+                <x-table.table-header title="Actions"/>
             </tr>
             <tr>
-                <x-admin.table-data title="Martin"/>
-                <x-admin.table-data title="9h-12h"/>
-                <x-admin.table-data title="9h-12h"/>
-                <x-admin.table-data title="9h-12h"/>
-                <x-admin.table-data title="9h-12h"/>
-                <x-admin.table-data title="9h-12h"/>
-                <x-admin.table-data title="9h-12h"/>
-                <x-admin.table-data title="Modifier"/>
+                <x-table.table-data title="Martin"/>
+                <x-table.table-data title="9h-12h"/>
+                <x-table.table-data title="9h-12h"/>
+                <x-table.table-data title="9h-12h"/>
+                <x-table.table-data title="9h-12h"/>
+                <x-table.table-data title="9h-12h"/>
+                <x-table.table-data title="9h-12h"/>
+                <x-table.table-data title="Modifier"/>
             </tr>
-        </x-admin.table>
+        </x-table>
     </x-admin.section-spacing>
 
     <div class="{{ $showCreateUserModal ? 'block' : 'hidden' }}">

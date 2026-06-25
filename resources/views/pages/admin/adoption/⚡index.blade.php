@@ -15,44 +15,44 @@ class extends Component {
         {{--
                 <x-general.searchbar/>
         --}}
-        <x-admin.table>
+        <x-table>
             <tr>
-                <x-admin.table-header title="Nom"/>
-                <x-admin.table-header title="Nom de l'animal"/>
-                <x-admin.table-header title="Email"/>
-                <x-admin.table-header title="Téléphone"/>
-                <x-admin.table-header title="Message"/>
-                <x-admin.table-header title="Status"/>
-                <x-admin.table-header title="Action"/>
+                <x-table.table-header title="Nom"/>
+                <x-table.table-header title="Nom de l'animal"/>
+                <x-table.table-header title="Email"/>
+                <x-table.table-header title="Téléphone"/>
+                <x-table.table-header title="Message"/>
+                <x-table.table-header title="Status"/>
+                <x-table.table-header title="Action"/>
             </tr>
             <tr>
-                <x-admin.table-data title="Sarah"/>
-                <x-admin.table-data title="Bob"/>
-                <x-admin.table-data title="Sarah@mal.be "/>
-                <x-admin.table-data title="04 71 42 08 54"/>
-                <x-admin.table-data title="J’aimerai adopté Bob, j’ai un grand jardin ainsi qu’une bonne condi..."/>
-                <x-admin.table-data title="En attente"/>
-                <x-admin.table-data title="Supprimer / Voir"/>
+                <x-table.table-data title="Sarah"/>
+                <x-table.table-data title="Bob"/>
+                <x-table.table-data title="Sarah@mal.be "/>
+                <x-table.table-data title="04 71 42 08 54"/>
+                <x-table.table-data title="J’aimerai adopté Bob, j’ai un grand jardin ainsi qu’une bonne condi..."/>
+                <x-table.table-data title="En attente"/>
+                <x-table.table-data title="Supprimer / Voir"/>
             </tr>
             <tr>
-                <x-admin.table-data title="Sarah"/>
-                <x-admin.table-data title="Bob"/>
-                <x-admin.table-data title="Sarah@mal.be "/>
-                <x-admin.table-data title="04 71 42 08 54"/>
-                <x-admin.table-data title="J’aimerai adopté Bob, j’ai un grand jardin ainsi qu’une bonne condi..."/>
-                <x-admin.table-data title="En attente"/>
-                <x-admin.table-data title="Supprimer / Voir"/>
+                <x-table.table-data title="Sarah"/>
+                <x-table.table-data title="Bob"/>
+                <x-table.table-data title="Sarah@mal.be "/>
+                <x-table.table-data title="04 71 42 08 54"/>
+                <x-table.table-data title="J’aimerai adopté Bob, j’ai un grand jardin ainsi qu’une bonne condi..."/>
+                <x-table.table-data title="En attente"/>
+                <x-table.table-data title="Supprimer / Voir"/>
             </tr>
             <tr>
-                <x-admin.table-data title="Sarah"/>
-                <x-admin.table-data title="Bob"/>
-                <x-admin.table-data title="Sarah@mal.be "/>
-                <x-admin.table-data title="04 71 42 08 54"/>
-                <x-admin.table-data title="J’aimerai adopté Bob, j’ai un grand jardin ainsi qu’une bonne condi..."/>
-                <x-admin.table-data title="En attente"/>
-                <x-admin.table-data title="Supprimer / Voir"/>
+                <x-table.table-data title="Sarah"/>
+                <x-table.table-data title="Bob"/>
+                <x-table.table-data title="Sarah@mal.be "/>
+                <x-table.table-data title="04 71 42 08 54"/>
+                <x-table.table-data title="J’aimerai adopté Bob, j’ai un grand jardin ainsi qu’une bonne condi..."/>
+                <x-table.table-data title="En attente"/>
+                <x-table.table-data title="Supprimer / Voir"/>
             </tr>
-        </x-admin.table>
+        </x-table>
         {{-- TODO: Paginate --}}
     </x-admin.section-spacing>
     <x-admin.section-spacing>
@@ -60,34 +60,34 @@ class extends Component {
         {{--
                 <x-general.searchbar/>
         --}}
-        <x-admin.table>
+        <x-table>
             <tr>
-                <x-admin.table-header title="Nom"/>
-                <x-admin.table-header title="Nom de l'animal"/>
-                <x-admin.table-header title="Email"/>
-                <x-admin.table-header title="Téléphone"/>
-                <x-admin.table-header title="Message"/>
-                <x-admin.table-header title="Status"/>
-                <x-admin.table-header title="Action"/>
+                <x-table.table-header title="Nom"/>
+                <x-table.table-header title="Nom de l'animal"/>
+                <x-table.table-header title="Email"/>
+                <x-table.table-header title="Téléphone"/>
+                <x-table.table-header title="Message"/>
+                <x-table.table-header title="Status"/>
+                <x-table.table-header title="Action"/>
             </tr>
             <tr>
-                <x-admin.table-data title="Sarah"/>
-                <x-admin.table-data title="Bob"/>
-                <x-admin.table-data title="Sarah@mal.be "/>
-                <x-admin.table-data title="04 71 42 08 54"/>
-                <x-admin.table-data title="J’aimerai adopté Bob, j’ai un grand jardin ainsi qu’une bonne condi..."/>
-                <x-admin.table-data title="Accepté"/>
-                <x-admin.table-data title="Supprimer / Voir"/>
+                <x-table.table-data title="Sarah"/>
+                <x-table.table-data title="Bob"/>
+                <x-table.table-data title="Sarah@mal.be "/>
+                <x-table.table-data title="04 71 42 08 54"/>
+                <x-table.table-data title="J’aimerai adopté Bob, j’ai un grand jardin ainsi qu’une bonne condi..."/>
+                <x-table.table-data title="Accepté"/>
+                <x-table.table-data title="Supprimer / Voir"/>
             </tr>
             <tr>
-                <x-admin.table-data title="Sarah"/>
-                <x-admin.table-data title="Bob"/>
-                <x-admin.table-data title="Sarah@mal.be "/>
-                <x-admin.table-data title="04 71 42 08 54"/>
-                <x-admin.table-data title="J’aimerai adopté Bob, j’ai un grand jardin ainsi qu’une bonne condi..."/>
-                <x-admin.table-data title="Refusé"/>
-                <x-admin.table-data title="Supprimer / Voir"/>
+                <x-table.table-data title="Sarah"/>
+                <x-table.table-data title="Bob"/>
+                <x-table.table-data title="Sarah@mal.be "/>
+                <x-table.table-data title="04 71 42 08 54"/>
+                <x-table.table-data title="J’aimerai adopté Bob, j’ai un grand jardin ainsi qu’une bonne condi..."/>
+                <x-table.table-data title="Refusé"/>
+                <x-table.table-data title="Supprimer / Voir"/>
             </tr>
-        </x-admin.table>
+        </x-table>
     </x-admin.section-spacing>
 </main>
