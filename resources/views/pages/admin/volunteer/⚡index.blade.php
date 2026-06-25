@@ -59,7 +59,7 @@ class extends Component {
             'phone' => $this->phone,
             'email' => $this->email,
             'password' => $this->password,
-            'isAdmin' => $this->role,
+            'isAdmin' => $this->isAdmin,
         ]);
 
         $this->showCreateUserModal = false;
@@ -148,7 +148,7 @@ class extends Component {
                     <x-admin.table-data title="{{ ucfirst($user->name) }}"/>
                     <x-admin.table-data title="{{ $user->email }}"/>
                     <x-admin.table-data title="{{ $user->phone }}"/>
-                    <x-admin.table-data title="{{ $user->role ? 'Administrateur' : 'Bénévole' }}"/>
+                    <x-admin.table-data title="{{ $user->isAdmin ? 'Administrateur' : 'Bénévole' }}"/>
                     <td class="border py-2 bg-white space-x-2">
                         <button
                             wire:click="openEditModal({{ $user->id }})"
@@ -210,9 +210,9 @@ class extends Component {
                                   wire:model.defer="password"/>
 
                     <div class="flex items-center space-x-2">
-                        <input type="checkbox" id="role" wire:model.defer="role"
+                        <input type="checkbox" id="isAdmin" wire:model.defer="isAdmin"
                                class="form-checkbox h-5 w-5 text-background-green">
-                        <label for="role" class="text-gray-700">Administrateur</label>
+                        <label for="isAdmin" class="text-gray-700">Administrateur</label>
                     </div>
 
                     <button type="submit" class="bg-cta-orange hover:bg-cta-hover text-white py-2 px-4 rounded-button">
@@ -240,9 +240,9 @@ class extends Component {
                                   wire:model.defer="phone"/>
 
                     <div class="flex items-center space-x-2">
-                        <input type="checkbox" id="role" wire:model.defer="role"
+                        <input type="checkbox" id="isAdmin" wire:model.defer="isAdmin"
                                class="form-checkbox h-5 w-5 text-background-green">
-                        <label for="role" class="text-gray-700">Administrateur</label>
+                        <label for="isAdmin" class="text-gray-700">Administrateur</label>
                     </div>
 
                     <button type="submit" class="bg-cta-orange hover:bg-cta-hover text-white py-2 px-4 rounded-button">

@@ -15,7 +15,7 @@
                 id="specie"
                 name="specie"
                 wire:model="specie"
-                class="border-input-grey border-1 rounded-button pl-2 w-full py-1 focus:border-background-green focus:outline-none">
+                class="border-input-grey border rounded-button pl-2 w-full py-1 focus:border-background-green focus:outline-none">
                 <option value="">Choisir une espèce</option>
                 <option value="dog">Chien</option>
                 <option value="cat">Chat</option>
@@ -35,7 +35,7 @@
                 id="status"
                 name="status"
                 wire:model="status"
-                @if(auth()->user()->role !== 1)
+                @if(auth()->user()->isAdmin !== 1)
                     disabled
                 @endif
                 class="border-input-grey border-1 rounded-button pl-2 w-full py-1 focus:border-background-green focus:outline-none disabled:bg-gray-200">
