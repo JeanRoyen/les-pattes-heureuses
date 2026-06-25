@@ -33,7 +33,7 @@ new class extends Component {
     #[Validate('string|nullable')]
     public string $description = '';
 
-    #[Validate('string')]
+    #[Validate('string|required')]
     public string $status;
 
     public function createAnimal(): void
@@ -74,10 +74,14 @@ new class extends Component {
         @if ($avatar)
             <img alt="Votre avatar" src="{{ $avatar->temporaryUrl() }}">
         @endif
-
-        <input type="file" wire:model="avatar">
-
-        @error('avatar') <span class="error">{{ $message }}</span> @enderror
+        <x-form.input
+            name="avatar"
+            title="Image de l'animal"
+            wire:model="avatar"
+            type="file"
+            placeholder=""
+        />
+        @error('avatar') <span class="text-red-500">{{ $message }}</span> @enderror
 
         <x-form.input
             name="name"
@@ -98,6 +102,7 @@ new class extends Component {
                 <option value="cat">Chat</option>
                 <option value="ferret">Furet</option>
             </select>
+            @error('specie') <span class="text-red-500">{{ $message }}</span> @enderror
         </div>
         <x-form.input
             name="race"
@@ -116,6 +121,8 @@ new class extends Component {
                 <option value="">Choisir un statut</option>
                 <option value="available">Disponible</option>
                 <option value="in_care">En soins</option>
+                @error('status') <span class="text-red-500">{{ $message }}</span> @enderror
+
             </select>
         </div>
         <x-form.input
@@ -138,6 +145,7 @@ new class extends Component {
                     <label for="female">Femelle</label>
                 </div>
             </fieldset>
+            @error('gender') <span class="text-red-500">{{ $message }}</span> @enderror
         </div>
         <div class="flex items-center gap-2 md:col-span-2">
             <input
