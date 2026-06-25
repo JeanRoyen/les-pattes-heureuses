@@ -117,7 +117,7 @@ class extends Component {
     }
 
     #[Computed]
-    public function waitingAnimals()
+    public function waitingAnimals(): Collection
     {
         return Animal::query()
             ->where('status', 'waiting')
@@ -137,12 +137,13 @@ class extends Component {
                     [now()->subYears($max), now()->subYears($min)]
                 );
             })
+            ->orderBy('created_at', 'desc')
             ->get();
     }
 
 
     #[Computed]
-    public function adoptedAnimals()
+    public function adoptedAnimals(): Collection
     {
         return Animal::query()
             ->where('status', 'adopted')
@@ -162,6 +163,7 @@ class extends Component {
                     [now()->subYears($max), now()->subYears($min)]
                 );
             })
+            ->orderBy('created_at', 'desc')
             ->get();
     }
 
