@@ -8,7 +8,6 @@
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
-    @livewireStyles
 </head>
 <body class="bg-bodybackground">
 <x-general.header/>
@@ -17,6 +16,5 @@
 </div>
 <x-general.footer/>
 
-@livewireScripts
 </body>
 </html>

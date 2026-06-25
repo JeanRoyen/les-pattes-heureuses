@@ -317,7 +317,7 @@ new #[Title('Animaux | Les Pattes Heureuses')] class extends Component {
                 <x-admin.table-header title="Action"/>
             </tr>
             @forelse($this->availableAnimals as $animal)
-                <tr>
+                <tr wire:key="available-{{ $animal->id }}">
                     <x-admin.table-data title="{{ $animal->name }}"/>
                     <x-admin.table-data title="{{ $animal->specie }}"/>
                     <x-admin.table-data title="{{ $animal->race }}"/>
@@ -372,7 +372,7 @@ new #[Title('Animaux | Les Pattes Heureuses')] class extends Component {
                 <x-admin.table-header title="Action"/>
             </tr>
             @forelse($this->waitingAnimals as $animal)
-                <tr wire:key="{{ $animal->id }}">
+                <tr wire:key="waiting-{{ $animal->id }}">
                     <x-admin.table-data title="{{ $animal->name }}"/>
                     <x-admin.table-data title="{{ $animal->specie }}"/>
                     <x-admin.table-data title="{{ $animal->race }}"/>
@@ -423,7 +423,7 @@ new #[Title('Animaux | Les Pattes Heureuses')] class extends Component {
                 <x-admin.table-header title="Action"/>
             </tr>
             @forelse($this->adoptedAnimals as $animal)
-                <tr>
+                <tr wire:key="adopted-{{ $animal->id }}">
                     <x-admin.table-data title="{{ $animal->name }}"/>
                     <x-admin.table-data title="{{ $animal->specie }}"/>
                     <x-admin.table-data title="{{ $animal->race }}"/>
