@@ -18,25 +18,25 @@ Route::get('/lang/{locale}', function (string $locale) {
 })->name('lang.switch');
 
 
-// Client
 Route::middleware([SetLocale::class])->group(function () {
+
+    // Client
     Route::get('/', [WelcomeController::class, 'index'])->name('welcome');
     Route::get('/animals', [AnimalController::class, 'index'])->name('animals');
     Route::get('/animals/{animal}', [AnimalController::class, 'show'])->name('animals.show');
 
+    // Admin
+    Route::middleware('auth')->group(function () {
+        Route::livewire('/admin/dashboard', 'pages::admin/dashboard.index')->name('admin.dashboard');
+        Route::livewire('/admin/messages', 'pages::admin/message.index')->name('admin.messages');
+        Route::livewire('/admin/animals', 'pages::admin/animal.index')->name('admin.animals');
+        Route::livewire('/admin/adoptions', 'pages::admin/adoption.index')->name('admin.adoptions');
+        Route::livewire('/admin/volunteers', 'pages::admin/volunteer.index')->name('admin.volunteers');
+        Route::get('/dashboard/pdf', [AnimalController::class, 'download'])->name('pdf');
+    });
 });
 
 Route::post('/', [MessageController::class, 'submit'])->name('contact.submit');
-
-// Admin
-Route::middleware('auth')->group(function () {
-    Route::livewire('/admin/dashboard', 'pages::admin/dashboard.index')->name('admin.dashboard');
-    Route::livewire('/admin/messages', 'pages::admin/message.index')->name('admin.messages');
-    Route::livewire('/admin/animals', 'pages::admin/animal.index')->name('admin.animals');
-    Route::livewire('/admin/adoptions', 'pages::admin/adoption.index')->name('admin.adoptions');
-    Route::livewire('/admin/volunteers', 'pages::admin/volunteer.index')->name('admin.volunteers');
-    Route::get('/dashboard/pdf', [AnimalController::class, 'download'])->name('pdf');
-});
 
 Route::post('/logout', [LogoutController::class, 'index'])->name('logout');
 
