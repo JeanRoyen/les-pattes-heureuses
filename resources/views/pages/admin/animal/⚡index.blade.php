@@ -4,6 +4,7 @@ use App\Jobs\ProcessAvatar;
 use App\Models\Animal;
 use Illuminate\Support\Collection;
 use Livewire\Attributes\Computed;
+use Livewire\Attributes\On;
 use Livewire\Attributes\Title;
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -184,60 +185,12 @@ class extends Component {
         }
     }
 
-
-    public function createAnimalInList(): void
+    #[On('animal-created')]
+    public function refreshAfterCreate(): void
     {
-        $this->validate([
-            'avatar' => 'image|nullable',
-            'name' => 'required',
-            'specie' => 'required',
-            'race' => 'required',
-            'age' => 'required|date|before_or_equal:today',
-            'gender' => 'required',
-            'vaccine' => 'boolean',
-            'description' => 'string',
-        ]);
-
-        $avatar = null;
-        if ($this->avatar) {
-            $image_type = 'jpeg';
-            $original_path = 'avatar/original';
-            $file_name = 'avatar_img_' . uniqid() . '.' . $image_type;
-            $avatar_path = $this->avatar->storeAs($original_path, $file_name, 'public');
-            ProcessAvatar::dispatch($file_name, $avatar_path);
-            $avatar = $avatar_path;
-        }
-
-        $status = auth()->user()->role
-            ? ($this->status)
-            : 'waiting';
-
-
-        $animal = Animal::create([
-            'avatar' => $avatar,
-            'name' => $this->name,
-            'status' => $status,
-            'specie' => $this->specie,
-            'race' => $this->race,
-            'age' => $this->age,
-            'gender' => (bool)$this->gender,
-            'vaccine' => $this->vaccine,
-            'description' => $this->description,
-        ]);
-
-        $this->description = $animal->description;
         $this->showCreateAnimalModal = false;
 
-        $this->reset([
-            'avatar',
-            'name',
-            'specie',
-            'race',
-            'age',
-            'gender',
-            'vaccine',
-            'description',
-        ]);
+        $this->dispatch('close-modal');
     }
 
     public function openEditModal($animalId): void
@@ -309,12 +262,12 @@ class extends Component {
             :species="$this->species"
             :races="$this->races"
         />
+        <x-admin.cta function="createAnimal" title="Ajouter un animal"/>
         <x-table>
             <x-table.animal.headers/>
             <x-table.animal.loop :animals="$this->availableAnimals"/>
         </x-table>
         {{-- TODO: Paginate --}}
-        <x-admin.cta function="createAnimal" title="Ajouter un animal"/>
     </x-admin.section-spacing>
     <x-admin.section-spacing>
         <x-admin.headings2 title="Animaux en attente de validation"/>
@@ -327,7 +280,8 @@ class extends Component {
         <x-table>
             <x-table.animal.headers/>
             <x-table.animal.loop :animals="$this->waitingAnimals"/>
-        </x-table>    </x-admin.section-spacing>
+        </x-table>
+    </x-admin.section-spacing>
     <x-admin.section-spacing>
         <x-admin.headings2 title="Animaux adoptés"/>
         <x-general.searchbar model="adoptedSearch"/>
@@ -339,7 +293,7 @@ class extends Component {
         <x-table>
             <x-table.animal.headers/>
             <x-table.animal.loop :animals="$this->adoptedAnimals"/>
-        </x-table>        {{-- TODO: Paginate --}}
+        </x-table> {{-- TODO: Paginate --}}
     </x-admin.section-spacing>
     <div class="{{ $showCreateAnimalModal ? 'block' : 'hidden' }}">
         <x-modal.modal>
@@ -350,7 +304,7 @@ class extends Component {
                 </button>
             </x-slot:title>
             <x-slot:body>
-                <x-modal.create_animal/>
+                <livewire:animal.create/>
             </x-slot:body>
         </x-modal.modal>
     </div>
