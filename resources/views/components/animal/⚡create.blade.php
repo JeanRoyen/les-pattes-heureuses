@@ -16,10 +16,10 @@ new class extends Component {
     public $avatar = null;
 
     #[Validate('required')]
-    public int $specie_id = 0;
+    public ?int $specie_id = null;
 
     #[Validate('required')]
-    public int $breed_id = 0;
+    public ?int $breed_id = null;
 
     #[Validate('required')]
     public string $name;
@@ -49,7 +49,7 @@ new class extends Component {
     #[Computed]
     public function breeds()
     {
-        return Breed::where('specie_id', $this->specie_id)
+        return Breed::whereSpecieId($this->specie_id)
             ->orderBy('name')
             ->get();
     }
@@ -110,30 +110,36 @@ new class extends Component {
             type="text"
             placeholder="Bob"
         />
-        <x-modal.label-select
-            name="specie"
-            title="Espèce de l'animal"
-            first_option="Choisir une espèce"
-            wire="specie_id"
-        >
-            @foreach($this->species as $specie)
-                <option value="{{ $specie->id }}">
-                    {{ $specie->name }}
-                </option>
-            @endforeach
-        </x-modal.label-select>
-        <x-modal.label-select
-            name="breed"
-            title="Race de l'animal"
-            first_option="Choisir une race"
-            wire="breed_id"
-        >
-            @foreach($this->breeds as $breed)
-                <option value="{{ $breed->id }}">
-                    {{ $breed->name }}
-                </option>
-            @endforeach
-        </x-modal.label-select>
+            <div>
+                <label for="specie" class="block">Espèce</label>
+                <select
+                    id="specie"
+                    name="specie"
+                    wire:model.live="specie_id"
+                    class="border-input-grey border rounded-button pl-2 w-full py-1 focus:border-background-green focus:outline-none disabled:bg-gray-200">
+                    <option value="">Choisir une espèce</option>
+
+                    @foreach($this->species as $specie)
+                        <option value="{{ $specie->id }}">{{ $specie->name }}</option>
+                    @endforeach
+                </select>
+                @error('specie_id') <span class="text-red-500">{{ $message }}</span> @enderror
+            </div>
+            <div>
+                <label for="breed" class="block">Race</label>
+                <select
+                    id="breed"
+                    name="breed"
+                    wire:model.live="breed_id"
+                    class="border-input-grey border rounded-button pl-2 w-full py-1 focus:border-background-green focus:outline-none disabled:bg-gray-200">
+                    <option value="">Choisir une race</option>
+
+                    @foreach($this->breeds as $breed)
+                        <option value="{{ $breed->id }}">{{ $breed->name }}</option>
+                    @endforeach
+                </select>
+                @error('breed_id') <span class="text-red-500">{{ $message }}</span> @enderror
+            </div>
         <div>
             <label for="status" class="block">Statut</label>
             <select
@@ -144,9 +150,8 @@ new class extends Component {
                 <option value="">Choisir un statut</option>
                 <option value="available">Disponible</option>
                 <option value="in_care">En soins</option>
-                @error('status') <span class="text-red-500">{{ $message }}</span> @enderror
-
             </select>
+            @error('status') <span class="text-red-500">{{ $message }}</span> @enderror
         </div>
         <x-form.input
             name="age"

@@ -6,8 +6,8 @@
 @forelse($animals as $animal)
     <tr wire:key="adopted-{{ $animal->id }}">
         <x-table.table-data title="{{ $animal->name }}"/>
-        <x-table.table-data title="{{ $animal->specie }}"/>
-        <x-table.table-data title="{{ $animal->race }}"/>
+        <x-table.table-data title="{{ $animal->specie->name }}"/>
+        <x-table.table-data title="{{ $animal->breed->name }}"/>
         <x-table.table-data title="{{ $animal->gender ? 'Mâle' : 'Femelle' }}"/>
         <x-table.table-data title="{{ $animal->age->format('d/m/Y') }}"/>
         <x-table.table-data title="{{ $animal->vaccine ? 'À jour' : 'À faire' }}"/>

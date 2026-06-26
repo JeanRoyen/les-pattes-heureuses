@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('animals', function (Blueprint $table) {
             $table->id();
             $table->foreignId('breed_id')->nullable()->constrained()->nullOnDelete();
+            $table->foreignId('specie_id')->nullable()->constrained()->nullOnDelete();
             $table->string('avatar')->nullable();
             $table->string('name');
             $table->timestamp('age');

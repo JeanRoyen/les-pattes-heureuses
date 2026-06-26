@@ -14,7 +14,7 @@ class Animal extends Model
 {
     use HasFactory, Notifiable, SoftDeletes;
 
-    protected $fillable = ['avatar', 'name', 'age', 'gender', 'vaccine', 'description', 'status',
+    protected $fillable = ['avatar', 'name', 'age', 'gender', 'specie_id', 'breed_id', 'vaccine', 'description', 'status',
         'path'
     ];
     protected $casts = ['age' => 'date', 'gender' => 'boolean', 'vaccine' => 'boolean', 'avatar' => "array"];
@@ -27,5 +27,10 @@ class Animal extends Model
     public function breed(): BelongsTo
     {
         return $this->belongsTo(Breed::class);
+    }
+
+    public function specie(): BelongsTo
+    {
+        return $this->belongsTo(Specie::class);
     }
 }

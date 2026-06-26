@@ -1,7 +1,7 @@
 @props([
     'prefix',
     'species' => [],
-    'races' => [],
+    'breeds' => [],
 ])
 
 <div class="grid grid-cols-8 gap-5">
@@ -11,17 +11,17 @@
         wire:model.live="{{ $prefix }}Specie">
         <option value="">Toutes les espèces</option>
         @foreach($species as $specie)
-            <option value="{{ $specie }}">{{ ucfirst($specie) }}</option>
+            <option value="{{ $specie->id }}">{{ ucfirst($specie->name) }}</option>
         @endforeach
     </x-general.select>
 
     <x-general.select
-        name="{{ $prefix }}_race"
+        name="{{ $prefix }}_breed"
         title="Races"
         wire:model.live="{{ $prefix }}Race">
-        <option value="">Toutes les races</option>
-        @foreach($races as $race)
-            <option value="{{ $race }}">{{ ucfirst($race) }}</option>
+        <option value="">Toutes les breeds</option>
+        @foreach($breeds as $breed)
+            <option value="{{ $breed->id }}">{{ ucfirst($breed->name) }}</option>
         @endforeach
     </x-general.select>
 

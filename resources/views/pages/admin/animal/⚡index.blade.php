@@ -2,6 +2,8 @@
 
 use App\Jobs\ProcessAvatar;
 use App\Models\Animal;
+use App\Models\Breed;
+use App\Models\Specie;
 use Illuminate\Support\Collection;
 use Livewire\Attributes\Computed;
 use Livewire\Attributes\On;
@@ -19,9 +21,9 @@ class extends Component {
     public bool $showEditAnimalModal = false;
 
     public string $name = '';
-    public string $specie = '';
+    public int $specie_id = 0;
+    public int $breed_id = 0;
     public string $status = '';
-    public string $race = '';
     public string $description = '';
     public ?string $age = null;
     public bool $vaccine = false;
@@ -58,24 +60,13 @@ class extends Component {
     #[Computed]
     public function species(): \Illuminate\Support\Collection
     {
-        return Animal::query()
-            ->whereNotNull('specie')
-            ->select('specie')
-            ->distinct()
-            ->orderBy('specie')
-            ->pluck('specie');
+        return Specie::all();
     }
 
     #[Computed]
-    public function races(): \Illuminate\Support\Collection
+    public function breeds(): \Illuminate\Support\Collection
     {
-        return Animal::query()
-            ->when($this->availableSpecie !== '', fn($q) => $q->where('specie', $this->availableSpecie)
-            )
-            ->select('race')
-            ->distinct()
-            ->orderBy('race')
-            ->pluck('race');
+        return Breed::where('specie_id', $this->specie_id)->get();
     }
 
     public function deleteAnimal(int $animalId): void
@@ -260,7 +251,7 @@ class extends Component {
         <x-general.filters
             prefix="available"
             :species="$this->species"
-            :races="$this->races"
+            :breeds="$this->breeds"
         />
         <x-admin.cta function="createAnimal" title="Ajouter un animal"/>
         <x-table>
@@ -275,7 +266,7 @@ class extends Component {
         <x-general.filters
             prefix="waiting"
             :species="$this->species"
-            :races="$this->races"
+            :breeds="$this->breeds"
         />
         <x-table>
             <x-table.animal.headers/>
@@ -288,7 +279,7 @@ class extends Component {
         <x-general.filters
             prefix="adopted"
             :species="$this->species"
-            :races="$this->races"
+            :breeds="$this->breeds"
         />
         <x-table>
             <x-table.animal.headers/>
