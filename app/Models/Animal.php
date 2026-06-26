@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
@@ -13,7 +14,7 @@ class Animal extends Model
 {
     use HasFactory, Notifiable, SoftDeletes;
 
-    protected $fillable = ['avatar', 'name', 'specie', 'race', 'age', 'gender', 'vaccine', 'description', 'status',
+    protected $fillable = ['avatar', 'name', 'age', 'gender', 'vaccine', 'description', 'status',
         'path'
     ];
     protected $casts = ['age' => 'date', 'gender' => 'boolean', 'vaccine' => 'boolean', 'avatar' => "array"];
@@ -21,5 +22,10 @@ class Animal extends Model
     public function avatars():HasMany
     {
         return $this->hasMany(Avatar::class);
+    }
+
+    public function breed(): BelongsTo
+    {
+        return $this->belongsTo(Breed::class);
     }
 }

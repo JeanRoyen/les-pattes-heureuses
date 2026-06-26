@@ -2,6 +2,9 @@
 
 use App\Jobs\ProcessAvatar;
 use App\Models\Animal;
+use App\Models\Breed;
+use App\Models\Specie;
+use Livewire\Attributes\Computed;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -11,6 +14,12 @@ new class extends Component {
 
     #[Validate('nullable|max:10240')]
     public $avatar = null;
+
+    #[Validate('required')]
+    public ?int $specie_id = 0;
+
+    #[Validate('required')]
+    public ?int $breed_id = 0;
 
     #[Validate('required')]
     public string $name;
@@ -35,6 +44,22 @@ new class extends Component {
 
     #[Validate('string|required')]
     public string $status;
+
+
+    #[Computed]
+    public function species()
+    {
+        return Specie::all();
+    }
+
+    #[Computed]
+    public function breeds()
+    {
+        return Breed::where('specie_id', $this->specie_id)
+            ->get();
+    }
+
+
 
     public function createAnimal(): void
     {
@@ -69,6 +94,7 @@ new class extends Component {
 };
 ?>
 
+
 <form class="space-y-6" wire:submit="createAnimal">
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
         @if ($avatar)
@@ -91,79 +117,78 @@ new class extends Component {
             placeholder="Bob"
         />
         <div>
-            <label for="specie" class="block">Espèce</label>
-            <select
-                id="specie"
-                name="specie"
-                wire:model="specie"
-                class="border-input-grey border rounded-button pl-2 w-full py-1 focus:border-background-green focus:outline-none">
+            <select wire:model.live="specie_id">
                 <option value="">Choisir une espèce</option>
-                <option value="dog">Chien</option>
-                <option value="cat">Chat</option>
-                <option value="ferret">Furet</option>
-            </select>
-            @error('specie') <span class="text-red-500">{{ $message }}</span> @enderror
-        </div>
-        <x-form.input
-            name="race"
-            title="Race"
-            type="text"
-            wire:model="race"
-            placeholder="Berger Allemand"
-        />
-        <div>
-            <label for="status" class="block">Statut</label>
-            <select
-                id="status"
-                name="status"
-                wire:model="status"
-                class="border-input-grey border rounded-button pl-2 w-full py-1 focus:border-background-green focus:outline-none disabled:bg-gray-200">
-                <option value="">Choisir un statut</option>
-                <option value="available">Disponible</option>
-                <option value="in_care">En soins</option>
-                @error('status') <span class="text-red-500">{{ $message }}</span> @enderror
 
+                @foreach($this->species as $specie)
+                    <option value="{{ $specie->id }}">
+                        {{ $specie->name }}
+                    </option>
+                @endforeach
             </select>
-        </div>
-        <x-form.input
-            name="age"
-            title="Date de naissance"
-            type="date"
-            wire:model="age"
-            placeholder=""
-        />
-        <div>
-            <fieldset>
-                <legend>Sexe de l'animal</legend>
-                <div>
-                    <input type="radio" id="male" name="gender" wire:model="gender" value="1"/>
-                    <label for="male">Mâle</label>
-                </div>
 
-                <div>
-                    <input type="radio" id="female" name="gender" wire:model="gender" value="0"/>
-                    <label for="female">Femelle</label>
-                </div>
-            </fieldset>
-            @error('gender') <span class="text-red-500">{{ $message }}</span> @enderror
+            <select wire:model="breedId">
+                <option value="">Choisir une race</option>
+
+                @foreach($this->breeds as $breed)
+                    <option value="{{ $breed->id }}">
+                        {{ $breed->name }}
+                    </option>
+                @endforeach
+            </select>
+            <div>
+                <label for="status" class="block">Statut</label>
+                <select
+                    id="status"
+                    name="status"
+                    wire:model="status"
+                    class="border-input-grey border rounded-button pl-2 w-full py-1 focus:border-background-green focus:outline-none disabled:bg-gray-200">
+                    <option value="">Choisir un statut</option>
+                    <option value="available">Disponible</option>
+                    <option value="in_care">En soins</option>
+                    @error('status') <span class="text-red-500">{{ $message }}</span> @enderror
+
+                </select>
+            </div>
+            <x-form.input
+                name="age"
+                title="Date de naissance"
+                type="date"
+                wire:model="age"
+                placeholder=""
+            />
+            <div>
+                <fieldset>
+                    <legend>Sexe de l'animal</legend>
+                    <div>
+                        <input type="radio" id="male" name="gender" wire:model="gender" value="1"/>
+                        <label for="male">Mâle</label>
+                    </div>
+
+                    <div>
+                        <input type="radio" id="female" name="gender" wire:model="gender" value="0"/>
+                        <label for="female">Femelle</label>
+                    </div>
+                </fieldset>
+                @error('gender') <span class="text-red-500">{{ $message }}</span> @enderror
+            </div>
+            <div class="flex items-center gap-2 md:col-span-2">
+                <input
+                    type="checkbox"
+                    id="vaccinated"
+                    name="vaccine"
+                    wire:model="vaccine"
+                    class="rounded"
+                >
+                <label for="vaccinated">Vacciné</label>
+            </div>
         </div>
-        <div class="flex items-center gap-2 md:col-span-2">
-            <input
-                type="checkbox"
-                id="vaccinated"
-                name="vaccine"
-                wire:model="vaccine"
-                class="rounded"
-            >
-            <label for="vaccinated">Vacciné</label>
+        <x-form.textarea
+            name="description"
+            wire:model="description"
+            placeholder="Description de l'animal"
+        />
+        <div class="pt-4">
+            <x-form.button title="Ajouter l'animal"/>
         </div>
-    </div>
-    <x-form.textarea
-        name="description"
-        wire:model="description"
-        placeholder="Description de l'animal"
-    />
-    <div class="pt-4">
-        <x-form.button title="Ajouter l'animal"/>
-    </div>
 </form>

@@ -2,8 +2,6 @@
 
 namespace Database\Seeders;
 
-use App\Models\Animal;
-use App\Models\Message;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -34,6 +32,8 @@ class DatabaseSeeder extends Seeder
             'password' => Hash::make('password'),
         ]);
 
+        $this->call(ProductionSpeciesSeeder::class);
+        $this->call(ProductionBreedSeeder::class);
         $this->call(ProductionAnimalSeeder::class);
         $this->call(ProductionMessageSeeder::class);
     }
