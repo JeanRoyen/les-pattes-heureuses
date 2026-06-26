@@ -16,19 +16,13 @@ new class extends Component {
     public $avatar = null;
 
     #[Validate('required')]
-    public ?int $specie_id = 0;
+    public int $specie_id = 0;
 
     #[Validate('required')]
-    public ?int $breed_id = 0;
+    public int $breed_id = 0;
 
     #[Validate('required')]
     public string $name;
-
-    #[Validate('required')]
-    public string $specie;
-
-    #[Validate('required')]
-    public string $race;
 
     #[Validate('required|date|before_or_equal:today')]
     public $age;
@@ -56,9 +50,9 @@ new class extends Component {
     public function breeds()
     {
         return Breed::where('specie_id', $this->specie_id)
+            ->orderBy('name')
             ->get();
     }
-
 
 
     public function createAnimal(): void
@@ -83,8 +77,8 @@ new class extends Component {
             'avatar',
             'name',
             'status',
-            'specie',
-            'race',
+            'specie_id',
+            'breed_id',
             'age',
             'gender',
             'vaccine',
@@ -116,79 +110,83 @@ new class extends Component {
             type="text"
             placeholder="Bob"
         />
+        <x-modal.label-select
+            name="specie"
+            title="Espèce de l'animal"
+            first_option="Choisir une espèce"
+            wire="specie_id"
+        >
+            @foreach($this->species as $specie)
+                <option value="{{ $specie->id }}">
+                    {{ $specie->name }}
+                </option>
+            @endforeach
+        </x-modal.label-select>
+        <x-modal.label-select
+            name="breed"
+            title="Race de l'animal"
+            first_option="Choisir une race"
+            wire="breed_id"
+        >
+            @foreach($this->breeds as $breed)
+                <option value="{{ $breed->id }}">
+                    {{ $breed->name }}
+                </option>
+            @endforeach
+        </x-modal.label-select>
         <div>
-            <select wire:model.live="specie_id">
-                <option value="">Choisir une espèce</option>
+            <label for="status" class="block">Statut</label>
+            <select
+                id="status"
+                name="status"
+                wire:model="status"
+                class="border-input-grey border rounded-button pl-2 w-full py-1 focus:border-background-green focus:outline-none disabled:bg-gray-200">
+                <option value="">Choisir un statut</option>
+                <option value="available">Disponible</option>
+                <option value="in_care">En soins</option>
+                @error('status') <span class="text-red-500">{{ $message }}</span> @enderror
 
-                @foreach($this->species as $specie)
-                    <option value="{{ $specie->id }}">
-                        {{ $specie->name }}
-                    </option>
-                @endforeach
             </select>
-
-            <select wire:model="breedId">
-                <option value="">Choisir une race</option>
-
-                @foreach($this->breeds as $breed)
-                    <option value="{{ $breed->id }}">
-                        {{ $breed->name }}
-                    </option>
-                @endforeach
-            </select>
-            <div>
-                <label for="status" class="block">Statut</label>
-                <select
-                    id="status"
-                    name="status"
-                    wire:model="status"
-                    class="border-input-grey border rounded-button pl-2 w-full py-1 focus:border-background-green focus:outline-none disabled:bg-gray-200">
-                    <option value="">Choisir un statut</option>
-                    <option value="available">Disponible</option>
-                    <option value="in_care">En soins</option>
-                    @error('status') <span class="text-red-500">{{ $message }}</span> @enderror
-
-                </select>
-            </div>
-            <x-form.input
-                name="age"
-                title="Date de naissance"
-                type="date"
-                wire:model="age"
-                placeholder=""
-            />
-            <div>
-                <fieldset>
-                    <legend>Sexe de l'animal</legend>
-                    <div>
-                        <input type="radio" id="male" name="gender" wire:model="gender" value="1"/>
-                        <label for="male">Mâle</label>
-                    </div>
-
-                    <div>
-                        <input type="radio" id="female" name="gender" wire:model="gender" value="0"/>
-                        <label for="female">Femelle</label>
-                    </div>
-                </fieldset>
-                @error('gender') <span class="text-red-500">{{ $message }}</span> @enderror
-            </div>
-            <div class="flex items-center gap-2 md:col-span-2">
-                <input
-                    type="checkbox"
-                    id="vaccinated"
-                    name="vaccine"
-                    wire:model="vaccine"
-                    class="rounded"
-                >
-                <label for="vaccinated">Vacciné</label>
-            </div>
         </div>
-        <x-form.textarea
-            name="description"
-            wire:model="description"
-            placeholder="Description de l'animal"
+        <x-form.input
+            name="age"
+            title="Date de naissance"
+            type="date"
+            wire:model="age"
+            placeholder=""
         />
-        <div class="pt-4">
-            <x-form.button title="Ajouter l'animal"/>
+        <div>
+            <fieldset>
+                <legend>Sexe de l'animal</legend>
+                <div>
+                    <input type="radio" id="male" name="gender" wire:model="gender" value="1"/>
+                    <label for="male">Mâle</label>
+                </div>
+
+                <div>
+                    <input type="radio" id="female" name="gender" wire:model="gender" value="0"/>
+                    <label for="female">Femelle</label>
+                </div>
+            </fieldset>
+            @error('gender') <span class="text-red-500">{{ $message }}</span> @enderror
         </div>
+        <div>
+            <input
+                type="checkbox"
+                id="vaccinated"
+                name="vaccine"
+                wire:model="vaccine"
+                class="rounded"
+            >
+            <label for="vaccinated">Vacciné</label>
+        </div>
+    </div>
+    <x-form.textarea
+        name="description"
+        wire:model="description"
+        placeholder="Description de l'animal"
+    />
+    <div class="pt-4">
+        <x-form.button title="Ajouter l'animal"/>
+    </div>
 </form>
