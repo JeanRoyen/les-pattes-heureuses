@@ -4,39 +4,41 @@ use App\Models\Message;
 use Livewire\Attributes\Computed;
 use Livewire\Attributes\Title;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 new #[Title('Messages | Les Pattes Heureuses')]
 class extends Component {
-    public string $availableSearch = '';
-    public string $treatedSearch = '';
+    use WithPagination;
 
-    #[Computed]
-    public function availableMessages()
+    public string $search = '';
+
+    public function updatedSearch()
     {
-        return Message::query()
-            ->where('received', 0)
-            ->where(function ($q) {
-                $q->where('name', 'like', "%{$this->availableSearch}%")
-                    ->orWhere('title', 'like', "%{$this->availableSearch}%")
-                    ->orWhere('email', 'like', "%{$this->availableSearch}%")
-                    ->orWhere('phone', 'like', "%{$this->availableSearch}%");
-            })
-            ->get();
+        $this->resetPage();
     }
 
-
     #[Computed]
-    public function treatedMessages()
+    public function messages()
     {
         return Message::query()
-            ->where('received', 1)
             ->where(function ($q) {
-                $q->where('name', 'like', "%{$this->treatedSearch}%")
-                    ->orWhere('title', 'like', "%{$this->treatedSearch}%")
-                    ->orWhere('email', 'like', "%{$this->treatedSearch}%")
-                    ->orWhere('phone', 'like', "%{$this->treatedSearch}%");
+                $q->where('name', 'like', "%$this->search%")
+                    ->orWhere('title', 'like', "%$this->search%")
+                    ->orWhere('email', 'like', "%$this->search%")
+                    ->orWhere('phone', 'like', "%$this->search%");
             })
-            ->get();
+            ->latest()
+            ->paginate(8);
+    }
+
+    public function markAsReadAndCloseModal()
+    {
+        $this->dispatch('close')->to(ref: 'modal');
+    }
+
+    public function showMessage(int $message_id)
+    {
+        $this->dispatch('open', id: $message_id);
     }
 };
 ?>
@@ -44,58 +46,43 @@ class extends Component {
 <main class="flex-1 ml-64 space-y-10">
     <x-admin.section-spacing>
         <x-admin.headings2 title="Messages en attente"/>
-        <x-general.searchbar model="availableSearch" placeholder="Rechercher un message..."/>
+        <div>
+            <input
+                type="text"
+                wire:model.live="search"
+                placeholder="Rechercher..."
+                class="bg-white text-black w-full px-4 py-2 border-gray-400 border rounded-button focus:border-background-green focus:outline-none"
+            >
+        </div>
         <x-table>
             <tr>
-                <x-table.table-header title="Nom"/>
                 <x-table.table-header title="Email"/>
                 <x-table.table-header title="Téléphone"/>
                 <x-table.table-header title="Objet"/>
-                <x-table.table-header title="Message"/>
+                <x-table.table-header title="Action"/>
+
             </tr>
-            @forelse($this->availableMessages as $message)
+            @forelse($this->messages as $message)
                 <tr>
-                    <x-table.table-data title="{{ $message->name }}"/>
                     <x-table.table-data-mailto
                         title='<a href="mailto:{{ $message->email }}">{{ $message->email }}</a>'/>
                     <x-table.table-data title="{{ $message->phone }}"/>
                     <x-table.table-data title="{{ $message->title }}"/>
-                    <x-table.table-data title="{{ $message->message }}"/>
+                    <td class="border py-2 bg-white">
+                        <button
+                            class="bg-blue-400  text-white py-1 px-3 mb-1 rounded-button hover:cursor-pointer hover:bg-blue-500"
+                            wire:click="showMessage({{ $message->id }})">Voir le message
+                        </button>
+                    </td>
 
                 </tr>
             @empty
                 <tr>
-                    <td colspan="5" class="text-center py-4 bg-white border">Pas de messages trouvés</td>
+                    <td colspan="4" class="text-center py-4 bg-white border">Pas de messages trouvés</td>
                 </tr>
             @endforelse
         </x-table>
-        {{-- TODO: Paginate --}}
+        {{ $this->messages->links() }}
     </x-admin.section-spacing>
-    <x-admin.section-spacing>
-        <x-admin.headings2 title="Messages traités"/>
-        <x-general.searchbar model="treatedSearch" placeholder="Rechercher un message..."/>
-        <x-table>
-            <tr>
-                <x-table.table-header title="Nom"/>
-                <x-table.table-header title="Email"/>
-                <x-table.table-header title="Téléphone"/>
-                <x-table.table-header title="Objet"/>
-                <x-table.table-header title="Message"/>
-            </tr>
-            @forelse($this->treatedMessages as $message)
-                <tr>
-                    <x-table.table-data title="{{ $message->name }}"/>
-                    <x-table.table-data-mailto
-                        title='<a href="mailto:{{ $message->email }}">{{ $message->email }}</a>'/>
-                    <x-table.table-data title="{{ $message->phone }}"/>
-                    <x-table.table-data title="{{ $message->title }}"/>
-                    <x-table.table-data title="{{ $message->message }}"/>
-                </tr>
-            @empty
-                <tr>
-                    <td colspan="5" class="text-center py-4 bg-white border">Pas de messages trouvés</td>
-                </tr>
-            @endforelse
-        </x-table>
-    </x-admin.section-spacing>
+    <livewire:pages::admin.message.show wire:ref="modal"/>
 </main>
