@@ -1,7 +1,17 @@
 <form class="space-y-6" wire:submit.prevent="editAnimal">
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <x-form.input type="file" wire:key="avatar-input" wire:model="avatar" title="avatar" name="avatar"
-                      placeholder="Votre avatar"/>
+        @if ($this->avatar)
+            <img alt="Votre avatar" src="{{ $this->avatar->temporaryUrl() }}">
+        @endif
+        <x-form.input
+            name="avatar"
+            title="Image de l'animal"
+            wire:model.live="avatar"
+            type="file"
+            placeholder=""
+        />
+        @error('avatar') <span class="text-red-500">{{ $message }}</span> @enderror
+
         <x-form.input
             name="name"
             title="Nom"
@@ -14,36 +24,43 @@
             <select
                 id="specie"
                 name="specie"
-                wire:model="specie"
-                class="border-input-grey border rounded-button pl-2 w-full py-1 focus:border-background-green focus:outline-none">
+                wire:model.live="specie_id"
+                class="border-input-grey border rounded-button pl-2 w-full py-1 focus:border-background-green focus:outline-none disabled:bg-gray-200">
                 <option value="">Choisir une espèce</option>
-                <option value="dog">Chien</option>
-                <option value="cat">Chat</option>
-                <option value="ferret">Furet</option>
+
+                @foreach($this->species as $specie)
+                    <option value="{{ $specie->id }}">{{ $specie->name }}</option>
+                @endforeach
             </select>
+            @error('specie_id') <span class="text-red-500">{{ $message }}</span> @enderror
         </div>
-        <x-form.input
-            name="race"
-            title="Race"
-            type="text"
-            wire:model="race"
-            placeholder="Berger Allemand"
-        />
+        <div>
+            <label for="breed" class="block">Race</label>
+            <select
+                id="breed"
+                name="breed"
+                wire:model.live="breed_id"
+                class="border-input-grey border rounded-button pl-2 w-full py-1 focus:border-background-green focus:outline-none disabled:bg-gray-200">
+                <option value="">Choisir une race</option>
+
+                @foreach($this->breeds as $breed)
+                    <option value="{{ $breed->id }}">{{ $breed->name }}</option>
+                @endforeach
+            </select>
+            @error('breed_id') <span class="text-red-500">{{ $message }}</span> @enderror
+        </div>
         <div>
             <label for="status" class="block">Statut</label>
             <select
                 id="status"
                 name="status"
                 wire:model="status"
-                @if(auth()->user()->isAdmin !== 1)
-                    disabled
-                @endif
-                class="border-input-grey border-1 rounded-button pl-2 w-full py-1 focus:border-background-green focus:outline-none disabled:bg-gray-200">
+                class="border-input-grey border rounded-button pl-2 w-full py-1 focus:border-background-green focus:outline-none disabled:bg-gray-200">
                 <option value="">Choisir un statut</option>
                 <option value="available">Disponible</option>
                 <option value="in_care">En soins</option>
-                <option value="adopted">Adopté</option>
             </select>
+            @error('status') <span class="text-red-500">{{ $message }}</span> @enderror
         </div>
         <x-form.input
             name="age"
@@ -65,8 +82,9 @@
                     <label for="female">Femelle</label>
                 </div>
             </fieldset>
+            @error('gender') <span class="text-red-500">{{ $message }}</span> @enderror
         </div>
-        <div class="flex items-center gap-2 md:col-span-2">
+        <div>
             <input
                 type="checkbox"
                 id="vaccinated"

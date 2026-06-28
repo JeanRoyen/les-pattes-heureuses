@@ -189,8 +189,8 @@ class extends Component {
         $animal = Animal::findOrFail($animalId);
         $this->animalId = $animal->id;
         $this->name = $animal->name;
-        $this->specie = $animal->specie;
-        $this->race = $animal->race;
+        $this->specie_id = $animal->specie_id;
+        $this->breed_id = $animal->breed_id;
         $this->status = $animal->status;
         $this->age = $animal->age;
         $this->gender = $animal->gender;
@@ -206,8 +206,8 @@ class extends Component {
             'avatar' => 'image|nullable',
             'name' => 'required',
             'status' => 'required',
-            'specie' => 'required',
-            'race' => 'required',
+            'specie_id' => 'required',
+            'breed_id' => 'required',
             'age' => 'required|date|before_or_equal:today',
             'gender' => 'required',
             'vaccine' => 'boolean',
@@ -219,9 +219,9 @@ class extends Component {
         $this->showEditAnimalModal = false;
         $this->reset([
             'name',
-            'specie',
             'status',
-            'race',
+            'specie_id',
+            'breed_id',
             'age',
             'gender',
             'vaccine',
@@ -234,9 +234,6 @@ class extends Component {
             $avatar_path = $this->avatar->storeAs('avatar/original', $file_name, 'public');
             ProcessAvatar::dispatch($file_name, $avatar_path);
             $validated['avatar'] = $avatar_path;
-        }
-        if (auth()->user()->role && isset($validated['status'])) {
-            $animal->status = $validated['status'];
         }
 
         $animal->update($validated);

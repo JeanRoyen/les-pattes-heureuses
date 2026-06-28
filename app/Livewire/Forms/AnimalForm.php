@@ -7,6 +7,7 @@ use App\Models\Animal;
 use Livewire\Attributes\Validate;
 use Livewire\Form;
 use Livewire\WithFileUploads;
+use function uniqid;
 
 class AnimalForm extends Form
 {
