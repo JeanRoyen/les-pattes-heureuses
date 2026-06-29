@@ -56,8 +56,9 @@ class extends Component {
                 </p>
             </div>
 
-            <div class="pt-4 flex justify-end">
-                <x-form.button wire:click="close" title="Marquer comme lu" />
+            <div class="pt-4 flex justify-end gap-4">
+                <a class="bg-background-green hover:bg-background-green-hover text-white py-2 w-full font-bold rounded-button text-center" href="mailto:{{ $message?->email }}">Envoyer un mail</a>
+                <x-form.button wire:click="close" title="Fermer" />
             </div>
         </div>
     </x-slot:body>

@@ -13,6 +13,7 @@
     --color-cta-orange: oklch(0.669 0.1397 32.81);
     --color-cta-hover: oklch(0.586 0.152 41.06);
     --color-background-green: oklch(0.5581 0.0458 172.46);
+    --color-background-green-hover: oklch(0.47 0.037 173.433);
     --color-input-grey: oklch(0.8853 0 0);
 
     --text-h2-desktop: 2.5rem;
