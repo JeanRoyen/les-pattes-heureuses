@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Animal;
-use Carbon\Carbon;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Collection;
 use function now;
 use function view;
@@ -15,8 +15,8 @@ class AnimalController extends Controller
     public function index()
     {
         return view('pages.client.animals.index', [
-            'dogCount' => $this->animalCounter('dog'),
-            'catCount' => $this->animalCounter('cat'),
+            'dogCount' => $this->animalCounter('1'),
+            'catCount' => $this->animalCounter('2'),
             'adoptedCount' => $this->statusCounter('adopted'),
             'availableAnimals' => $this->availableAnimals(),
         ]);
@@ -46,7 +46,9 @@ class AnimalController extends Controller
 
     public function animalCounter(string $specie): int
     {
-        return Animal::where('specie', $specie)->count();
+        return Animal::
+        with('species')
+            ->where('animals.specie_id', $specie)->count();
     }
 
     public function statusCounter(string $status): int
