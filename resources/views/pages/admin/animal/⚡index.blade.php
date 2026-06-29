@@ -242,6 +242,9 @@ class extends Component {
 ?>
 
 <main class="flex-1 ml-64 space-y-10">
+    <x-slot:page_title>
+        Animaux
+    </x-slot:page_title>
     <x-admin.section-spacing>
         <x-admin.headings2 title="Animaux au refuge"/>
         <x-general.searchbar model="availableSearch"/>

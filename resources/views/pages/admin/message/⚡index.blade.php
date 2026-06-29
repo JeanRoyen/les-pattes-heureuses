@@ -44,6 +44,9 @@ class extends Component {
 ?>
 
 <main class="flex-1 ml-64 space-y-10">
+    <x-slot:page_title>
+        Messages
+    </x-slot:page_title>
     <x-admin.section-spacing>
         <x-admin.headings2 title="Messages en attente"/>
         <div>

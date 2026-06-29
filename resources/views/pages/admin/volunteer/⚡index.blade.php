@@ -7,6 +7,9 @@ use Livewire\Component;
 
 new #[Title('Bénévoles | Les Pattes Heureuses')]
 class extends Component {
+
+    public string $page_title = 'Bénévoles';
+
     public string $name = '';
     public string $phone = '';
     public string $email = '';
@@ -131,6 +134,9 @@ class extends Component {
 ?>
 
 <main class="flex-1 ml-64 space-y-10">
+    <x-slot:page_title>
+        Bénévoles
+    </x-slot:page_title>
     <x-admin.section-spacing>
         <x-admin.headings2 title="Bénévoles du refuge"/>
         <x-admin.cta function="createUser" title="Ajouter un bénévole"/>

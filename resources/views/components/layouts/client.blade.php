@@ -10,6 +10,7 @@
 
 </head>
 <body class="bg-bodybackground">
+<h1 class="sr-only">{{ $page_title }}</h1>
 <x-general.header/>
 <div class="flex">
     {{ $slot }}

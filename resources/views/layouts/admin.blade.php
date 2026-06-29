@@ -11,6 +11,7 @@
     @livewireStyles
 </head>
 <body class="bg-bodybackground">
+<h1 class="sr-only">{{ $page_title }}</h1>
 <x-general.header/>
 <div class="flex py-6 px-8">
     <x-admin.sideBar/>

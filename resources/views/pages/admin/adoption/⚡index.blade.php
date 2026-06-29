@@ -5,11 +5,14 @@ use Livewire\Component;
 
 new #[Title('Adoptions | Les Pattes Heureuses')]
 class extends Component {
-    //
 };
 ?>
 
 <main class="flex-1 ml-64 space-y-10">
+    <x-slot:page_title>
+        Adoptions
+    </x-slot:page_title>
+    <section>
     <x-admin.section-spacing>
         <x-admin.headings2 title="Demandes en attente"/>
         {{--
@@ -90,4 +93,5 @@ class extends Component {
             </tr>
         </x-table>
     </x-admin.section-spacing>
+    </section>
 </main>

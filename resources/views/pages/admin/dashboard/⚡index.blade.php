@@ -8,6 +8,7 @@ use Livewire\Component;
 
 new #[Title('Tableau de bord | Les Pattes Heureuses')]
 class extends Component {
+
     public array $stats = [];
     public string $month;
 
@@ -49,6 +50,9 @@ class extends Component {
 
 
 <main class="flex-1 ml-64 space-y-10">
+    <x-slot:page_title>
+        Tableau de bord
+    </x-slot:page_title>
     <x-admin.section-spacing>
         <x-admin.headings2 title="Demandes et messages"/>
         <x-admin.square-infos-container>
