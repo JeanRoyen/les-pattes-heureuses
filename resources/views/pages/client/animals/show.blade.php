@@ -1,4 +1,7 @@
 <x-layouts.client title="{{ $animal->name }} | Les Pattes Heureuses">
+    <x-slot:page_title>
+        Page de {{ $animal->name }}
+    </x-slot:page_title>
     <div class="grid grid-cols-1 gap-8 lg:grid-cols-2">
 
         <div>
