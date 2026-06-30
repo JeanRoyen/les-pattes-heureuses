@@ -23,7 +23,7 @@ class extends Component {
 
     private function loadMessagesStats(): void
     {
-        $this->receivedMessages = Message::where('received', 0)->count();
+        $this->receivedMessages = Message::where('received', 1)->count();
     }
 
     private function loadMonthlyStats(): void
