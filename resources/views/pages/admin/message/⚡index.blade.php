@@ -2,6 +2,7 @@
 
 use App\Models\Message;
 use Livewire\Attributes\Computed;
+use Livewire\Attributes\On;
 use Livewire\Attributes\Title;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -31,7 +32,13 @@ class extends Component {
             ->paginate(8);
     }
 
-    public function markAsReadAndCloseModal()
+    #[On('message-status-updated')]
+    public function refreshMessages(): void
+    {
+        unset($this->messages);
+    }
+
+    public function markAsReadAndCloseModal(): void
     {
         $this->dispatch('close')->to(ref: 'modal');
     }
@@ -43,7 +50,7 @@ class extends Component {
 };
 ?>
 
-<main class="flex-1 ml-64 space-y-10">
+<main class="flex-1 ml-64 space-y-10" wire:keydown.escape="markAsReadAndCloseModal">
     <x-slot:page_title>
         Messages
     </x-slot:page_title>
@@ -62,15 +69,16 @@ class extends Component {
                 <x-table.table-header title="Email"/>
                 <x-table.table-header title="Téléphone"/>
                 <x-table.table-header title="Objet"/>
+                <x-table.table-header title="Status"/>
                 <x-table.table-header title="Action"/>
-
             </tr>
             @forelse($this->messages as $message)
-                <tr>
+                <tr wire:key="{{ $message->id }}">
                     <x-table.table-data-mailto
                         title='<a href="mailto:{{ $message->email }}">{{ $message->email }}</a>'/>
                     <x-table.table-data title="{{ $message->phone }}"/>
                     <x-table.table-data title="{{ $message->title }}"/>
+                    <x-table.table-data title="{{ $message->received ? 'Non lu' : 'Lu' }}"/>
                     <td class="border py-2 bg-white">
                         <button
                             class="bg-blue-400  text-white py-1 px-3 mb-1 rounded-button hover:cursor-pointer hover:bg-blue-500"

@@ -16,7 +16,11 @@ class extends Component {
     public function close()
     {
         $this->isOpen = false;
+        $this->message?->update([
+            'received' => 0,
+        ]);
         $this->message = null;
+        $this->dispatch('message-status-updated');
     }
 
     #[On('open')]
@@ -24,6 +28,9 @@ class extends Component {
     {
         $this->isOpen = true;
         $this->message = Message::findOrFail($id);
+        $this->message->update([
+            'received' => 0
+        ]);
     }
 };
 ?>
