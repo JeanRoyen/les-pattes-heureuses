@@ -34,39 +34,43 @@ class extends Component {
     public array $avatar_path = [];
     public $avatar;
 
+    // Filters & search variables
+    public string $filterSearch = '';
+    public string $filterSpecie = '';
+    public string $filterRace = '';
+    public string $filterGender = '';
+    public string $filterStatus = '';
 
-// Available
-    public string $availableSearch = '';
-    public string $availableSpecie = '';
-    public string $availableRace = '';
-    public string $availableGender = '';
-    public string $availableAgeRange = '';
-
-// Waiting
-    public string $waitingSearch = '';
-    public string $waitingSpecie = '';
-    public string $waitingRace = '';
-    public string $waitingGender = '';
-    public string $waitingAgeRange = '';
-
-// Adopted
-    public string $adoptedSearch = '';
-    public string $adoptedSpecie = '';
-    public string $adoptedRace = '';
-    public string $adoptedGender = '';
-    public string $adoptedAgeRange = '';
-
+    public function updatedFilterSearch()
+    {
+        $this->resetPage();
+    }
 
     #[Computed]
-    public function species(): \Illuminate\Support\Collection
+    public function animals()
+    {
+        return Animal::query()
+            ->with(['specie', 'breed'])
+            ->when($this->filterStatus !== '', fn($q) => $q->where('status', $this->filterStatus),
+                fn($q) => $q->whereIn('status', ['available', 'in_care', 'waiting', 'adopted']))
+            ->when($this->filterSearch !== '', fn($q) => $q->where('name', 'like', "%$this->filterSearch%"))
+            ->when($this->filterSpecie !== '', fn($q) => $q->where('specie_id', $this->filterSpecie))
+            ->when($this->filterRace !== '', fn($q) => $q->where('breed_id', $this->filterRace))
+            ->when($this->filterGender !== '', fn($q) => $q->where('gender', $this->filterGender))
+            ->orderBy('created_at', 'desc')
+            ->paginate(8);
+    }
+
+    #[Computed]
+    public function species(): Collection
     {
         return Specie::all();
     }
 
     #[Computed]
-    public function breeds(): \Illuminate\Support\Collection
+    public function breeds(): Collection
     {
-        return Breed::where('specie_id', $this->specie_id)->get();
+        return Breed::all();
     }
 
     public function deleteAnimal(int $animalId): void
@@ -80,83 +84,6 @@ class extends Component {
     public function updatedSearch($page): void
     {
         $this->resetPage();
-    }
-
-
-    #[Computed]
-    public function availableAnimals(): Collection|array
-    {
-        return Animal::query()
-            ->whereIn('status', ['in_care', 'available'])
-            ->when($this->availableSearch !== '', fn($q) => $q->where('name', 'like', "%{$this->availableSearch}%")
-            )
-            ->when($this->availableSpecie !== '', fn($q) => $q->where('specie', $this->availableSpecie)
-            )
-            ->when($this->availableRace !== '', fn($q) => $q->where('race', $this->availableRace)
-            )
-            ->when($this->availableGender !== '', fn($q) => $q->where('gender', $this->availableGender)
-            )
-            ->when($this->availableAgeRange !== '', function ($q) {
-                [$min, $max] = explode('-', $this->availableAgeRange);
-
-                $q->whereBetween(
-                    'age',
-                    [now()->subYears($max), now()->subYears($min)]
-                );
-            })
-            ->orderBy('created_at', 'desc')
-            ->get();
-    }
-
-    #[Computed]
-    public function waitingAnimals(): Collection
-    {
-        return Animal::query()
-            ->where('status', 'waiting')
-            ->when($this->waitingSearch !== '', fn($q) => $q->where('name', 'like', "%{$this->waitingSearch}%")
-            )
-            ->when($this->waitingSpecie !== '', fn($q) => $q->where('specie', $this->waitingSpecie)
-            )
-            ->when($this->waitingRace !== '', fn($q) => $q->where('race', $this->waitingRace)
-            )
-            ->when($this->waitingGender !== '', fn($q) => $q->where('gender', $this->waitingGender)
-            )
-            ->when($this->waitingAgeRange !== '', function ($q) {
-                [$min, $max] = explode('-', $this->waitingAgeRange);
-
-                $q->whereBetween(
-                    'age',
-                    [now()->subYears($max), now()->subYears($min)]
-                );
-            })
-            ->orderBy('created_at', 'desc')
-            ->get();
-    }
-
-
-    #[Computed]
-    public function adoptedAnimals(): Collection
-    {
-        return Animal::query()
-            ->where('status', 'adopted')
-            ->when($this->adoptedSearch !== '', fn($q) => $q->where('name', 'like', "%{$this->adoptedSearch}%")
-            )
-            ->when($this->adoptedSpecie !== '', fn($q) => $q->where('specie', $this->adoptedSpecie)
-            )
-            ->when($this->adoptedRace !== '', fn($q) => $q->where('race', $this->adoptedRace)
-            )
-            ->when($this->adoptedGender !== '', fn($q) => $q->where('gender', $this->adoptedGender)
-            )
-            ->when($this->adoptedAgeRange !== '', function ($q) {
-                [$min, $max] = explode('-', $this->adoptedAgeRange);
-
-                $q->whereBetween(
-                    'age',
-                    [now()->subYears($max), now()->subYears($min)]
-                );
-            })
-            ->orderBy('created_at', 'desc')
-            ->get();
     }
 
 
@@ -246,70 +173,43 @@ class extends Component {
         Animaux
     </x-slot:page_title>
     <x-admin.section-spacing>
-        <x-admin.headings2 title="Animaux au refuge"/>
-        <x-general.searchbar model="availableSearch"/>
+        <x-admin.headings2 title="Liste des animaux"/>
+        <x-general.searchbar model="filterSearch"/>
         <x-general.filters
-            prefix="available"
             :species="$this->species"
             :breeds="$this->breeds"
         />
         <x-admin.cta function="createAnimal" title="Ajouter un animal"/>
         <x-table>
             <x-table.animal.headers/>
-            <x-table.animal.loop :animals="$this->availableAnimals"/>
+            <x-table.animal.loop :animals="$this->animals"/>
         </x-table>
-        {{-- TODO: Paginate --}}
+        {{ $this->animals->links() }}
+        <div class="{{ $showCreateAnimalModal ? 'block' : 'hidden' }}">
+            <x-modal.modal>
+                <x-slot:title>
+                    Ajouter un animal
+                    <button type="button" wire:click="toggleModal('createAnimal', 'close')">
+                        <img src="{{ asset('svg/close.svg') }}" alt="close" height="30" width="30">
+                    </button>
+                </x-slot:title>
+                <x-slot:body>
+                    <livewire:animal.create/>
+                </x-slot:body>
+            </x-modal.modal>
+        </div>
+        <div class="{{ $showEditAnimalModal ? 'block' : 'hidden' }}">
+            <x-modal.modal>
+                <x-slot:title>
+                    Modifier un animal
+                    <button type="button" wire:click="toggleModal('openEditModal', 'close')">
+                        <img src="{{ asset('svg/close.svg') }}" alt="close" height="30" width="30">
+                    </button>
+                </x-slot:title>
+                <x-slot:body>
+                    <x-modal.edit_animal/>
+                </x-slot:body>
+            </x-modal.modal>
+        </div>
     </x-admin.section-spacing>
-    <x-admin.section-spacing>
-        <x-admin.headings2 title="Animaux en attente de validation"/>
-        <x-general.searchbar model="waitingSearch"/>
-        <x-general.filters
-            prefix="waiting"
-            :species="$this->species"
-            :breeds="$this->breeds"
-        />
-        <x-table>
-            <x-table.animal.headers/>
-            <x-table.animal.loop :animals="$this->waitingAnimals"/>
-        </x-table>
-    </x-admin.section-spacing>
-    <x-admin.section-spacing>
-        <x-admin.headings2 title="Animaux adoptés"/>
-        <x-general.searchbar model="adoptedSearch"/>
-        <x-general.filters
-            prefix="adopted"
-            :species="$this->species"
-            :breeds="$this->breeds"
-        />
-        <x-table>
-            <x-table.animal.headers/>
-            <x-table.animal.loop :animals="$this->adoptedAnimals"/>
-        </x-table> {{-- TODO: Paginate --}}
-    </x-admin.section-spacing>
-    <div class="{{ $showCreateAnimalModal ? 'block' : 'hidden' }}">
-        <x-modal.modal>
-            <x-slot:title>
-                Ajouter un animal
-                <button type="button" wire:click="toggleModal('createAnimal', 'close')">
-                    <img src="{{ asset('svg/close.svg') }}" alt="close" height="30" width="30">
-                </button>
-            </x-slot:title>
-            <x-slot:body>
-                <livewire:animal.create/>
-            </x-slot:body>
-        </x-modal.modal>
-    </div>
-    <div class="{{ $showEditAnimalModal ? 'block' : 'hidden' }}">
-        <x-modal.modal>
-            <x-slot:title>
-                Modifier un animal
-                <button type="button" wire:click="toggleModal('openEditModal', 'close')">
-                    <img src="{{ asset('svg/close.svg') }}" alt="close" height="30" width="30">
-                </button>
-            </x-slot:title>
-            <x-slot:body>
-                <x-modal.edit_animal/>
-            </x-slot:body>
-        </x-modal.modal>
-    </div>
 </main>

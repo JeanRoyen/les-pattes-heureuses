@@ -11,5 +11,10 @@ return [
     'stats_cats' => 'Chats au refuge',
     'stats_adopted' => 'Ont quitté le refuge',
 
+    'status_available' => 'Disponible',
+    'status_in_care' => 'En soin',
+    'status_waiting' => 'En attente de validation',
+    'status_adopted' => 'Adopté',
+
     'list_title' => 'Découvrez nos petits (et grands) pensionnaires',
 ];
