@@ -9,10 +9,10 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
 </head>
-<body class="bg-bodybackground">
+<body class="bg-bodybackground flex min-h-screen flex-col">
 <h1 class="sr-only">{{ $page_title }}</h1>
 <x-general.header/>
-<div class="flex">
+<div class="flex flex-1">
     {{ $slot }}
 </div>
 <x-general.footer/>
