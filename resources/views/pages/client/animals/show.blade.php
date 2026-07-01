@@ -19,7 +19,7 @@
                 <div class="p-8">
                     <div class="flex items-start justify-between gap-4">
                         <h1 class="text-4xl font-bold text-primary">
-                            {{ $animal->name }}
+                            {{ ucfirst($animal->name) }}
                         </h1>
                         <x-adoption.status :status="$animal->status" />
                     </div>
@@ -32,7 +32,7 @@
 
                     <div class="mt-5 border-t border-gray-100 pt-5">
                         @if(!$animal->description)
-                            <p>{{ $animal->name }} n'a pas de description.</p>
+                            <p>{{ ucfirst($animal->name) }} n'a pas de description.</p>
                             <p class="text-[15px] leading-relaxed text-gray-500">
                                 Vous pouvez téléphoner au
                                 <x-general.link href="tel:0471420854" title="04 71 42 08 54"/>
@@ -57,7 +57,7 @@
 
                 <div class="border-t border-gray-100 bg-gray-50 p-8">
                     <h2 class="mb-6 text-center text-xl font-semibold text-gray-900">
-                        Formulaire d'adoption de {{ $animal->name }}
+                        Formulaire d'adoption de {{ ucfirst($animal->name) }}
                     </h2>
 
                     {{-- Formulaire de contact --}}
