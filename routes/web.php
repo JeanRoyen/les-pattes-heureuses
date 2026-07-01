@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdoptionController;
 use App\Http\Controllers\AnimalController;
 use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\MessageController;
@@ -24,6 +25,7 @@ Route::middleware([SetLocale::class])->group(function () {
     Route::get('/', [WelcomeController::class, 'index'])->name('welcome');
     Route::get('/animals', [AnimalController::class, 'index'])->name('animals');
     Route::get('/animals/{animal}', [AnimalController::class, 'show'])->name('animals.show');
+    Route::post('/animals}', [AdoptionController::class, 'store'])->name('animals.store');
 
     // Admin
     Route::middleware('auth')->group(function () {
