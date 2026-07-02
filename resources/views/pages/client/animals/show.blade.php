@@ -63,6 +63,7 @@
                     {{-- Formulaire de contact --}}
                     <form action="{{ route('animals.store') }}" method="POST" class="space-y-5">
                         @csrf
+                        <input type="hidden" name="animal_id" value="{{ $animal->id }}">
                         <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
                             <x-form.client_input
                                 name="name"

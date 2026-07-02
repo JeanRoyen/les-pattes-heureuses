@@ -43,7 +43,7 @@ class extends Component {
         $this->dispatch('close')->to(ref: 'modal');
     }
 
-    public function showMessage(int $message_id)
+    public function showMessage(int $message_id): void
     {
         $this->dispatch('open', id: $message_id);
     }
