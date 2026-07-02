@@ -198,7 +198,7 @@ class ProductionAnimalSeeder extends Seeder
                 'age' => now()->subYear(),
                 'gender' => false,
                 'vaccine' => true,
-                'status' => 'in_care',
+                'status' => 'adopted',
                 'description' => 'Active et toujours en exploration.',
             ],
             [
@@ -208,7 +208,7 @@ class ProductionAnimalSeeder extends Seeder
                 'age' => now()->subYears(3),
                 'gender' => true,
                 'vaccine' => true,
-                'status' => 'waiting',
+                'status' => 'adopted',
                 'description' => 'Affectueux et habitué aux enfants.',
             ],
         ];
