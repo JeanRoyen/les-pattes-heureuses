@@ -9,7 +9,7 @@ use Livewire\Component;
 new #[Title('Messages | Les Pattes Heureuses')]
 class extends Component {
     public bool $isOpen = false;
-    public ?Adoption $adoption = null;
+    public Adoption $adoption;
 
 
     #[On('close')]
@@ -27,7 +27,7 @@ class extends Component {
 };
 ?>
 
-<x-modal.modal wire:show="isOpen">
+<x-modal.modal wire:show="isOpen" wire:key="{{ $adoption?->id }}">
     <x-slot:title>
         <p>Demande d'adoption de {{ $adoption?->name }}</p>
     </x-slot:title>
@@ -42,6 +42,7 @@ class extends Component {
                 <p>Téléphone</p>
                 <x-general.link href="tel:{{ $adoption?->phone }}" title="{{ $adoption?->phone }}" />
             </div>
+
             <div class="grid grid-cols-3 gap-2">
                 <p>Nom de l'animal</p>
                 <p class="col-p-2 font-bold">{{ $adoption?->animal->name }}</p>
