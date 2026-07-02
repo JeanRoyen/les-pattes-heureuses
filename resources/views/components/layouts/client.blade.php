@@ -15,6 +15,13 @@
 <div class="flex flex-1">
     {{ $slot }}
 </div>
+@if (session('success'))
+    <div x-data="{ show: true }" x-init="setTimeout(() => show = false, 3000)" x-show="show" class="flex justify-center ">
+        <div class="bg-green-100 border border-green-400 text-green-800 px-8 py-5 rounded-2xl shadow-xl max-w-md text-center">
+            {{ session('success') }}
+        </div>
+    </div>
+@endif
 <x-general.footer/>
 @livewireScripts
 </body>
