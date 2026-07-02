@@ -54,6 +54,7 @@
                     @forelse($availableAnimals as $animal)
                         <x-general.card
                             name="{{ $animal->name }}"
+                            status="{{ $animal->status }}"
                             race="{{ $animal->race }}"
                             gender="{{ $animal->gender }}"
                             age="{{ $animal->age->format('d/m/Y') }}"
