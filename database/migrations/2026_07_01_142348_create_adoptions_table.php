@@ -9,10 +9,12 @@ return new class extends Migration {
     {
         Schema::create('adoptions', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('animal_id')->constrained()->cascadeOnDelete();
             $table->string('name');
             $table->string('phone');
             $table->string('email');
             $table->text('message');
+            $table->string('status')->default('waiting');
             $table->timestamps();
         });
     }

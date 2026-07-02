@@ -13,10 +13,12 @@ class AdoptionFactory extends Factory
     public function definition(): array
     {
         return [
+            'animal_id' => $this->faker->randomDigitNotNull(),
             'name' => $this->faker->name(),
             'phone' => $this->faker->phoneNumber(),
             'email' => $this->faker->unique()->safeEmail(),
             'message' => $this->faker->word(),
+            'status' => $this->faker->randomElement(['waiting', 'accepted', 'refused', 'available']),
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ];
