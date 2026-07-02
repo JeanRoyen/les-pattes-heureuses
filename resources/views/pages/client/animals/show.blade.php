@@ -7,11 +7,19 @@
         <div class="grid grid-cols-1 items-start gap-10 lg:grid-cols-2">
 
             <div>
-                <img
-                    src="{{ asset('storage/' . $animal->avatar) }}"
-                    alt="{{ $animal->name }}"
-                    class="aspect-4/5 w-full rounded-2xl object-cover"
-                >
+                @if($animal->avatar)
+                    <img
+                        src="{{ asset('storage/' . $animal->avatar) }}"
+                        alt="{{ $animal->name }}"
+                        class="aspect-4/5 w-full rounded-2xl object-cover"
+                    >
+                @else
+                    <div class="aspect-4/5 w-full rounded-2xl bg-gray-200 flex items-center justify-center">
+            <span class="text-gray-600 text-center px-4">
+                Pas de photo pour l'animal
+            </span>
+                    </div>
+                @endif
             </div>
 
             <div class="overflow-hidden rounded-2xl border border-gray-200 bg-white">
