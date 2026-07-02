@@ -5,14 +5,26 @@ use Illuminate\Support\Collection;
 use Livewire\Attributes\Computed;
 use Livewire\Attributes\Title;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 new #[Title('Adoptions | Les Pattes Heureuses')]
 class extends Component {
 
+    use WithPagination;
+
+    public string $search = '';
+
+    public function updatedSearch(): void
+    {
+        $this->resetPage();
+    }
+
     #[Computed]
     public function adoptions()
     {
-        return Adoption::paginate(3);
+        return Adoption::query()
+            ->when($this->search !== '', fn($q) => $q->where('name', 'like', "%$this->search%"))
+            ->paginate(8);
     }
 
     public function closeModal(): void
@@ -20,7 +32,7 @@ class extends Component {
         $this->dispatch('close')->to(ref: 'modal');
     }
 
-    public function showAdoption(int $adoption_id)
+    public function showAdoption(int $adoption_id): void
     {
         $this->dispatch('open', id: $adoption_id);
     }
@@ -33,9 +45,7 @@ class extends Component {
     </x-slot:page_title>
     <x-admin.section-spacing>
         <x-admin.headings2 title="Demandes en attente"/>
-        {{--
-                <x-general.searchbar/>
-        --}}
+        <x-general.searchbar model="search"/>
         <x-table>
 
             <tr>
@@ -62,7 +72,7 @@ class extends Component {
                 </tr>
             @endforeach
         </x-table>
-        {{-- TODO: Paginate --}}
+        {{ $this->adoptions->links() }}
     </x-admin.section-spacing>
     <livewire:pages::admin.adoption.show wire:ref="modal"/>
 </main>
