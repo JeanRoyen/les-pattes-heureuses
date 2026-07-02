@@ -37,8 +37,7 @@ class DatabaseSeeder extends Seeder
         $this->call(ProductionBreedSeeder::class);
         $this->call(ProductionMessageSeeder::class);
         $this->call(ProductionAnimalSeeder::class);
-        Adoption::factory()->count(10)->create();
-
+        $this->call(ProductionAdoptionSeeder::class);
 
     }
 }
