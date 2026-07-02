@@ -22,6 +22,8 @@ class AnimalFactory extends Factory
 
         return [
             'name' => $this->faker->firstName(),
+            'specie_id' => $this->faker->randomDigitNotNull(),
+            'breed_id' => $this->faker->randomDigitNotNull(),
             'age' => $this->faker->dateTimeBetween('-15 years', 'now'),
             'gender' => $this->faker->boolean(),
             'vaccine' => $this->faker->boolean(),
