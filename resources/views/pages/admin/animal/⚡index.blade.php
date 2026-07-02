@@ -41,7 +41,7 @@ class extends Component {
     public string $filterGender = '';
     public string $filterStatus = '';
 
-    public function updatedFilterSearch()
+    public function updatedFilterSearch(): void
     {
         $this->resetPage();
     }
