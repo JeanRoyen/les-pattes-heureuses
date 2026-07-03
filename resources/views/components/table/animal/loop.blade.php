@@ -14,11 +14,13 @@
         <x-table.table-data title="{{ __('animals.status_' . $animal->status) }}"/>
         <x-table.table-data title="{{ $animal->created_at->format('d/m/Y') }}"/>
         <td class="border py-2 bg-white space-x-2">
-            <button
-                wire:click="openEditModal({{ $animal->id }})"
-                class="bg-background-green text-white py-1 px-3 mb-1 rounded-button">
-                Modifier
-            </button>
+            @can('update', $animal)
+                <button
+                    wire:click="openEditModal({{ $animal->id }})"
+                    class="bg-background-green text-white py-1 px-3 mb-1 rounded-button">
+                    Modifier
+                </button>
+            @endcan
             <button
                 wire:click="deleteAnimal({{ $animal->id }})"
                 wire:confirm="Êtes-vous sûr de vouloir supprimer {{ ucfirst($animal->name) }} ?"

@@ -8,11 +8,20 @@
             </h3>
 
             <ul>
-                <x-admin.listElement title="{{ __('navigation.dashboard') }}" route="{{ route('admin.dashboard') }}"/>
+                    <x-admin.listElement title="{{ __('navigation.dashboard') }}"
+                                         route="{{ route('admin.dashboard') }}"/>
+                @can('admin')
+                    <x-admin.listElement title="{{ __('navigation.adoptions') }}"
+                                         route="{{ route('admin.adoptions') }}"/>
+                @endcan
+                @can('admin')
+                    <x-admin.listElement title="{{ __('navigation.volunteers') }}"
+                                         route="{{ route('admin.volunteers') }}"/>
+                @endcan
                 <x-admin.listElement title="{{ __('navigation.animals') }}" route="{{ route('admin.animals') }}"/>
-                <x-admin.listElement title="{{ __('navigation.adoptions') }}" route="{{ route('admin.adoptions') }}"/>
-                <x-admin.listElement title="{{ __('navigation.volunteers') }}" route="{{ route('admin.volunteers') }}"/>
-                <x-admin.listElement title="{{ __('navigation.messages') }}" route="{{ route('admin.messages') }}"/>
+                @can('admin')
+                    <x-admin.listElement title="{{ __('navigation.messages') }}" route="{{ route('admin.messages') }}"/>
+                @endcan
             </ul>
         </div>
 

@@ -28,13 +28,17 @@ Route::middleware([SetLocale::class])->group(function () {
     Route::post('/animals}', [AdoptionController::class, 'store'])->name('animals.store');
 
     // Admin
-    Route::middleware('auth')->group(function () {
+    Route::middleware(['auth'])->group(function () {
         Route::livewire('/admin/dashboard', 'pages::admin/dashboard.index')->name('admin.dashboard');
-        Route::livewire('/admin/messages', 'pages::admin/message.index')->name('admin.messages');
         Route::livewire('/admin/animals', 'pages::admin/animal.index')->name('admin.animals');
-        Route::livewire('/admin/adoptions', 'pages::admin/adoption.index')->name('admin.adoptions');
-        Route::livewire('/admin/volunteers', 'pages::admin/volunteer.index')->name('admin.volunteers');
         Route::get('/dashboard/pdf', [AnimalController::class, 'download'])->name('pdf');
+
+        Route::middleware('can:admin')->group(function (){
+            Route::livewire('/admin/messages', 'pages::admin/message.index')->name('admin.messages');
+            Route::livewire('/admin/adoptions', 'pages::admin/adoption.index')->name('admin.adoptions');
+            Route::livewire('/admin/volunteers', 'pages::admin/volunteer.index')->name('admin.volunteers');
+        });
+     ;
     });
 });
 
