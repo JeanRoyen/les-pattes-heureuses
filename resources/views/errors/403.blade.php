@@ -26,7 +26,7 @@
     <div class="flex justify-center gap-4">
         <a href="{{ route('admin.dashboard') }}"
            class="px-5 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-100 transition">
-            Dashboard
+            Retour au dashboard
         </a>
     </div>
 
