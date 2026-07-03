@@ -24,13 +24,38 @@ class extends Component {
         $this->isOpen = true;
         $this->adoption = Adoption::findOrFail($id);
     }
+
+    public function accept(): void
+    {
+        $this->adoption->update([
+            'status' => 'accepted'
+        ]);
+
+        $this->dispatch('adoption-updated');
+        $this->close();
+    }
+
+
+    public function reject(): void
+    {
+        $this->adoption->update([
+            'status' => 'refused',
+        ]);
+
+        $this->dispatch('adoption-updated');
+        $this->close();
+    }
 };
 ?>
 
-<x-modal.modal wire:show="isOpen" wire:key="{{ $adoption?->id }}">
+<x-modal.modal wire:show="isOpen" wire:key="{{ $adoption?->id }}" wire:keydown.escape="close()">
     <x-slot:title>
         <p>Demande d'adoption de {{ $adoption?->name }}</p>
+        <button class="cursor-pointer" type="button" wire:click="close()">
+            <img src="{{ asset('svg/close.svg') }}" alt="close" height="30" width="30">
+        </button>
     </x-slot:title>
+
     <x-slot:body>
         <div class="space-y-3 text-md text-text">
             <div class="grid grid-cols-3 gap-2">
@@ -48,17 +73,30 @@ class extends Component {
                 <p class="col-p-2 font-bold">{{ $adoption?->animal->name }}</p>
             </div>
 
+            <div class="grid grid-cols-3 gap-2">
+                <p>État de l'adoption</p>
+                <p class="col-p-2 font-bold">{{ __('adoptions.' . $adoption?->status) }}</p>
+            </div>
+
             <div class="pt-2 border-t">
                 <p class="font-medium mb-1">Message</p>
-                <p class="">
+                <p>
                     {{ $adoption?->message }}
                 </p>
             </div>
 
             <div class="pt-4 flex justify-end gap-4">
-                <a class="bg-background-green hover:bg-background-green-hover text-white py-2 w-full font-bold rounded-button text-center"
-                   href="mailto:{{ $adoption?->email }}">Envoyer un mail</a>
-                <x-form.button wire:click="close" title="Fermer"/>
+                <button
+                    wire:click="reject"
+                    class="bg-red-600 hover:bg-red-700 text-white py-2 w-full font-bold rounded-button">
+                    Refuser
+                </button>
+
+                <button
+                    wire:click="accept"
+                    class="bg-green-600 hover:bg-green-700 text-white py-2 w-full font-bold rounded-button">
+                    Accepter
+                </button>
             </div>
         </div>
     </x-slot:body>

@@ -10,7 +10,7 @@ class Adoption extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'email', 'phone', 'message', 'animal_id'];
+    protected $fillable = ['name', 'email', 'phone', 'message', 'animal_id', 'status'];
 
     public function animal(): BelongsTo
     {

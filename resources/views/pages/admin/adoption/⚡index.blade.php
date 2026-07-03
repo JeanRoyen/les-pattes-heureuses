@@ -3,6 +3,7 @@
 use App\Models\Adoption;
 use Illuminate\Support\Collection;
 use Livewire\Attributes\Computed;
+use Livewire\Attributes\On;
 use Livewire\Attributes\Title;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -17,6 +18,12 @@ class extends Component {
     public function updatedSearch(): void
     {
         $this->resetPage();
+    }
+
+    #[On('adoption-updated')]
+    public function refreshList()
+    {
+
     }
 
     #[Computed]
@@ -47,7 +54,6 @@ class extends Component {
         <x-admin.headings2 title="Demandes en attente"/>
         <x-general.searchbar model="search"/>
         <x-table>
-
             <tr>
                 <x-table.table-header title="Nom"/>
                 <x-table.table-header title="Nom de l'animal"/>
