@@ -18,7 +18,6 @@ class AnimalController extends Controller
             'dogCount' => $this->animalCounter('1'),
             'catCount' => $this->animalCounter('2'),
             'adoptedCount' => $this->statusCounter('adopted'),
-            'availableAnimals' => $this->availableAnimals(),
         ]);
     }
 
@@ -28,12 +27,6 @@ class AnimalController extends Controller
             'animal' => $animal,
             'animals' => $this->latestAvailableAnimals(),
         ]);
-    }
-
-    public function availableAnimals(): Collection
-    {
-        return Animal::whereIn('status', ['in_care', 'available'])
-            ->get();
     }
 
     public function latestAvailableAnimals()

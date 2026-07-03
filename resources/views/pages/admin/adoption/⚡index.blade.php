@@ -69,6 +69,7 @@ class extends Component {
                 <x-table.table-header title="Email"/>
                 <x-table.table-header title="Téléphone"/>
                 <x-table.table-header title="Status"/>
+                <x-table.table-header title="Date de réception"/>
                 <x-table.table-header title="Action"/>
             </tr>
             @foreach($this->adoptions as $adoption)
@@ -78,12 +79,14 @@ class extends Component {
                     <x-table.table-data title="{{ $adoption->email }}"/>
                     <x-table.table-data title="{{ $adoption->phone }}"/>
                     <x-table.table-data title="{{ __('adoptions.' . $adoption->status) }}"/>
+                    <x-table.table-data title="{{ $adoption->created_at->format('d/m/Y') }}"/>
                     <td class="border py-2 bg-white">
                         <button
                             class="bg-blue-400  text-white py-1 px-3 mb-1 rounded-button hover:cursor-pointer hover:bg-blue-500"
                             wire:click="showAdoption({{ $adoption->id }})">Voir le message
                         </button>
                     </td>
+
                 </tr>
             @endforeach
         </x-table>
