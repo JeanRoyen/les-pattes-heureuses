@@ -14,6 +14,7 @@ class extends Component {
     use WithPagination;
 
     public string $search = '';
+    public string $status = '';
 
     public function updatedSearch(): void
     {
@@ -31,6 +32,8 @@ class extends Component {
     {
         return Adoption::query()
             ->when($this->search !== '', fn($q) => $q->where('name', 'like', "%$this->search%"))
+            ->when($this->status !== '', fn($q) => $q->where('adoptions.status', $this->status))
+            ->orderBy('created_at', 'desc')
             ->paginate(8);
     }
 
@@ -53,6 +56,12 @@ class extends Component {
     <x-admin.section-spacing>
         <x-admin.headings2 title="Demandes en attente"/>
         <x-general.searchbar model="search"/>
+        <x-general.select name="status" title="Statut" wire:model.live="status">
+            <option value="">Tous les statuts</option>
+            <option value="accepted">Accepté</option>
+            <option value="refused">Refusé</option>
+            <option value="waiting">En attente</option>
+        </x-general.select>
         <x-table>
             <tr>
                 <x-table.table-header title="Nom"/>
