@@ -1,6 +1,9 @@
 <?php
 
 use App\Models\Animal;
+use App\Models\Breed;
+use App\Models\Specie;
+use Illuminate\Support\Collection;
 use Livewire\Attributes\Computed;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -10,6 +13,10 @@ new class extends Component {
     use WithPagination;
 
     public string $search = '';
+    public string $filterStatus = '';
+    public string $filterSpecie = '';
+    public string $filterRace = '';
+    public string $filterGender = '';
 
     public function updatedSearch()
     {
@@ -17,10 +24,29 @@ new class extends Component {
     }
 
     #[Computed]
+    public function species(): Collection
+    {
+        return Specie::all();
+    }
+
+    #[Computed]
+    public function breeds(): Collection
+    {
+        return Breed::all();
+    }
+
+    #[Computed]
     public function animals()
     {
         return Animal::whereIn('status', ['in_care', 'available'])
-            ->when($this->search !== '', fn($q) => $q->where('name', 'like', "%$this->search%"))
+            ->with(['specie', 'breed'])
+            ->when($this->filterStatus !== '', fn($q) => $q->where('status', $this->filterStatus),
+                fn($q) => $q->whereIn('status', ['available', 'in_care', 'waiting', 'adopted']))
+            ->when($this->search !== '', fn($q) => $q->where('name', 'like', "%$this->$search%"))
+            ->when($this->filterSpecie !== '', fn($q) => $q->where('specie_id', $this->filterSpecie))
+            ->when($this->filterRace !== '', fn($q) => $q->where('breed_id', $this->filterRace))
+            ->when($this->filterGender !== '', fn($q) => $q->where('gender', $this->filterGender))
+            ->orderBy('created_at')
             ->paginate(8);
     }
 };
@@ -32,18 +58,18 @@ new class extends Component {
             color="black"
             :title="__('animals.list_title')"/>
         <x-general.searchbar model="search"/>
-        {{--   <x-general.filters_animals-list
-               prefix="available"
-               species="chien"
-               races="chat"
-           />--}}
+        <x-client.filters
+            :species="$this->species"
+            :breeds="$this->breeds"
+        />
 
         <div class="grid grid-cols-8 gap-5">
             @forelse($this->animals as $animal)
                 <x-general.card
                     name="{{ $animal->name }}"
                     status="{{ $animal->status }}"
-                    race="{{ $animal->race }}"
+                    race="{{ $animal->breed->name }}"
+                    species="{{ $animal->specie->name }}"
                     gender="{{ $animal->gender }}"
                     age="{{ $animal->age->format('d/m/Y') }}"
                     description="{{ $animal->description }}"
