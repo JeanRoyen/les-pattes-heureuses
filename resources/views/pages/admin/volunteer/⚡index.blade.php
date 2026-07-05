@@ -251,9 +251,7 @@ class extends Component {
                         <label for="isAdmin" class="text-gray-700">Administrateur</label>
                     </div>
 
-                    <button type="submit" class="bg-cta-orange hover:bg-cta-hover text-white py-2 px-4 rounded-button">
-                        Enregistrer
-                    </button>
+                    <x-form.button title="Enregistrer les modifications"/>
                 </form>
             </x-slot:body>
         </x-modal.modal>
