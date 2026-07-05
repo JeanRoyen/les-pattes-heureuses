@@ -18,7 +18,7 @@ new class extends Component {
     public string $filterRace = '';
     public string $filterGender = '';
 
-    public function updatedSearch()
+    public function updated()
     {
         $this->resetPage();
     }
