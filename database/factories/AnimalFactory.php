@@ -3,6 +3,8 @@
 namespace Database\Factories;
 
 use App\Models\Animal;
+use App\Models\Breed;
+use App\Models\Specie;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -22,8 +24,8 @@ class AnimalFactory extends Factory
 
         return [
             'name' => $this->faker->firstName(),
-            'specie_id' => $this->faker->randomDigitNotNull(),
-            'breed_id' => $this->faker->randomDigitNotNull(),
+            'specie_id' => Specie::factory(),
+            'breed_id' => Breed::factory(),
             'age' => $this->faker->dateTimeBetween('-15 years', 'now'),
             'gender' => $this->faker->boolean(),
             'vaccine' => $this->faker->boolean(),

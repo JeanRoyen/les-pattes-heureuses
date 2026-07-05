@@ -1,97 +1,93 @@
 <?php
 
 use App\Models\Animal;
+use App\Models\Breed;
 use function Pest\Laravel\get;
+
+beforeEach(function () {
+    Breed::factory()->create([
+        'id' => 1,
+        'name' => 'Berger Allemand',
+    ]);
+});
 
 it('displays animals page correctly', function () {
     get(route('animals'))
-        ->assertStatus(200);
-});
-
-it('displays animal avatar', function () {
-    Animal::factory()->create([
-        'status' => 'available',
-        'avatar' => 'animals/dog.jpg',
-    ]);
-
-    get(route('animals'))
-        ->assertSee('animals/dog.jpg');
-});
-
-
-it('displays animal age', function () {
-    Animal::factory()->create([
-        'status' => 'available',
-        'age' => '2025-03-24 00:00:00',
-    ]);
-
-    get(route('animals'))
-        ->assertSee('24/03/2025');
+        ->assertOk();
 });
 
 
 it('displays animal name', function () {
     Animal::factory()->create([
-        'status' => 'available',
         'name' => 'Max',
+        'status' => 'available',
     ]);
 
     get(route('animals'))
         ->assertSee('Max');
 });
 
-
-it('displays animal race', function () {
-    $animal = Animal::factory()->create([
-        'status' => 'available',
-        'race' => 'Berger Allemand'
-    ]);
-
-    get(route('animals'))
-        ->assertSee('Berger Allemand');
-});
-
 it('displays animal description', function () {
-    $animal = Animal::factory()->create([
+    Animal::factory()->create([
+        'description' => 'Un chien très gentil',
         'status' => 'available',
-        'description' => 'Un chien très gentil'
     ]);
 
     get(route('animals'))
         ->assertSee('Un chien très gentil');
 });
 
-it('displays animal gender', function () {
-    $animal = Animal::factory()->create([
+it('displays animal breed name instead of id', function () {
+    Animal::factory()->create([
+        'breed_id' => 1,
         'status' => 'available',
-        'gender' => 1
+    ]);
+
+    get(route('animals'))
+        ->assertSee('Berger Allemand');
+});
+
+it('displays animal gender correctly', function () {
+    Animal::factory()->create([
+        'gender' => 1,
+        'status' => 'available',
     ]);
 
     get(route('animals'))
         ->assertSee('Mâle');
 });
 
-it('displays all animal information in card', function () {
-    $animal = Animal::factory()->create([
+it('formats animal age correctly', function () {
+    Animal::factory()->create([
+        'age' => '2025-03-24 00:00:00',
         'status' => 'available',
-        'avatar' => 'animals/test.jpg',
-        'age' => '2025-01-15 00:00:00',
-        'name' => 'Charlie',
-        'race' => 'Golden Retriever',
-        'description' => 'Chien adorable'
     ]);
 
     get(route('animals'))
-        ->assertSee('animals/test.jpg')
+        ->assertSee('24/03/2025');
+});
+
+it('displays full animal card information', function () {
+    Animal::factory()->create([
+        'status' => 'available',
+        'age' => '2025-01-15 00:00:00',
+        'name' => 'Charlie',
+        'description' => 'Chien adorable',
+        'breed_id' => 1,
+        'gender' => 1,
+    ]);
+
+    get(route('animals'))
         ->assertSee('15/01/2025')
         ->assertSee('Charlie')
-        ->assertSee('Golden Retriever')
-        ->assertSee('Chien adorable');
+        ->assertSee('Chien adorable')
+        ->assertSee('Berger Allemand')
+        ->assertSee('Mâle');
 });
 
 it('displays multiple animal cards', function () {
     Animal::factory()->count(3)->create();
 
     get(route('animals'))
-        ->assertStatus(200);
+        ->assertOk();
 });

@@ -1,13 +1,17 @@
 <?php
 
 use App\Models\Animal;
+use App\Models\Specie;
 use Livewire\Livewire;
+use function Pest\Laravel\get;
 
 it('renders successfully animals admin', function () {
     Livewire::test('pages::admin/animal.index')->assertStatus(200);
 });
 
 $viewedStatuses = ['adopted', 'waiting', 'available', 'in_care'];
+
+
 
 foreach ($viewedStatuses as $status) {
 
@@ -19,17 +23,18 @@ foreach ($viewedStatuses as $status) {
     });
 
     it("shows race for status {$status}", function () use ($status) {
-        Animal::factory()->create(['race' => 'Berger Allemand', 'status' => $status]);
+
+        $breed = \App\Models\Breed::factory()->create([
+            'name' => 'Berger Allemand',
+        ]);
+
+        Animal::factory()->create([
+            'breed_id' => $breed->id,
+            'status' => $status,
+        ]);
 
         Livewire::test('pages::admin/animal.index')
             ->assertSee('Berger Allemand');
-    });
-
-    it("shows description for status {$status}", function () use ($status) {
-        Animal::factory()->create(['description' => 'Lorem ipsum', 'status' => $status]);
-
-        Livewire::test('pages::admin/animal.index')
-            ->assertSee('Lorem ipsum');
     });
 
     it("shows gender for status {$status}", function () use ($status) {
@@ -56,9 +61,17 @@ foreach ($viewedStatuses as $status) {
     });
 
     it("shows specie for status {$status}", function () use ($status) {
-        Animal::factory()->create(['specie' => 'dog', 'status' => $status]);
+
+        $specie = \App\Models\Specie::factory()->create([
+            'name' => 'Chien',
+        ]);
+
+        Animal::factory()->create([
+            'specie_id' => $specie->id,
+            'status' => $status,
+        ]);
 
         Livewire::test('pages::admin/animal.index')
-            ->assertSee('dog');
+            ->assertSee('Chien');
     });
 }

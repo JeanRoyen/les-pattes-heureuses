@@ -12,11 +12,11 @@ $viewedStatuses = [0, 1];
 
 foreach ($viewedStatuses as $status) {
 
-    it("shows name for status {$status}", function () use ($status) {
-        Message::factory()->create(['name' => 'Sarah', 'received' => $status]);
+    it("shows object for status {$status}", function () use ($status) {
+        Message::factory()->create(['title' => 'Salut je suis Sarah ', 'received' => $status]);
 
         Livewire::test('pages::admin/message.index')
-            ->assertSee('Sarah');
+            ->assertSee('Salut je suis Sarah');
     });
 
     it("shows email for status {$status}", function () use ($status) {
