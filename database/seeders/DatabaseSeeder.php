@@ -33,6 +33,8 @@ class DatabaseSeeder extends Seeder
             'isAdmin' => 0,
             'password' => Hash::make('password'),
         ]);
+
+        User::factory()->count(10)->create();
         $this->call(ProductionSpeciesSeeder::class);
         $this->call(ProductionBreedSeeder::class);
         $this->call(ProductionMessageSeeder::class);
