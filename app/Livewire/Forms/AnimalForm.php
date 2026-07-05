@@ -38,7 +38,7 @@ class AnimalForm extends Form
     public string $description = '';
 
     #[Validate('string|required')]
-    public string $status;
+    public string $status = 'waiting';
 
     public function store(): void
     {

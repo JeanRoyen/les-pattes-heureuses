@@ -54,7 +54,7 @@ new class extends Component {
         @error('form.avatar') <span class="text-red-500">{{ $message }}</span> @enderror
 
         <x-form.input
-            name="name"
+            name="form.name"
             title="Nom"
             wire:model="form.name"
             type="text"
@@ -90,6 +90,7 @@ new class extends Component {
             </select>
             @error('form.breed_id') <span class="text-red-500">{{ $message }}</span> @enderror
         </div>
+            @can('admin')
         <div>
             <label for="status" class="block">Statut</label>
             <select
@@ -103,8 +104,9 @@ new class extends Component {
             </select>
             @error('form.status') <span class="text-red-500">{{ $message }}</span> @enderror
         </div>
+            @endcan
         <x-form.input
-            name="age"
+            name="form.age"
             title="Date de naissance"
             type="date"
             wire:model="form.age"
