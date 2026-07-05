@@ -10,15 +10,9 @@
             @csrf
             <div class="mb-4">
                 <x-form.input name="email" title="Adresse mail*" type="email" placeholder="Sarah@mail.be"/>
-                @error('email')
-                    {{ $message }}
-                @enderror
             </div>
             <div class="mb-4">
                 <x-form.input name="password" title="Mot de passe*" type="password" placeholder="********"/>
-                @error('password')
-                {{ $message }}
-                @enderror
             </div>
             <div>
                 <x-form.button title="Se connecter"/>
