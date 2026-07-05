@@ -55,7 +55,7 @@ class extends Component {
     </x-slot:page_title>
     <x-admin.section-spacing>
         <x-admin.headings2 title="Demandes en attente"/>
-        
+
         <x-general.searchbar model="search"/>
 
         <div class="grid grid-cols-8 gap-5">
