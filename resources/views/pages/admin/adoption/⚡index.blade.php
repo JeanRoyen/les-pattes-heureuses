@@ -55,13 +55,18 @@ class extends Component {
     </x-slot:page_title>
     <x-admin.section-spacing>
         <x-admin.headings2 title="Demandes en attente"/>
+        
         <x-general.searchbar model="search"/>
-        <x-general.select name="status" title="Statut" wire:model.live="status">
-            <option value="">Tous les statuts</option>
-            <option value="accepted">Accepté</option>
-            <option value="refused">Refusé</option>
-            <option value="waiting">En attente</option>
-        </x-general.select>
+
+        <div class="grid grid-cols-8 gap-5">
+            <x-general.select name="status" title="Statut" wire:model.live="status">
+                <option value="">Tous les statuts</option>
+                <option value="accepted">Accepté</option>
+                <option value="refused">Refusé</option>
+                <option value="waiting">En attente</option>
+            </x-general.select>
+        </div>
+
         <x-table>
             <tr>
                 <x-table.table-header title="Nom"/>
