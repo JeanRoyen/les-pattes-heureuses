@@ -4,9 +4,11 @@ use App\Models\User;
 use Livewire\Attributes\Computed;
 use Livewire\Attributes\Title;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 new #[Title('Bénévoles | Les Pattes Heureuses')]
 class extends Component {
+    use WithPagination;
 
     public string $page_title = 'Bénévoles';
 
@@ -20,6 +22,12 @@ class extends Component {
     public bool $showEditUserModal = false;
     public string $volunteerSearch = '';
 
+
+    public function updated()
+    {
+        $this->resetPage();
+    }
+
     #[Computed]
     public function users()
     {
@@ -28,7 +36,7 @@ class extends Component {
                 $this->volunteerSearch !== '',
                 fn($q) => $q->where('name', 'like', "%{$this->volunteerSearch}%")
             )
-            ->get();
+            ->paginate(8);
     }
 
     public function createUser(): void
@@ -139,6 +147,7 @@ class extends Component {
     </x-slot:page_title>
     <x-admin.section-spacing>
         <x-admin.headings2 title="Bénévoles du refuge"/>
+        <x-general.searchbar model="volunteerSearch"/>
         <x-admin.cta function="createUser" title="Ajouter un bénévole"/>
         <x-table>
             <tr>
@@ -148,7 +157,6 @@ class extends Component {
                 <x-table.table-header title="Rôle"/>
                 <x-table.table-header title="Actions"/>
             </tr>
-            <x-general.searchbar model="volunteerSearch"/>
             @foreach($this->users as $user)
                 <tr>
                     <x-table.table-data title="{{ ucfirst($user->name) }}"/>
@@ -172,29 +180,7 @@ class extends Component {
                 </tr>
             @endforeach
         </x-table>
-        <x-admin.headings2 title="Horaire des bénévoles"/>
-        <x-table>
-            <tr>
-                <x-table.table-header title="Nom"/>
-                <x-table.table-header title="Lundi"/>
-                <x-table.table-header title="Mardi"/>
-                <x-table.table-header title="Mercredi"/>
-                <x-table.table-header title="Jeudi"/>
-                <x-table.table-header title="Vendredi"/>
-                <x-table.table-header title="Samedi"/>
-                <x-table.table-header title="Actions"/>
-            </tr>
-            <tr>
-                <x-table.table-data title="Martin"/>
-                <x-table.table-data title="9h-12h"/>
-                <x-table.table-data title="9h-12h"/>
-                <x-table.table-data title="9h-12h"/>
-                <x-table.table-data title="9h-12h"/>
-                <x-table.table-data title="9h-12h"/>
-                <x-table.table-data title="9h-12h"/>
-                <x-table.table-data title="Modifier"/>
-            </tr>
-        </x-table>
+        {{ $this->users->links() }}
     </x-admin.section-spacing>
 
     <div class="{{ $showCreateUserModal ? 'block' : 'hidden' }}">
