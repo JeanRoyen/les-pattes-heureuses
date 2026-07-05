@@ -2,23 +2,42 @@
 
 use App\Models\Animal;
 use App\Models\Message;
+use App\Models\User;
+use App\Models\VolunteerPresence;
+use Livewire\Attributes\Computed;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Title;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 new #[Title('Tableau de bord | Les Pattes Heureuses')]
 class extends Component {
+    use WithPagination;
 
     public array $stats = [];
     public string $month;
 
     public int $receivedMessages;
-    public int $treatedMessages;
+    public string $presenceSearch = '';
 
     public function mount(): void
     {
         $this->loadMonthlyStats();
         $this->loadMessagesStats();
+    }
+
+    public function updated(): void
+    {
+        $this->resetPage();
+    }
+
+    #[Computed]
+    public function presences()
+    {
+        return User::with('volunteerPresence')
+            ->when($this->presenceSearch !== '', fn($q) => $q->where('name', 'like', "%$this->presenceSearch%"))
+            ->orderBy('name')
+            ->paginate(5);
     }
 
     private function loadMessagesStats(): void
@@ -82,6 +101,7 @@ class extends Component {
     </x-admin.section-spacing>
     <x-admin.section-spacing>
         <x-admin.headings2 title="Horaire des bénévoles"/>
+<x-general.searchbar model="presenceSearch" />
         <x-table>
             <tr>
                 <x-table.table-header title="Nom"/>
@@ -91,38 +111,22 @@ class extends Component {
                 <x-table.table-header title="Jeudi"/>
                 <x-table.table-header title="Vendredi"/>
                 <x-table.table-header title="Samedi"/>
-                <x-table.table-header title="Actions"/>
+                <x-table.table-header title="Dimanche"/>
             </tr>
-            <tr>
-                <x-table.table-data title="Chloé"/>
-                <x-table.table-data title="9h-12h"/>
-                <x-table.table-data title="9h-12h"/>
-                <x-table.table-data title="9h-12h"/>
-                <x-table.table-data title="9h-12h"/>
-                <x-table.table-data title="9h-12h"/>
-                <x-table.table-data title="9h-12h"/>
-                <x-table.table-data title="Modifier"/>
-            </tr>
-            <tr>
-                <x-table.table-data title="Chloé"/>
-                <x-table.table-data title="9h-12h"/>
-                <x-table.table-data title="9h-12h"/>
-                <x-table.table-data title="9h-12h"/>
-                <x-table.table-data title="9h-12h"/>
-                <x-table.table-data title="9h-12h"/>
-                <x-table.table-data title="9h-12h"/>
-                <x-table.table-data title="Modifier"/>
-            </tr>
-            <tr>
-                <x-table.table-data title="Chloé"/>
-                <x-table.table-data title="9h-12h"/>
-                <x-table.table-data title="9h-12h"/>
-                <x-table.table-data title="9h-12h"/>
-                <x-table.table-data title="9h-12h"/>
-                <x-table.table-data title="9h-12h"/>
-                <x-table.table-data title="9h-12h"/>
-                <x-table.table-data title="Modifier"/>
-            </tr>
+            @foreach($this->presences as $presence)
+                <tr>
+                    <x-table.table-data title="{{ $presence->name }}"/>
+                    <x-table.table-data title="{{ $presence->monday ? 'Présent' : 'Absent' }}"/>
+                    <x-table.table-data title="{{ $presence->tuesday ? 'Présent' : 'Absent' }}"/>
+                    <x-table.table-data title="{{ $presence->wednesday ? 'Présent' : 'Absent' }}"/>
+                    <x-table.table-data title="{{ $presence->thursday ? 'Présent' : 'Absent' }}"/>
+                    <x-table.table-data title="{{ $presence->friday ? 'Présent' : 'Absent' }}"/>
+                    <x-table.table-data title="{{ $presence->saturday ? 'Présent' : 'Absent' }}"/>
+                    <x-table.table-data title="{{ $presence->sunday ? 'Présent' : 'Absent' }}"/>
+                </tr>
+            @endforeach
         </x-table>
+        {{ $this->presences->links() }}
+        <a href="{{ route('admin.volunteers') }}" class="bg-blue-400  text-white py-3 px-3 mb-1 rounded-button hover:cursor-pointer hover:bg-blue-500">Modifier les horaires</a>
     </x-admin.section-spacing>
 </main>
