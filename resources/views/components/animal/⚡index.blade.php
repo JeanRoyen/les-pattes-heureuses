@@ -32,7 +32,13 @@ new class extends Component {
     #[Computed]
     public function breeds(): Collection
     {
-        return Breed::all();
+        return Breed::query()
+            ->when(
+                $this->filterSpecie !== '',
+                fn ($query) => $query->where('specie_id', $this->filterSpecie)
+            )
+            ->orderBy('name')
+            ->get();
     }
 
     #[Computed]
