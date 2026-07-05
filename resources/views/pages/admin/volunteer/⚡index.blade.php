@@ -181,6 +181,11 @@ class extends Component {
             @endforeach
         </x-table>
         {{ $this->users->links() }}
+        <x-admin.section-spacing>
+            <x-admin.headings2 title="Présences des bénévoles" />
+
+        <livewire:volunteer.volunteer_schedule/>
+        </x-admin.section-spacing>
     </x-admin.section-spacing>
 
     <div class="{{ $showCreateUserModal ? 'block' : 'hidden' }}">
