@@ -47,7 +47,8 @@
                         <x-general.card
                             name="{{ $animal->name }}"
                             status="{{ $animal->status }}"
-                            race="{{ $animal->race }}"
+                            race="{{ $animal->breed->name }}"
+                            species="{{ $animal->specie->name }}"
                             gender="{{ $animal->gender }}"
                             age="{{ $animal->age->format('d/m/Y') }}"
                             description="{{ $animal->description }}"
