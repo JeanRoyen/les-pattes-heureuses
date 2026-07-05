@@ -20,13 +20,15 @@
                     class="bg-background-green text-white py-1 px-3 mb-1 rounded-button">
                     Modifier
                 </button>
-            @endcan
             <button
                 wire:click="deleteAnimal({{ $animal->id }})"
                 wire:confirm="Êtes-vous sûr de vouloir supprimer {{ ucfirst($animal->name) }} ?"
                 class="bg-red-600 hover:bg-red-700 text-white py-1 px-3 rounded-button">
                 Supprimer
             </button>
+            @else
+                <p>Consulter l'administrateur</p>
+            @endcan
         </td>
     </tr>
 @empty

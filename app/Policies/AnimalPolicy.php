@@ -15,7 +15,7 @@ class AnimalPolicy
         //
     }
 
-    public function update(User $user)
+    public function update(User $user): Response
     {
         return $user->isAdmin === 1
         ? Response::allow()
