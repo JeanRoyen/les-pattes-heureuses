@@ -12,8 +12,9 @@ class extends Component {
     use WithPagination;
 
     public string $search = '';
+    public string $filterStatus = '';
 
-    public function updatedSearch()
+    public function updated()
     {
         $this->resetPage();
     }
@@ -22,6 +23,7 @@ class extends Component {
     public function messages()
     {
         return Message::query()
+            ->when($this->filterStatus !== '', fn($q) => $q->where('received', $this->filterStatus))
             ->where(function ($q) {
                 $q->where('name', 'like', "%$this->search%")
                     ->orWhere('title', 'like', "%$this->search%")
@@ -55,7 +57,7 @@ class extends Component {
         Messages
     </x-slot:page_title>
     <x-admin.section-spacing>
-        <x-admin.headings2 title="Messages en attente"/>
+        <x-admin.headings2 title="Message"/>
         <div>
             <input
                 type="text"
@@ -63,36 +65,43 @@ class extends Component {
                 placeholder="Rechercher..."
                 class="bg-white text-black w-full px-4 py-2 border-gray-400 border rounded-button focus:border-background-green focus:outline-none"
             >
+            <div class="grid grid-cols-8 gap-5">
+                <x-general.select name="status" title="Status" wire:model.live="filterStatus">
+                    <option value="">Toutes les status</option>
+                    <option value="0">Lu</option>
+                    <option value="1">Non lu</option>
+                </x-general.select>
+            </div>
         </div>
-        <x-table>
-            <tr>
-                <x-table.table-header title="Email"/>
-                <x-table.table-header title="Téléphone"/>
-                <x-table.table-header title="Objet"/>
-                <x-table.table-header title="Status"/>
-                <x-table.table-header title="Action"/>
-            </tr>
-            @forelse($this->messages as $message)
-                <tr wire:key="{{ $message->id }}">
-                    <x-table.table-data-mailto
-                        title='<a href="mailto:{{ $message->email }}">{{ $message->email }}</a>'/>
-                    <x-table.table-data title="{{ $message->phone }}"/>
-                    <x-table.table-data title="{{ $message->title }}"/>
-                    <x-table.table-data title="{{ $message->received ? 'Non lu' : 'Lu' }}"/>
-                    <td class="border py-2 bg-white">
-                        <button
-                            class="bg-blue-400  text-white py-1 px-3 mb-1 rounded-button hover:cursor-pointer hover:bg-blue-500"
-                            wire:click="showMessage({{ $message->id }})">Voir le message
-                        </button>
-                    </td>
-
-                </tr>
-            @empty
+            <x-table>
                 <tr>
-                    <td colspan="4" class="text-center py-4 bg-white border">Pas de messages trouvés</td>
+                    <x-table.table-header title="Email"/>
+                    <x-table.table-header title="Téléphone"/>
+                    <x-table.table-header title="Objet"/>
+                    <x-table.table-header title="Status"/>
+                    <x-table.table-header title="Action"/>
                 </tr>
-            @endforelse
-        </x-table>
+                @forelse($this->messages as $message)
+                    <tr wire:key="{{ $message->id }}">
+                        <x-table.table-data-mailto
+                            title='<a href="mailto:{{ $message->email }}">{{ $message->email }}</a>'/>
+                        <x-table.table-data title="{{ $message->phone }}"/>
+                        <x-table.table-data title="{{ $message->title }}"/>
+                        <x-table.table-data title="{{ $message->received ? 'Non lu' : 'Lu' }}"/>
+                        <td class="border py-2 bg-white">
+                            <button
+                                class="bg-blue-400  text-white py-1 px-3 mb-1 rounded-button hover:cursor-pointer hover:bg-blue-500"
+                                wire:click="showMessage({{ $message->id }})">Voir le message
+                            </button>
+                        </td>
+
+                    </tr>
+                @empty
+                    <tr>
+                        <td colspan="4" class="text-center py-4 bg-white border">Pas de messages trouvés</td>
+                    </tr>
+                @endforelse
+            </x-table>
         {{ $this->messages->links() }}
     </x-admin.section-spacing>
     <livewire:pages::admin.message.show wire:ref="modal"/>
