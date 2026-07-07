@@ -16,16 +16,9 @@
         <td class="border py-2 bg-white space-x-2">
             @can('update', $animal)
                 <button
-                    wire:click="openEditModal({{ $animal->id }})"
-                    class="bg-background-green text-white py-1 px-3 mb-1 rounded-button">
-                    Modifier
+                    class="bg-blue-400  text-white py-1 px-3 mb-1 rounded-button hover:cursor-pointer hover:bg-blue-500"
+                    wire:click="showAnimal({{ $animal->id }})">Voir la fiche
                 </button>
-            <button
-                wire:click="deleteAnimal({{ $animal->id }})"
-                wire:confirm="Êtes-vous sûr de vouloir supprimer {{ ucfirst($animal->name) }} ?"
-                class="bg-red-600 hover:bg-red-700 text-white py-1 px-3 rounded-button">
-                Supprimer
-            </button>
             @else
                 <p>Consulter l'administrateur</p>
             @endcan
