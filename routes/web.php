@@ -35,6 +35,7 @@ Route::middleware([SetLocale::class])->group(function () {
 
         Route::middleware('can:admin')->group(function (){
             Route::livewire('/admin/messages', 'pages::admin/message.index')->name('admin.messages');
+            Route::livewire('/admin/animal/{animal}', 'pages::admin/animal.show')->name('admin.animal.show');
             Route::livewire('/admin/adoptions', 'pages::admin/adoption.index')->name('admin.adoptions');
             Route::livewire('/admin/volunteers', 'pages::admin/volunteer.index')->name('admin.volunteers');
         });

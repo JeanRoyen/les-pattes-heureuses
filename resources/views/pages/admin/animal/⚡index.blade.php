@@ -1,6 +1,5 @@
 <?php
 
-use App\Jobs\ProcessAvatar;
 use App\Models\Animal;
 use App\Models\Breed;
 use App\Models\Specie;
@@ -57,7 +56,7 @@ class extends Component {
             ->when($this->filterSpecie !== '', fn($q) => $q->where('specie_id', $this->filterSpecie))
             ->when($this->filterRace !== '', fn($q) => $q->where('breed_id', $this->filterRace))
             ->when($this->filterGender !== '', fn($q) => $q->where('gender', $this->filterGender))
-            ->orderBy('created_at', 'desc')
+            ->orderBy('updated_at', 'desc')
             ->paginate(8);
     }
 
@@ -70,7 +69,17 @@ class extends Component {
     #[Computed]
     public function breeds(): Collection
     {
-        return Breed::all();
+        if ($this->filterSpecie) {
+            return Breed::query()
+                ->when(
+                    $this->filterSpecie !== '',
+                    fn($query) => $query->where('specie_id', $this->filterSpecie)
+                )
+                ->orderBy('name')
+                ->get();
+        } else {
+            return Breed::all();
+        }
     }
 
     public function deleteAnimal(int $animalId): void
@@ -92,13 +101,17 @@ class extends Component {
         $this->showCreateAnimalModal = true;
     }
 
+    public function showAnimal($animal)
+    {
+        Animal::first($animal);
+
+        $this->redirect(route('admin.animal.show', $animal));
+    }
+
     public function toggleModal($modalType, $action): void
     {
         if ($modalType === 'createAnimal') {
             $this->showCreateAnimalModal = $action === 'open';
-            $action === 'open' ? $this->dispatch('open-modal') : $this->dispatch('close-modal');
-        } elseif ($modalType === 'openEditModal') {
-            $this->showEditAnimalModal = $action === 'open';
             $action === 'open' ? $this->dispatch('open-modal') : $this->dispatch('close-modal');
         }
     }
@@ -111,59 +124,12 @@ class extends Component {
         $this->dispatch('close-modal');
     }
 
-    public function openEditModal($animalId): void
+    #[On('animal-updated')]
+    public function refreshAfterUpdate(): void
     {
-        $animal = Animal::findOrFail($animalId);
-        $this->animalId = $animal->id;
-        $this->name = $animal->name;
-        $this->specie_id = $animal->specie_id;
-        $this->breed_id = $animal->breed_id;
-        $this->status = $animal->status;
-        $this->age = $animal->age;
-        $this->gender = $animal->gender;
-        $this->vaccine = $animal->vaccine;
-        $this->description = $animal->description;
-
-        $this->toggleModal('openEditModal', 'open');
-    }
-
-    public function editAnimal(): void
-    {
-        $validated = $this->validate([
-            'avatar' => 'image|nullable',
-            'name' => 'required',
-            'status' => 'required',
-            'specie_id' => 'required',
-            'breed_id' => 'required',
-            'age' => 'required|date|before_or_equal:today',
-            'gender' => 'required',
-            'vaccine' => 'boolean',
-            'description' => 'string',
-        ]);
-
-        $animal = Animal::findOrFail($this->animalId);
-
         $this->showEditAnimalModal = false;
-        $this->reset([
-            'name',
-            'status',
-            'specie_id',
-            'breed_id',
-            'age',
-            'gender',
-            'vaccine',
-            'description',
-            'animalId'
-        ]);
 
-        if ($this->avatar) {
-            $file_name = 'avatar_img_' . uniqid() . 'jpeg';
-            $avatar_path = $this->avatar->storeAs('avatar/original', $file_name, 'public');
-            ProcessAvatar::dispatch($file_name, $avatar_path);
-            $validated['avatar'] = $avatar_path;
-        }
-
-        $animal->update($validated);
+        $this->dispatch('close-modal');
     }
 };
 ?>
@@ -195,19 +161,6 @@ class extends Component {
                 </x-slot:title>
                 <x-slot:body>
                     <livewire:animal.create/>
-                </x-slot:body>
-            </x-modal.modal>
-        </div>
-        <div class="{{ $showEditAnimalModal ? 'block' : 'hidden' }}">
-            <x-modal.modal>
-                <x-slot:title>
-                    Modifier un animal
-                    <button type="button" wire:click="toggleModal('openEditModal', 'close')">
-                        <img src="{{ asset('svg/close.svg') }}" alt="close" height="30" width="30">
-                    </button>
-                </x-slot:title>
-                <x-slot:body>
-                    <x-modal.edit_animal/>
                 </x-slot:body>
             </x-modal.modal>
         </div>

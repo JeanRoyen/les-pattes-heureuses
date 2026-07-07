@@ -45,7 +45,7 @@ new class extends Component {
             <img alt="Votre avatar" src="{{ $form->avatar->temporaryUrl() }}">
         @endif
         <x-form.input
-            name="avatar"
+            name="form.avatar"
             title="Image de l'animal"
             wire:model="form.avatar"
             type="file"

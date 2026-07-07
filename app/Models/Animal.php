@@ -15,9 +15,8 @@ class Animal extends Model
     use HasFactory, Notifiable, SoftDeletes;
 
     protected $fillable = ['avatar', 'name', 'age', 'gender', 'specie_id', 'breed_id', 'vaccine', 'description', 'status',
-        'path'
     ];
-    protected $casts = ['age' => 'date', 'gender' => 'boolean', 'vaccine' => 'boolean', 'avatar' => "array"];
+    protected $casts = ['age' => 'date', 'gender' => 'boolean', 'vaccine' => 'boolean'];
 
     public function avatars():HasMany
     {
