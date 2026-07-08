@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Adoption;
 use App\Models\Animal;
 use App\Models\Message;
 use App\Models\User;
@@ -18,12 +19,15 @@ class extends Component {
     public string $month;
 
     public int $receivedMessages;
+    public int $receivedAdoptions;
+
     public string $presenceSearch = '';
 
     public function mount(): void
     {
         $this->loadMonthlyStats();
         $this->loadMessagesStats();
+        $this->loadAdoptionsStats();
     }
 
     public function updated(): void
@@ -43,6 +47,11 @@ class extends Component {
     private function loadMessagesStats(): void
     {
         $this->receivedMessages = Message::where('received', 1)->count();
+    }
+
+    private function loadAdoptionsStats(): void
+    {
+        $this->receivedAdoptions = Adoption::where('status', 'waiting')->count();
     }
 
     private function loadMonthlyStats(): void
@@ -76,7 +85,7 @@ class extends Component {
         <x-admin.headings2 title="Demandes et messages"/>
         <x-admin.square-infos-container>
             <a wire:navigate href="{{ route('admin.adoptions') }}">
-                <x-general.square-infos number="1" title="Demandes" svg="contact"/>
+                <x-general.square-infos number="{{ $receivedAdoptions }}" title="Demandes" svg="contact"/>
             </a>
             <a wire:navigate href="{{ route('admin.messages') }}">
                 <x-general.square-infos number="{{ $receivedMessages }}" title="Messages" svg="mail"/>
@@ -101,7 +110,7 @@ class extends Component {
     </x-admin.section-spacing>
     <x-admin.section-spacing>
         <x-admin.headings2 title="Horaire des bénévoles"/>
-<x-general.searchbar model="presenceSearch" />
+        <x-general.searchbar model="presenceSearch"/>
         <x-table>
             <tr>
                 <x-table.table-header title="Nom"/>
@@ -127,6 +136,8 @@ class extends Component {
             @endforeach
         </x-table>
         {{ $this->presences->links() }}
-        <a href="{{ route('admin.volunteers') }}" class="bg-blue-400  text-white py-3 px-3 mb-1 rounded-button hover:cursor-pointer hover:bg-blue-500">Modifier les horaires</a>
+        <a href="{{ route('admin.volunteers') }}"
+           class="bg-blue-400  text-white py-3 px-3 mb-1 rounded-button hover:cursor-pointer hover:bg-blue-500">Modifier
+            les horaires</a>
     </x-admin.section-spacing>
 </main>
