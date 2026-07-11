@@ -38,9 +38,13 @@ class extends Component {
     #[Computed]
     public function presences()
     {
-        return User::with('volunteerPresence')
-            ->when($this->presenceSearch !== '', fn($q) => $q->where('name', 'like', "%$this->presenceSearch%"))
-            ->orderBy('name')
+        return VolunteerPresence::when(
+            $this->presenceSearch !== '',
+            fn ($query) => $query->whereHas('user', function ($q) {
+                $q->where('name', 'like', "%{$this->presenceSearch}%");
+            })
+        )
+            ->with('user')
             ->paginate(5);
     }
 
@@ -124,7 +128,7 @@ class extends Component {
             </tr>
             @foreach($this->presences as $presence)
                 <tr>
-                    <x-table.table-data title="{{ $presence->name }}"/>
+                    <x-table.table-data title="{{ $presence->user->name }}"/>
                     <x-table.table-data title="{{ $presence->monday ? 'Présent' : 'Absent' }}"/>
                     <x-table.table-data title="{{ $presence->tuesday ? 'Présent' : 'Absent' }}"/>
                     <x-table.table-data title="{{ $presence->wednesday ? 'Présent' : 'Absent' }}"/>
