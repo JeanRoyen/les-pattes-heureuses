@@ -59,10 +59,10 @@ new class extends Component {
             wire:model="form.name"
             type="text"
             placeholder="Bob"
+            required
         />
         <div>
-            <label for="specie" class="block">Espèce
-                <x-general.required_star/>
+            <label for="specie" class="block">Espèce<x-general.required_star/>
             </label>
             <select
                 id="specie"
@@ -80,8 +80,7 @@ new class extends Component {
             @error('form.specie_id') <span class="text-red-500">{{ $message }}</span> @enderror
         </div>
         <div>
-            <label for="breed" class="block">Race
-                <x-general.required_star/>
+            <label for="breed" class="block">Race<x-general.required_star/>
             </label>
             <select
                 id="breed"
@@ -99,8 +98,7 @@ new class extends Component {
         </div>
         @can('admin')
             <div>
-                <label for="status" class="block">Statut
-                    <x-general.required_star/>
+                <label for="status" class="block">Statut<x-general.required_star/>
                 </label>
                 <select
                     id="status"
@@ -121,10 +119,11 @@ new class extends Component {
             type="date"
             wire:model="form.age"
             placeholder=""
+            required
         />
         <div>
             <fieldset>
-                <legend>Sexe de l'animal</legend>
+                <legend>Sexe de l'animal<x-general.required_star/></legend>
                 <div>
                     <input type="radio" id="male" name="gender" wire:model="form.gender" value="1"/>
                     <label for="male">Mâle</label>
