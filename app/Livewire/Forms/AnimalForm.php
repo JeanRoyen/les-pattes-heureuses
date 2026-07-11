@@ -36,7 +36,7 @@ class AnimalForm extends Form
     public $gender;
 
     #[Validate('boolean')]
-    public $vaccine;
+    public bool $vaccine = false;
 
     #[Validate('string|nullable')]
     public $description = '';

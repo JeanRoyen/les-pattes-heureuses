@@ -118,18 +118,18 @@ class extends Component {
                                 <span class="text-sm text-red-500">{{ $message }}</span>
                                 @enderror
                             </div>
+                            <div>
+                                <label class="mb-2 block text-sm font-medium text-gray-700">
+                                    Nom<x-general.required_star/>
+                                </label>
 
-                            <x-form.input
-                                name="form.name"
-                                title="Nom"
-                                type="text"
-                                wire:model="form.name"
-                                placeholder="Nom de l'animal"
-                            />
+                                <input type="text" class="w-full rounded-lg border border-gray-300 px-4 py-3" wire:model="form.name">
+
+                            </div>
 
                             <div>
                                 <label class="mb-2 block text-sm font-medium text-gray-700">
-                                    Statut
+                                    Statut<x-general.required_star/>
                                 </label>
 
                                 <select
@@ -150,7 +150,7 @@ class extends Component {
 
                                 <div>
                                     <label class="mb-2 block text-sm font-medium text-gray-700">
-                                        Espèce
+                                        Espèce<x-general.required_star/>
                                     </label>
 
                                     <select
@@ -170,7 +170,7 @@ class extends Component {
 
                                 <div>
                                     <label class="mb-2 block text-sm font-medium text-gray-700">
-                                        Race
+                                        Race<x-general.required_star/>
                                     </label>
 
                                     <select
@@ -190,7 +190,7 @@ class extends Component {
 
                                 <div>
                                     <label class="mb-2 block text-sm font-medium text-gray-700">
-                                        Date de naissance
+                                        Date de naissance<x-general.required_star/>
                                     </label>
 
                                     <input
@@ -206,7 +206,7 @@ class extends Component {
 
                             <div>
                                 <label class="mb-3 block text-sm font-medium text-gray-700">
-                                    Sexe
+                                    Sexe<x-general.required_star/>
                                 </label>
 
                                 <div class="flex gap-6">

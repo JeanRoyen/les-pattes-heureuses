@@ -61,12 +61,16 @@ new class extends Component {
             placeholder="Bob"
         />
         <div>
-            <label for="specie" class="block">Espèce</label>
+            <label for="specie" class="block">Espèce
+                <x-general.required_star/>
+            </label>
             <select
                 id="specie"
                 name="specie"
                 wire:model.live="form.specie_id"
-                class="border-input-grey border rounded-button pl-2 w-full py-1 focus:border-background-green focus:outline-none disabled:bg-gray-200">
+                class="border-input-grey border rounded-button pl-2 w-full py-1 focus:border-background-green focus:outline-none disabled:bg-gray-200"
+
+            >
                 <option value="">Choisir une espèce</option>
 
                 @foreach($this->species as $specie)
@@ -76,12 +80,15 @@ new class extends Component {
             @error('form.specie_id') <span class="text-red-500">{{ $message }}</span> @enderror
         </div>
         <div>
-            <label for="breed" class="block">Race</label>
+            <label for="breed" class="block">Race
+                <x-general.required_star/>
+            </label>
             <select
                 id="breed"
                 name="breed"
                 wire:model.live="form.breed_id"
-                class="border-input-grey border rounded-button pl-2 w-full py-1 focus:border-background-green focus:outline-none disabled:bg-gray-200">
+                class="border-input-grey border rounded-button pl-2 w-full py-1 focus:border-background-green focus:outline-none disabled:bg-gray-200"
+            >
                 <option value="">Choisir une race</option>
 
                 @foreach($this->breeds as $breed)
@@ -90,21 +97,24 @@ new class extends Component {
             </select>
             @error('form.breed_id') <span class="text-red-500">{{ $message }}</span> @enderror
         </div>
-            @can('admin')
-        <div>
-            <label for="status" class="block">Statut</label>
-            <select
-                id="status"
-                name="status"
-                wire:model="form.status"
-                class="border-input-grey border rounded-button pl-2 w-full py-1 focus:border-background-green focus:outline-none disabled:bg-gray-200">
-                <option value="">Choisir un statut</option>
-                <option value="available">Disponible</option>
-                <option value="in_care">En soins</option>
-            </select>
-            @error('form.status') <span class="text-red-500">{{ $message }}</span> @enderror
-        </div>
-            @endcan
+        @can('admin')
+            <div>
+                <label for="status" class="block">Statut
+                    <x-general.required_star/>
+                </label>
+                <select
+                    id="status"
+                    name="status"
+                    wire:model="form.status"
+                    class="border-input-grey border rounded-button pl-2 w-full py-1 focus:border-background-green focus:outline-none disabled:bg-gray-200"
+                >
+                    <option value="">Choisir un statut</option>
+                    <option value="available">Disponible</option>
+                    <option value="in_care">En soins</option>
+                </select>
+                @error('form.status') <span class="text-red-500">{{ $message }}</span> @enderror
+            </div>
+        @endcan
         <x-form.input
             name="form.age"
             title="Date de naissance"
@@ -131,7 +141,7 @@ new class extends Component {
             <input
                 type="checkbox"
                 id="vaccinated"
-                name="vaccine"
+                name="form.vaccine"
                 wire:model="form.vaccine"
                 class="rounded"
             >
