@@ -151,7 +151,11 @@ class extends Component {
             <x-table.animal.loop :animals="$this->animals"/>
         </x-table>
         {{ $this->animals->links() }}
-        <div class="{{ $showCreateAnimalModal ? 'block' : 'hidden' }}">
+        <div
+            x-data="{ open: $wire.entangle('showCreateAnimalModal') }"
+            x-effect="document.body.classList.toggle('overflow-hidden', open)"
+            class="{{ $showCreateAnimalModal ? 'block' : 'hidden' }}"
+        >
             <x-modal.modal>
                 <x-slot:title>
                     Ajouter un animal
