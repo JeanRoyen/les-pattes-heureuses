@@ -11,5 +11,10 @@ return [
     'stats_cats' => 'Katten in het asiel',
     'stats_adopted' => 'Hebben het asiel verlaten',
 
+    'status_available' => 'Beschikbaar',
+    'status_in_care' => 'In verzorging',
+    'status_waiting' => 'In afwachting van goedkeuring',
+    'status_adopted' => 'Geadopteerd',
+
     'list_title' => 'Ontdek onze kleine (en grote) bewoners',
 ];

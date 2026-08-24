@@ -11,5 +11,10 @@ return [
     'stats_cats' => 'Cats in the shelter',
     'stats_adopted' => 'Have left the shelter',
 
+    'status_available' => 'Available',
+    'status_in_care' => 'In care',
+    'status_waiting' => 'Awaiting validation',
+    'status_adopted' => 'Adopted',
+
     'list_title' => 'Discover our small (and big) residents',
 ];
