@@ -9,7 +9,7 @@
             <div>
                 @if($animal->avatar)
                     <img
-                        src="{{ asset('storage/' . $animal->avatar) }}"
+                        src="{{ Storage::url($animal->avatar) }}"
                         alt="{{ $animal->name }}"
                         class="aspect-4/5 w-full rounded-2xl object-cover"
                     >

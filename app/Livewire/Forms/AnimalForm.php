@@ -2,7 +2,6 @@
 
 namespace App\Livewire\Forms;
 
-use App\Jobs\ProcessAvatar;
 use App\Models\Animal;
 use Livewire\Attributes\Validate;
 use Livewire\Form;
@@ -65,7 +64,7 @@ class AnimalForm extends Form
         unset($validated['avatar']);
 
         if ($this->avatar) {
-            $validated['avatar'] = $this->avatar->store('avatar', 'public');
+            $validated['avatar'] = $this->avatar->store('avatar');
         }
 
         Animal::create($validated);
@@ -78,7 +77,7 @@ class AnimalForm extends Form
         unset($validated['avatar']);
 
         if ($this->avatar) {
-            $validated['avatar'] = $this->avatar->store('avatar', 'public');
+            $validated['avatar'] = $this->avatar->store('avatar');
         }
 
         $this->animal->update($validated);

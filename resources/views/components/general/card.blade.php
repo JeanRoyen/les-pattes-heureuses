@@ -1,8 +1,8 @@
 <article class="bg-white rounded-card overflow-hidden flex flex-col col-span-8 md:col-span-4 lg:col-span-2 shadow-sm">
     <div class="relative">
-        @if ($picture && Storage::disk('public')->exists($picture))
+        @if ($picture)
             <img
-                src="{{ asset('storage/' . $picture) }}"
+                src="{{ Storage::url($picture) }}"
                 alt="{{ $name }}"
                 class="block w-full h-96 object-cover"
             />
