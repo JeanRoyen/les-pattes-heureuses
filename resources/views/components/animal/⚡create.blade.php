@@ -39,7 +39,7 @@ new class extends Component {
 ?>
 
 
-<form class="space-y-6" wire:submit="createAnimal">
+<form class="max-h-[75vh] space-y-6 overflow-y-auto pr-2" wire:submit="createAnimal">
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
         @if ($form->avatar)
             <img alt="Votre avatar" src="{{ $form->avatar->temporaryUrl() }}">
