@@ -101,9 +101,9 @@ class extends Component {
         $this->showCreateAnimalModal = true;
     }
 
-    public function showAnimal($animal)
+    public function showAnimal(int $animalId): void
     {
-        Animal::first($animal);
+        $animal = Animal::findOrFail($animalId);
 
         $this->redirect(route('admin.animal.show', $animal));
     }
