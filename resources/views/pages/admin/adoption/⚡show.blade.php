@@ -22,7 +22,7 @@ class extends Component {
     public function open(int $id)
     {
         $this->isOpen = true;
-        $this->adoption = Adoption::findOrFail($id);
+        $this->adoption = Adoption::with('animal:id,name')->findOrFail($id);
     }
 
     public function accept(): void

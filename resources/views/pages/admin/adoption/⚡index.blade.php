@@ -31,6 +31,7 @@ class extends Component {
     public function adoptions()
     {
         return Adoption::query()
+            ->with('animal:id,name')
             ->when($this->search !== '', fn($q) => $q->where('name', 'like', "%$this->search%"))
             ->when($this->status !== '', fn($q) => $q->where('adoptions.status', $this->status))
             ->orderBy('created_at', 'desc')
